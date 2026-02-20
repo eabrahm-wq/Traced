@@ -899,6 +899,211 @@
     .ticker-dot.r { background: var(--red); }
 
     /* ══════════════════════════════════════
+       DEEP DIVES PROMO
+    ══════════════════════════════════════ */
+    .deep-dives-section {
+      border-top: 1px solid var(--border);
+      padding: 80px 48px;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+    .deep-dives-section::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -80px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(200,148,58,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .dd-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .dd-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .dd-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dd-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 20px; height: 1px;
+      background: var(--amber);
+    }
+    .dd-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .dd-title em { font-style: italic; color: var(--amber); }
+    .dd-view-all {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      text-decoration: none;
+      border: 1px solid rgba(200,148,58,0.3);
+      background: var(--amber-dim);
+      padding: 8px 16px;
+      border-radius: 2px;
+      white-space: nowrap;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+    .dd-view-all:hover {
+      background: rgba(200,148,58,0.14);
+      border-color: rgba(200,148,58,0.5);
+    }
+    .dd-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .dd-card {
+      background: var(--bg);
+      padding: 24px 24px 20px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s;
+    }
+    .dd-card:hover { background: var(--bg-hover); }
+    .dd-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--amber);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .dd-card:hover::after { transform: scaleX(1); }
+    .dd-card-num {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+    .dd-card-name {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 10px;
+      flex: 1;
+    }
+    .dd-card-name em { font-style: italic; color: var(--amber); }
+    .dd-card-hook {
+      font-size: 11.5px;
+      font-weight: 300;
+      color: var(--text-dim);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .dd-card-stat {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .dd-stat-val {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .dd-stat-val.red    { color: var(--red); }
+    .dd-stat-val.amber  { color: var(--amber); }
+    .dd-stat-val.yellow { color: var(--yellow); }
+    .dd-stat-label {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      line-height: 1.35;
+    }
+    .dd-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .dd-count-text {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+    }
+    .dd-count-text strong { color: var(--text-muted); }
+    .dd-queued {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .dd-queued-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+    }
+    .dd-queued-pills {
+      display: flex;
+      gap: 4px;
+    }
+    .dd-queued-pill {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      background: transparent;
+      border: 1px dashed var(--border-light);
+      padding: 2px 6px;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 960px) {
+      .deep-dives-section { padding-left: 24px; padding-right: 24px; }
+      .dd-grid { grid-template-columns: repeat(2, 1fr); }
+      .dd-header { grid-template-columns: 1fr; gap: 16px; }
+      .dd-queued { display: none; }
+    }
+    @media (max-width: 600px) {
+      .dd-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ══════════════════════════════════════
        RESPONSIVE
     ══════════════════════════════════════ */
     @media (max-width: 960px) {
@@ -939,6 +1144,7 @@
     <li><a href="traced-greens-powders.html">Greens</a></li>
     <li><a href="traced-chocolate.html">Chocolate</a></li>
     <li><a href="traced-protein-bars.html">Protein Bars</a></li>
+    <li style="margin-left:6px;padding-left:12px;border-left:1px solid var(--border-light)"><a href="traced-deep-dives.html" style="color:var(--amber);border-color:rgba(200,148,58,0.3);background:var(--amber-dim)">Deep Dives</a></li>
   </ul>
 </nav>
 
@@ -946,6 +1152,8 @@
 <div class="ticker" style="margin-top:65px">
   <div class="ticker-inner">
     <!-- first set -->
+    <span class="ticker-item"><span class="ticker-dot r"></span>Annie's — butter &amp; nonfat milk removed Sept 2024, replaced with corn starch. Protein down 22%. Not disclosed.</span>
+    <span class="ticker-item"><span class="ticker-dot r"></span>Ghost Whey — acquired Keurig Dr Pepper Oct 2024. Independence narrative unchanged on all brand channels.</span>
     <span class="ticker-item"><span class="ticker-dot r"></span>Hershey PGPR added 2006 — castor oil emulsifier replacing cocoa butter</span>
     <span class="ticker-item"><span class="ticker-dot r"></span>Lily's "Stevia Sweetened" class action active — primary sweetener is erythritol by weight</span>
     <span class="ticker-item"><span class="ticker-dot y"></span>AG1 — 49 of 75 ingredients hidden in proprietary blends</span>
@@ -959,6 +1167,8 @@
     <span class="ticker-item"><span class="ticker-dot r"></span>Amazing Grass — CA AG heavy metals settlement 2022</span>
     <span class="ticker-item"><span class="ticker-dot y"></span>Nuun — acquired by Nestlé 2020; formula holds but company changed</span>
     <!-- duplicate for loop -->
+    <span class="ticker-item"><span class="ticker-dot r"></span>Annie's — butter &amp; nonfat milk removed Sept 2024, replaced with corn starch. Protein down 22%. Not disclosed.</span>
+    <span class="ticker-item"><span class="ticker-dot r"></span>Ghost Whey — acquired Keurig Dr Pepper Oct 2024. Independence narrative unchanged on all brand channels.</span>
     <span class="ticker-item"><span class="ticker-dot r"></span>Hershey PGPR added 2006 — castor oil emulsifier replacing cocoa butter</span>
     <span class="ticker-item"><span class="ticker-dot r"></span>Lily's "Stevia Sweetened" class action active — primary sweetener is erythritol by weight</span>
     <span class="ticker-item"><span class="ticker-dot y"></span>AG1 — 49 of 75 ingredients hidden in proprietary blends</span>
@@ -1213,6 +1423,75 @@
   </div>
 </section>
 
+<!-- DEEP DIVES PROMO -->
+<section class="deep-dives-section" id="deep-dives">
+  <div class="dd-inner">
+    <div class="dd-header">
+      <div>
+        <div class="dd-eyebrow">Traced Investigations</div>
+        <h2 class="dd-title">Deep<em> Dives.</em></h2>
+      </div>
+      <a class="dd-view-all" href="traced-deep-dives.html">View all investigations →</a>
+    </div>
+    <div class="dd-grid">
+
+      <a class="dd-card" href="traced-ag1-deep-trace.html">
+        <div class="dd-card-num">Investigation 001</div>
+        <div class="dd-card-name">AG1<em>.</em></div>
+        <p class="dd-card-hook">75 ingredients. 49 hidden inside a single proprietary blend. Zero clinical trials on the complete formula. The most marketed greens powder is the least transparent about what you're buying.</p>
+        <div class="dd-card-stat">
+          <div class="dd-stat-val red">49/75</div>
+          <div class="dd-stat-label">ingredient doses<br>concealed</div>
+        </div>
+      </a>
+
+      <a class="dd-card" href="traced-annies-deep-trace.html">
+        <div class="dd-card-num">Investigation 002</div>
+        <div class="dd-card-name">Annie's<em>.</em></div>
+        <p class="dd-card-hook">Butter and nonfat milk quietly removed in September 2024. Replaced with corn starch. Marketed as "Now Cheesier." Protein dropped 22%. General Mills did not disclose the specific change.</p>
+        <div class="dd-card-stat">
+          <div class="dd-stat-val yellow">−22%</div>
+          <div class="dd-stat-label">protein after<br>Sept 2024 recipe</div>
+        </div>
+      </a>
+
+      <a class="dd-card" href="traced-ghost-deep-trace.html">
+        <div class="dd-card-num">Investigation 003</div>
+        <div class="dd-card-name">Ghost<em>.</em></div>
+        <p class="dd-card-hook">Built on independence as a core identity. Acquired by Keurig Dr Pepper in October 2024. The "owned by no one" narrative on all brand channels remains unchanged into 2025.</p>
+        <div class="dd-card-stat">
+          <div class="dd-stat-val red">Oct '24</div>
+          <div class="dd-stat-label">KDP acquisition,<br>narrative unchanged</div>
+        </div>
+      </a>
+
+      <a class="dd-card" href="traced-musclepharm-deep-trace.html">
+        <div class="dd-card-num">Investigation 004</div>
+        <div class="dd-card-name">Muscle<em>Pharm.</em></div>
+        <p class="dd-card-hook">$4M FTC settlement. SEC investigation of the former CEO. Revenue down ~70% from peak. Class action for protein spiking. Still on shelves at GNC with no disclosure of any of this on the label.</p>
+        <div class="dd-card-stat">
+          <div class="dd-stat-val red">$4M</div>
+          <div class="dd-stat-label">FTC settlement,<br>SEC investigation active</div>
+        </div>
+      </a>
+
+    </div>
+    <div class="dd-bottom">
+      <p class="dd-count-text"><strong>4 investigations published.</strong> Each documents a specific structural failure — acquisition concealment, recipe degradation, regulatory record, proprietary blend opacity — with primary sources.</p>
+      <div class="dd-queued">
+        <span class="dd-queued-label">In queue:</span>
+        <div class="dd-queued-pills">
+          <span class="dd-queued-pill">David</span>
+          <span class="dd-queued-pill">Herbalife</span>
+          <span class="dd-queued-pill">Vital Proteins</span>
+          <span class="dd-queued-pill">Hu</span>
+          <span class="dd-queued-pill">+3</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- RECENT FINDINGS -->
 <section class="findings-section" id="findings">
   <div class="section-header">
@@ -1384,7 +1663,7 @@
   <div class="footer-inner">
     <div class="footer-brand">
       <span class="footer-logo">Traced</span>
-      <p class="footer-tagline">What's actually in your food. 41 brands. 5 categories. 7 dimensions.</p>
+      <p class="footer-tagline">What's actually in your food. 41 brands. 5 categories. 4 deep dive investigations.</p>
     </div>
     <div>
       <div class="footer-col-title">Categories</div>
@@ -1393,20 +1672,23 @@
         <li><a href="traced-electrolytes.html">Electrolytes — 8 profiles</a></li>
         <li><a href="traced-greens-powders.html">Greens Powders — 6 profiles</a></li>
         <li><a href="traced-chocolate.html">Chocolate — 5 profiles</a></li>
+        <li><a href="traced-protein-bars.html">Protein Bars — 5 profiles</a></li>
       </ul>
     </div>
     <div>
-      <div class="footer-col-title">Deep Traces</div>
+      <div class="footer-col-title"><a href="traced-deep-dives.html" style="color:var(--amber);text-decoration:none;">Deep Dives →</a></div>
       <ul class="footer-links">
-        <li><a href="traced-reeses-hershey.html">Reese's / Hershey Company</a></li>
-        <li><a href="traced-ag1-deep-trace.html">AG1 — Deep Trace</a></li>
-        <li><a href="traced-electrolytes.html">Liquid IV / Unilever</a></li>
+        <li><a href="traced-ag1-deep-trace.html">001 — AG1: 49 doses hidden</a></li>
+        <li><a href="traced-annies-deep-trace.html">002 — Annie's: recipe degraded Sept 2024</a></li>
+        <li><a href="traced-ghost-deep-trace.html">003 — Ghost: KDP acquisition concealed</a></li>
+        <li><a href="traced-musclepharm-deep-trace.html">004 — MusclePharm: $4M FTC settlement</a></li>
+        <li style="margin-top:6px;color:var(--text-dim);font-size:11px;font-family:var(--font-mono);letter-spacing:0.06em">7 investigations queued</li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <span class="footer-legal">Traced — Independent food transparency research. Not affiliated with any brand.</span>
-    <span class="footer-count">41 brands · 5 categories · 7 dimensions · Last updated Feb 2026</span>
+    <span class="footer-count">41 brands · 5 categories · 4 deep dives · Last updated Feb 2026</span>
   </div>
 </footer>
 
