@@ -233,15 +233,71 @@ html { background: var(--bg); color: var(--text); font-family: var(--font-body);
   .disc-row { grid-template-columns: 100px 1fr; }
   .disc-row > *:nth-child(3), .disc-row > *:nth-child(4) { display: none; }
 }
+
+/* ─────────────────────────────────────────────
+   BEFORE YOU BUY — ACCORDION
+───────────────────────────────────────────── */
+.wtlf-section { padding: 64px 48px; max-width: 1200px; margin: 0 auto; }
+.wtlf-header { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+.wtlf-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); white-space: nowrap; }
+.wtlf-rule { flex: 1; height: 1px; background: var(--border); }
+.wtlf-title { font-family: var(--display); font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 24px; }
+.wtlf-title em { color: var(--amber); font-style: italic; }
+.wtlf-grid { display: flex; flex-direction: column; gap: 2px; }
+
+/* Each card is a full-width row */
+.wtlf-card { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+
+/* Clickable header row — always visible */
+.wtlf-card-head {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.wtlf-card-head:hover { background: rgba(255,255,255,0.02); }
+.wtlf-icon { font-size: 16px; flex-shrink: 0; }
+.wtlf-signal-label { font-size: 17px; font-weight: 600; color: var(--text); line-height: 1.3; flex: 1; }
+.wtlf-flag {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em;
+  padding: 3px 8px; border-radius: 2px; white-space: nowrap; flex-shrink: 0;
+}
+.wtlf-flag.red   { color: var(--red, #c94d3c); background: rgba(201,77,60,0.08); border: 1px solid rgba(201,77,60,0.2); }
+.wtlf-flag.amber { color: var(--amber); background: rgba(200,148,58,0.08); border: 1px solid rgba(200,148,58,0.2); }
+.wtlf-flag.green { color: var(--green,#4e9b6f); background: rgba(78,155,111,0.08); border: 1px solid rgba(78,155,111,0.2); }
+.wtlf-chevron { font-size: 10px; color: var(--muted, #9a9284); flex-shrink: 0; transition: transform 0.2s; }
+.wtlf-card.open .wtlf-chevron { transform: rotate(180deg); }
+
+/* Expandable body */
+.wtlf-body {
+  display: none;
+  padding: 0 18px 14px 46px;
+  border-top: 1px solid var(--border);
+}
+.wtlf-card.open .wtlf-body { display: block; }
+.wtlf-bullets { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.wtlf-bullets li {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 12px; font-weight: 300; color: var(--muted, #9a9284); line-height: 1.5;
+}
+.wtlf-bullets li::before { content: '—'; color: var(--border-strong, #3a3630); flex-shrink: 0; font-size: 11px; line-height: 1.7; }
+.wtlf-bullets li strong { color: var(--text); font-weight: 500; }
+
+@media (max-width: 900px) {
+  .wtlf-section { padding: 48px 24px; }
+  .wtlf-section { padding: 48px 24px; }
+}
+
 </style>
 </head>
 <body>
 
 <!-- HEADER -->
 <header class="site-header">
-  <a href="traced-homepage.html" class="site-logo">Traced <span>/ by origin</span></a>
+  <a href="index.html" class="site-logo">Traced <span>/ by origin</span></a>
   <nav class="site-nav">
-    <a href="traced-homepage.html">Home</a>
+    <a href="index.html">Home</a>
     <a href="traced-protein-supplements.html">Proteins</a>
     <a href="traced-electrolytes.html">Electrolytes</a>
     <a href="traced-greens-powders.html">Greens</a>
@@ -254,7 +310,7 @@ html { background: var(--bg); color: var(--text); font-family: var(--font-body);
 <!-- HERO -->
 <section class="category-hero">
   <div class="hero-breadcrumb">
-    <a href="traced-homepage.html">Traced</a>
+    <a href="index.html">Traced</a>
     <span class="sep">/</span>
     <span class="current">Greens Powders</span>
   </div>
@@ -297,882 +353,138 @@ html { background: var(--bg); color: var(--text); font-family: var(--font-body);
   <h2 class="wtlf-title">What to <em>Look For</em> in Greens Powders</h2>
   <div class="wtlf-grid">
 
-    <div class="wtlf-card">
-      <div class="wtlf-signal">
+    <div class="wtlf-card open">
+      <div class="wtlf-card-head">
         <span class="wtlf-icon">🌿</span>
         <span class="wtlf-signal-label">Proprietary blends hide the doses that determine whether anything works</span>
+        <span class="wtlf-flag red">Red flag</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-signal-body">AG1's 75-ingredient formula discloses individual doses for vitamins and minerals — but hides the 49 herbal extracts, adaptogens, and probiotics inside proprietary blend totals. A physician cannot assess whether ashwagandha is at a clinically studied dose (300–600mg) or a trace amount added for label presence. If the blend weight is disclosed but individual ingredients are not, you cannot evaluate efficacy.</div>
-      <span class="wtlf-flag red">Red flag — Proprietary blend totals without individual doses</span>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li>AG1's formula hides <strong>49 herbal extracts and adaptogens inside proprietary blend totals</strong> — individual doses undisclosed</li>
+          <li>A physician can't assess whether ashwagandha is at a <strong>clinically studied dose (300–600mg) or a trace amount</strong> added for label presence</li>
+          <li>If blend weight is disclosed but individual ingredients aren't, <strong>you cannot evaluate efficacy</strong></li>
+        </ul>
+      </div>
     </div>
-
     <div class="wtlf-card">
-      <div class="wtlf-signal">
+      <div class="wtlf-card-head">
         <span class="wtlf-icon">🔬</span>
-        <span class="wtlf-signal-label">Greens powders cannot replace vegetables — that claim has no scientific basis</span>
+        <span class="wtlf-signal-label">Greens powders cannot replace vegetables — this claim has no scientific basis</span>
+        <span class="wtlf-flag red">Red flag</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-signal-body">Whole vegetables provide fiber, phytonutrients, water content, and synergistic compounds that dehydration and powder processing cannot replicate. Studies on greens powders use the complete product — not individual ingredients — making it impossible to identify which components drive observed effects, or whether the effect would persist with diet-matched controls. No clinical evidence supports the replacement claim.</div>
-      <span class="wtlf-flag red">Red flag — "Replaces X servings of vegetables" claim</span>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li>Whole vegetables provide <strong>fiber, phytonutrients, water content, and synergistic compounds</strong> that dehydration and powder processing can't replicate</li>
+          <li>Studies use the <strong>complete product</strong> — impossible to identify which components drive effects</li>
+          <li>No clinical evidence supports the <strong>"replaces X servings of vegetables"</strong> claim</li>
+        </ul>
+      </div>
     </div>
-
     <div class="wtlf-card">
-      <div class="wtlf-signal">
+      <div class="wtlf-card-head">
         <span class="wtlf-icon">📣</span>
         <span class="wtlf-signal-label">The influencer-endorser conflict is most concentrated in this category</span>
+        <span class="wtlf-flag red">Red flag</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-signal-body">AG1's business model was built on giving equity stakes to high-trust health communicators (Attia, Huberman, Ferriss) while simultaneously deploying them as paid sponsors. The audience cannot distinguish scientific recommendation from commercial transaction when the endorser holds both roles. Greens powders sell almost entirely on trust — which is exactly why the trust channel is where the conflict is most consequential.</div>
-      <span class="wtlf-flag red">Red flag — Physician/scientist endorser with no disclosed financial relationship</span>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li>AG1's model: give <strong>equity stakes to health communicators</strong> (Attia, Huberman, Ferriss), then deploy them as paid sponsors simultaneously</li>
+          <li>The audience <strong>can't distinguish scientific recommendation from commercial transaction</strong> when the endorser holds both roles</li>
+          <li>Greens powders sell on trust — which is exactly why the trust channel is where conflicts are most consequential</li>
+        </ul>
+      </div>
     </div>
-
     <div class="wtlf-card">
-      <div class="wtlf-signal">
+      <div class="wtlf-card-head">
         <span class="wtlf-icon">🧫</span>
-        <span class="wtlf-signal-label">Probiotic CFU counts are meaningless without strain-specific survival data</span>
+        <span class="wtlf-signal-label">Probiotic CFU counts are meaningless without strain specifics</span>
+        <span class="wtlf-flag amber">Ask this</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-signal-body">AG1 claims 7.2 billion CFU of probiotics. Organifi and Bloom make similar claims. What matters is strain specificity (Lactobacillus acidophilus NCFM behaves differently from L. acidophilus generic) and survival through the digestive tract — which varies by strain, encapsulation method, and product format. A CFU count on a label without strain identity and third-party viability data is not a clinically meaningful number.</div>
-      <span class="wtlf-flag amber">Ask — which specific strain, and what's the survival rate?</span>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li>What matters is <strong>strain identity</strong> (L. acidophilus NCFM behaves differently from generic L. acidophilus) and survival through the gut</li>
+          <li>A CFU count without <strong>strain identity and third-party viability data</strong> is not a clinically meaningful number</li>
+          <li>AG1's 7.2 billion CFU claim tells you almost nothing useful</li>
+        </ul>
+      </div>
     </div>
-
     <div class="wtlf-card">
-      <div class="wtlf-signal">
+      <div class="wtlf-card-head">
         <span class="wtlf-icon">💰</span>
         <span class="wtlf-signal-label">Price per serving reflects marketing spend, not ingredient quality</span>
+        <span class="wtlf-flag amber">Ask this</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-signal-body">AG1 costs $2.63/serving and spends an estimated 40–50% of revenue on marketing and endorser relationships. Ritual Essential Protein costs $1.25/serving and competes primarily on formula transparency and third-party testing. The correlation between price and product quality is low in this category. The correlation between price and marketing spend is high.</div>
-      <span class="wtlf-flag amber">Ask — what does the price per serving actually buy?</span>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li>AG1 costs <strong>$2.63/serving</strong> and spends an estimated 40–50% of revenue on marketing and endorser relationships</li>
+          <li>Ritual Essential Protein costs <strong>$1.25/serving</strong> and competes primarily on formula transparency</li>
+          <li>The correlation between price and product quality is <strong>low</strong>. Between price and marketing spend: <strong>high</strong>.</li>
+        </ul>
+      </div>
     </div>
-
     <div class="wtlf-card">
-      <div class="wtlf-signal">
+      <div class="wtlf-card-head">
         <span class="wtlf-icon">📋</span>
-        <span class="wtlf-signal-label">NSF certification covers purity — not whether the formula does anything</span>
+        <span class="wtlf-signal-label">NSF certification covers purity — not whether anything works</span>
+        <span class="wtlf-flag amber">Ask this</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-signal-body">AG1 holds NSF Certified for Sport. This certifies label accuracy, absence of contaminants, and absence of banned athletic substances. It does not validate any health claim, confirm that any ingredient is at an efficacious dose, or require the brand to disclose individual doses inside proprietary blends. NSF certification is real and worth having — it is also systematically overstated in marketing as evidence of efficacy.</div>
-      <span class="wtlf-flag amber">NSF ≠ clinically validated — they are different questions</span>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li>NSF Certified for Sport certifies: <strong>label accuracy, no contaminants, no banned substances</strong></li>
+          <li>It does <strong>not</strong> validate health claims, clinical efficacy, or whether ingredient doses are meaningful</li>
+          <li>AG1 holds NSF cert — this is a floor, not an endorsement of the product's claimed benefits</li>
+        </ul>
+      </div>
     </div>
-
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('.wtlf-card-head').forEach(function(head) {
+    head.addEventListener('click', function() {
+      var card = this.closest('.wtlf-card');
+      var isOpen = card.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.wtlf-card').forEach(function(c) { c.classList.remove('open'); });
+      // Toggle clicked one
+      if (!isOpen) card.classList.add('open');
+    });
+  });
+</script>
 
 <section class="spectrum-section">
   <div class="section-label">Transparency Spectrum</div>
   <div class="spectrum-track"></div>
   <div class="spectrum-pins">
+
     <!-- Ritual: ~14% — green zone -->
     <div class="spectrum-pin" style="left:14%" onclick="scrollToRow('ritual')">
       <div class="pin-line"></div>
-      <div class="pin-label">Ritual</div>
-      <div class="pin-score">0R · 1Y · 6G</div>
-    </div>
+
     <!-- Organifi: ~44% — yellow zone -->
     <div class="spectrum-pin" style="left:44%" onclick="scrollToRow('organifi')">
       <div class="pin-line"></div>
-      <div class="pin-label">Organifi</div>
-      <div class="pin-score">0R · 4Y · 3G</div>
-    </div>
-    <!-- Bloom: ~58% — yellow/red border -->
-    <div class="spectrum-pin" style="left:58%" onclick="scrollToRow('bloom')">
-      <div class="pin-line"></div>
-      <div class="pin-label">Bloom</div>
-      <div class="pin-score">0R · 5Y · 2G</div>
-    </div>
-    <!-- AG1: ~75% — red zone -->
-    <div class="spectrum-pin" style="left:74%" onclick="scrollToRow('ag1')">
-      <div class="pin-line"></div>
-      <div class="pin-label">AG1</div>
-      <div class="pin-score">2R · 3Y · 2G</div>
-    </div>
+
     <!-- Amazing Grass: ~62% — yellow zone -->
     <div class="spectrum-pin" style="left:63%" onclick="scrollToRow('amazinggrass')">
       <div class="pin-line"></div>
-      <div class="pin-label">Amazing Grass</div>
-      <div class="pin-score">0R · 4Y · 3G</div>
-    </div>
+
     <!-- 8Greens: ~50% — yellow zone, format innovation with dose opacity -->
     <div class="spectrum-pin" style="left:50%" onclick="scrollToRow('8greens')">
       <div class="pin-line"></div>
-      <div class="pin-label">8Greens</div>
-      <div class="pin-score">0R · 4Y · 3G</div>
+
+    <!-- Bloom: ~58% — yellow/red border -->
+    <div class="spectrum-pin" style="left:58%" onclick="scrollToRow('bloom')">
+      <div class="pin-line"></div>
+
+    <!-- AG1: ~75% — red zone -->
+    <div class="spectrum-pin" style="left:74%" onclick="scrollToRow('ag1')">
+      <div class="pin-line"></div>
     </div>
-  </div>
-  <div class="spectrum-legend">
-    <span class="legend-item green">← Most transparent</span>
-    <span class="legend-item">Methodology: 7-dimension score</span>
-    <span class="legend-item red">Least transparent →</span>
-  </div>
-</section>
-
-<!-- INGREDIENT DISCLOSURE BAR — greens-specific -->
-<section class="disclosure-section">
-  <div class="section-label">Ingredient Disclosure — What the Label Actually Tells You</div>
-  <div class="disclosure-wrap">
-    <div class="disclosure-header">
-      <span class="disclosure-title">% of ingredients with disclosed individual doses</span>
-      <span class="disclosure-note">Proprietary blends list ingredients by name but not amount — making clinical dose verification impossible</span>
-    </div>
-    <div class="disclosure-bars">
-
-      <div class="disc-row">
-        <span class="disc-brand">Ritual</span>
-        <div class="disc-bar-wrap">
-          <span class="disc-bar-label">Dose-disclosed</span>
-          <div class="disc-track"><div class="disc-fill green" style="width:100%"></div></div>
-        </div>
-        <div class="disc-bar-wrap">
-          <span class="disc-bar-label">Proprietary blend</span>
-          <div class="disc-track"><div class="disc-fill" style="width:0%; background:var(--border)"></div></div>
-        </div>
-        <span class="disc-status" style="color:var(--green)">100% disclosed</span>
-      </div>
-
-      <div class="disc-row">
-        <span class="disc-brand">Organifi</span>
-        <div class="disc-bar-wrap">
-          <span class="disc-bar-label">Dose-disclosed</span>
-          <div class="disc-track"><div class="disc-fill yellow" style="width:35%"></div></div>
-        </div>
-        <div class="disc-bar-wrap">
-          <span class="disc-bar-label">Proprietary blend</span>
-          <div class="disc-track"><div class="disc-fill red" style="width:65%"></div></div>
-        </div>
-        <span class="disc-status" style="color:var(--yellow)">~35% disclosed</span>
-      </div>
-
-      <div class="disc-row">
-        <span class="disc-brand">AG1</span>
-        <div class="disc-bar-wrap">
-          <span class="disc-bar-label">Dose-disclosed</span>
-          <div class="disc-track"><div class="disc-fill yellow" style="width:35%"></div></div>
-        </div>
-        <div class="disc-bar-wrap">
-          <span class="disc-bar-label">Proprietary blend</span>
-          <div class="disc-track"><div class="disc-fill red" style="width:65%"></div></div>
-        </div>
-        <span class="disc-status" style="color:var(--red)">49/75 hidden</span>
-      </div>
-
-      <div class="disc-row">
-        <span class="disc-brand">Bloom</span>
-        <div class="disc-bar-wrap">
-          <span class="disc-bar-label">Dose-disclosed</span>
-          <div class="disc-track"><div class="disc-fill yellow" style="width:10%"></div></div>
-        </div>
-        <div class="disc-bar-wrap">
-          <span class="disc-bar-label">Proprietary blend</span>
-          <div class="disc-track"><div class="disc-fill red" style="width:90%"></div></div>
-        </div>
-        <span class="disc-status" style="color:var(--red)">7 blends, no doses</span>
-      </div>
-
-      <div class="disc-row">
-        <span class="disc-brand">Amazing Grass</span>
-        <div class="disc-bar-wrap">
-          <span class="disc-bar-label">Dose-disclosed</span>
-          <div class="disc-track"><div class="disc-fill yellow" style="width:15%"></div></div>
-        </div>
-        <div class="disc-bar-wrap">
-          <span class="disc-bar-label">Proprietary blend</span>
-          <div class="disc-track"><div class="disc-fill red" style="width:85%"></div></div>
-        </div>
-        <span class="disc-status" style="color:var(--red)">4 blends, no doses</span>
-      </div>
-
-      <div class="disc-row">
-        <span class="disc-brand">8Greens</span>
-        <div class="disc-bar-wrap">
-          <span class="disc-bar-label">Vitamins — disclosed</span>
-          <div class="disc-track"><div class="disc-fill green" style="width:45%"></div></div>
-        </div>
-        <div class="disc-bar-wrap">
-          <span class="disc-bar-label">Greens blend — hidden</span>
-          <div class="disc-track"><div class="disc-fill red" style="width:55%"></div></div>
-        </div>
-        <span class="disc-status" style="color:var(--yellow)">Vitamins dosed; 688mg greens blend, no splits</span>
-      </div>
-
-    </div>
-    <div class="disc-ref">
-      <span class="disc-ref-item"><span>Pixie-dusting</span> — adding a named ingredient at sub-clinical dose to justify marketing claim without delivering measurable effect. Undetectable when doses are hidden in proprietary blends.</span>
-      <span class="disc-ref-item"><span>Clinical dose</span> — the amount of an ingredient used in peer-reviewed studies showing the claimed effect. Without disclosure, there is no way to verify alignment.</span>
-      <span class="disc-ref-item"><span>Ritual</span> discloses every ingredient, every dose, every supplier. Standard the category should meet but almost universally doesn't.</span>
-    </div>
-  </div>
-</section>
-
-<!-- FILTER BAR -->
-<section class="filter-section">
-  <div class="filter-row">
-    <span class="filter-group-label">Score</span>
-    <button class="filter-chip active" data-filter="all">All</button>
-    <button class="filter-chip" data-filter="green">Green</button>
-    <button class="filter-chip" data-filter="yellow">Yellow</button>
-    <button class="filter-chip" data-filter="red">Red</button>
-
-    <div class="filter-divider"></div>
-    <span class="filter-group-label">Disclosure</span>
-    <button class="filter-chip" data-filter="full-disclosure">Full Disclosure</button>
-    <button class="filter-chip" data-filter="proprietary-blend">Proprietary Blend</button>
-
-    <div class="filter-divider"></div>
-    <span class="filter-group-label">Testing</span>
-    <button class="filter-chip" data-filter="batch-coas">Batch COAs Public</button>
-    <button class="filter-chip" data-filter="nsf">NSF Certified</button>
-
-    <div class="filter-divider"></div>
-    <span class="filter-group-label">Ownership</span>
-    <button class="filter-chip" data-filter="vc-backed">VC-Backed</button>
-    <button class="filter-chip" data-filter="bootstrapped">Bootstrapped</button>
-
-    <span class="filter-count" id="filter-count">6 of 6</span>
-  </div>
-</section>
-
-<!-- COMPARISON TABLE -->
-<section class="table-section">
-  <table class="comparison-table" id="comparison-table">
-    <thead class="table-head">
-      <tr>
-        <th class="th-brand">Brand</th>
-        <th class="th-dim">Ownership</th>
-        <th class="th-dim">Ingredient<br>Disclosure</th>
-        <th class="th-dim">Batch<br>COAs</th>
-        <th class="th-dim">3rd-Party<br>Certified</th>
-        <th class="th-dim">Clinical<br>Evidence</th>
-        <th class="th-dim">Influencer<br>Equity</th>
-        <th class="th-dim">Price<br>/ Serving</th>
-        <th class="th-dim">Overall</th>
-      </tr>
-    </thead>
-    <tbody id="table-body">
-
-      <!-- RITUAL -->
-      <tr class="brand-row" id="row-ritual"
-          data-zone="green" data-full-disclosure="true" data-proprietary-blend="false"
-          data-batch-coas="true" data-nsf="false" data-vc-backed="true" data-bootstrapped="false"
-          data-brand="ritual" onclick="toggleQuickCheck('ritual')">
-        <td class="td-brand">
-          <div class="td-brand-name">Ritual</div>
-          <div class="td-brand-sub">Essential Daily Greens+</div>
-          <div class="td-brand-owner">VC-backed (Norwest, Forerunner, Founders Fund) — Founder-led, Certified B Corp</div>
-        </td>
-        <td class="td-cell"><span class="t-pill yellow">VC-Backed</span></td>
-        <td class="td-cell">
-          <span class="t-check yes">✓</span><br>
-          <span style="font-size:9px;color:var(--green);margin-top:2px;display:block;">100% disclosed</span>
-        </td>
-        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Certificate of Traceability</span></td>
-        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">USP Verified (multi); Informed Sport (protein)</span></td>
-        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">University RCT published</span></td>
-        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">None apparent</span></td>
-        <td class="td-cell">
-          <span class="t-price">~$1.17</span>
-          <span class="t-price-sub">per serving</span>
-        </td>
-        <td class="td-cell"><span class="t-pill green">Green</span></td>
-      </tr>
-      <tr class="expand-row" id="expand-ritual">
-        <td class="expand-cell" colspan="9">
-          <div class="quick-check">
-            <div class="qc-block">
-              <div class="qc-label">Formula</div>
-              <div class="qc-value"><strong>Full ingredient + dose disclosure.</strong> Every active ingredient's amount, form, supplier name, and country of origin published. Methylated B vitamins (MTHF, not folic acid). USP-verified formulation for Essential for Women. No proprietary blends.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Owner</div>
-              <div class="qc-value"><strong>Ritual Inc.</strong> VC-backed (Norwest, Forerunner, Founders Fund). $40.5M+ raised. Founded 2016 by Kat Schneider — still CEO. Certified B Corp since 2022. Lobbies FDA for heavy metals limits in supplements.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Key Gaps</div>
-              <div class="qc-highlight">
-                <span class="pos">✓ 100% ingredient dose disclosure</span><br>
-                <span class="pos">✓ Public batch COAs (Certificate of Traceability)</span><br>
-                <span class="pos">✓ University-led RCT published in peer-reviewed journal</span><br>
-                <span class="pos">✓ Certified B Corp</span><br>
-                <span class="neu">○ Not NSF for Sport on multivitamin line</span><br>
-                <span class="neu">○ VC-backed — watch for formulation drift at scale</span>
-              </div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Key Finding</div>
-              <div class="qc-value">The category transparency benchmark. <strong>Ritual does what every brand in this space should do</strong> — discloses every dose, maps every supplier, publishes heavy metal results, and commissions independent clinical research. It sets the standard none of its major competitors currently meet.</div>
-            </div>
-            <div class="qc-cta">
-              <a href="#" class="qc-link">Full Report →</a>
-              <button class="qc-close" onclick="toggleQuickCheck('ritual'); event.stopPropagation();">Close ×</button>
-            </div>
-          </div>
-        </td>
-      </tr>
-
-      <!-- ORGANIFI -->
-      <tr class="brand-row" id="row-organifi"
-          data-zone="yellow" data-full-disclosure="false" data-proprietary-blend="true"
-          data-batch-coas="true" data-nsf="false" data-vc-backed="false" data-bootstrapped="true"
-          data-brand="organifi" onclick="toggleQuickCheck('organifi')">
-        <td class="td-brand">
-          <div class="td-brand-name">Organifi</div>
-          <div class="td-brand-sub">Green Juice Powder</div>
-          <div class="td-brand-owner">Organifi LLC — Drew Canole, co-founder; bootstrapped (no external financing)</div>
-        </td>
-        <td class="td-cell"><span class="t-pill green">Bootstrapped</span></td>
-        <td class="td-cell">
-          <span class="t-check partial">~</span><br>
-          <span style="font-size:9px;color:var(--yellow);margin-top:2px;display:block;">~35% disclosed</span>
-        </td>
-        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Published per batch</span></td>
-        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">USDA Organic; Glyphosate-Free; Non-GMO; no NSF</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">No independent RCTs on formula</span></td>
-        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Affiliate-heavy; no investor overlap found</span></td>
-        <td class="td-cell">
-          <span class="t-price">~$2.67</span>
-          <span class="t-price-sub">per serving</span>
-        </td>
-        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
-      </tr>
-      <tr class="expand-row" id="expand-organifi">
-        <td class="expand-cell" colspan="9">
-          <div class="quick-check">
-            <div class="qc-block">
-              <div class="qc-label">Formula</div>
-              <div class="qc-value"><strong>11 organic superfoods.</strong> Ashwagandha at 600mg (clinical dose, disclosed). Alkaline Greens Blend (5.1g): spirulina, chlorella, matcha, moringa, wheatgrass — individual amounts hidden. Superfood Blend (1.45g): coconut water, beet, turmeric, lemon — amounts hidden.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Owner</div>
-              <div class="qc-value"><strong>Organifi LLC</strong> — Co-founded by Drew Canole (YouTuber/FitLife.TV) and Djamel Bettehar. Bootstrapped since 2014; never taken external financing per supply chain partner documentation. Drew Canole returned as CEO in 2023 after a 5-year absence.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Key Gaps</div>
-              <div class="qc-highlight">
-                <span class="pos">✓ USDA Certified Organic + Glyphosate-Free</span><br>
-                <span class="pos">✓ Batch COAs published publicly</span><br>
-                <span class="pos">✓ Bootstrapped — no PE/conglomerate pressure</span><br>
-                <span class="neg">✗ Alkaline Greens blend: individual doses undisclosed</span><br>
-                <span class="neg">✗ No NSF Certified for Sport</span><br>
-                <span class="neg">✗ No independent clinical trials on formula</span><br>
-                <span class="neu">○ "Detox" marketing language not well-supported by research</span>
-              </div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Key Finding</div>
-              <div class="qc-value">The best purity story in the category — organic, glyphosate-free, batch COAs public. The transparency gap is ingredient <strong>dose disclosure, not contamination</strong>. The proprietary blends make it impossible to verify whether spirulina, chlorella, or matcha are present at amounts that would do anything in clinical literature. The ashwagandha is the exception: 600mg, disclosed, clinically meaningful.</div>
-            </div>
-            <div class="qc-cta">
-              <a href="#" class="qc-link">Full Report →</a>
-              <button class="qc-close" onclick="toggleQuickCheck('organifi'); event.stopPropagation();">Close ×</button>
-            </div>
-          </div>
-        </td>
-      </tr>
-
-      <!-- AG1 -->
-      <tr class="brand-row" id="row-ag1"
-          data-zone="red" data-full-disclosure="false" data-proprietary-blend="true"
-          data-batch-coas="false" data-nsf="true" data-vc-backed="true" data-bootstrapped="false"
-          data-brand="ag1" onclick="toggleQuickCheck('ag1')">
-        <td class="td-brand">
-          <div class="td-brand-name">AG1</div>
-          <div class="td-brand-sub">Daily Greens Powder (formerly Athletic Greens)</div>
-          <div class="td-brand-owner">VC-backed (Alpha Wave Global + others) — $1.2B valuation; founder departed 2024</div>
-        </td>
-        <td class="td-cell"><span class="t-pill yellow">VC-Backed</span></td>
-        <td class="td-cell">
-          <span class="t-check no">✗</span><br>
-          <span style="font-size:9px;color:var(--red);margin-top:2px;display:block;">49 of 75 hidden</span>
-        </td>
-        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Not public</span></td>
-        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">NSF Certified for Sport</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Internal studies only (35-person single-arm)</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Huberman, Attia, Ferriss (investor)</span></td>
-        <td class="td-cell">
-          <span class="t-price">~$3.00</span>
-          <span class="t-price-sub">per serving</span>
-        </td>
-        <td class="td-cell"><span class="t-pill red">Red</span></td>
-      </tr>
-      <tr class="expand-row" id="expand-ag1">
-        <td class="expand-cell" colspan="9">
-          <div class="quick-check">
-            <div class="qc-block">
-              <div class="qc-label">Formula</div>
-              <div class="qc-value"><strong>75 ingredients, 49 in proprietary blends.</strong> NSF Certified for Sport (confirms absence of banned substances and label accuracy — not clinical dose adequacy). Vitamins/minerals mostly disclosed. All adaptogens, superfoods, and probiotics: undisclosed amounts.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Owner</div>
-              <div class="qc-value"><strong>AG1 Inc.</strong> VC-backed. Alpha Wave Global led $115M round (2022) at $1.2B valuation. Founder Chris Ashenden resigned July 2024 (NZ Fair Trading Act conviction disclosed). Kat Cole (new CEO) — consumer brand veteran. Tim Ferriss: early investor + endorser.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Key Gaps</div>
-              <div class="qc-highlight">
-                <span class="pos">✓ NSF Certified for Sport</span><br>
-                <span class="neg">✗ 49/75 ingredient doses hidden — pixie-dust risk</span><br>
-                <span class="neg">✗ All clinical studies company-funded (35-person single-arm)</span><br>
-                <span class="neg">✗ Huberman, Rogan, Attia: sponsor and investor overlap undisclosed</span><br>
-                <span class="neg">✗ Batch COAs not published</span><br>
-                <span class="neg">✗ Harvard Medical, McGill researchers publicly criticized scientific rigor</span>
-              </div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Key Finding</div>
-              <div class="qc-value">The category's most visible structural conflict: <strong>financial relationships between the brand and its most authoritative-sounding advocates are not fully disclosed</strong>. The NSF cert confirms label accuracy but not dose adequacy — which is the actual question when 49 of 75 ingredient amounts are hidden. The science presented as "peer-reviewed" is almost entirely company-sponsored.</div>
-            </div>
-            <div class="qc-cta">
-              <a href="#" class="qc-link">Full Report →</a>
-              <button class="qc-close" onclick="toggleQuickCheck('ag1'); event.stopPropagation();">Close ×</button>
-            </div>
-          </div>
-        </td>
-      </tr>
-
-      <!-- BLOOM -->
-      <tr class="brand-row" id="row-bloom"
-          data-zone="yellow" data-full-disclosure="false" data-proprietary-blend="true"
-          data-batch-coas="false" data-nsf="false" data-vc-backed="true" data-bootstrapped="false"
-          data-brand="bloom" onclick="toggleQuickCheck('bloom')">
-        <td class="td-brand">
-          <div class="td-brand-name">Bloom</div>
-          <div class="td-brand-sub">Greens &amp; Superfoods</div>
-          <div class="td-brand-owner">Nutrabolt majority stake (Sep 2025) — Keurig Dr Pepper → Nutrabolt chain; founders remain</div>
-        </td>
-        <td class="td-cell"><span class="t-pill yellow">Acquired</span></td>
-        <td class="td-cell">
-          <span class="t-check no">✗</span><br>
-          <span style="font-size:9px;color:var(--red);margin-top:2px;display:block;">7 proprietary blends</span>
-        </td>
-        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Not published</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">No NSF; third-party org undisclosed</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">No clinical trials</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Influencer disclosure inconsistent (#bloompartner)</span></td>
-        <td class="td-cell">
-          <span class="t-price">~$1.17</span>
-          <span class="t-price-sub">per serving</span>
-        </td>
-        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
-      </tr>
-      <tr class="expand-row" id="expand-bloom">
-        <td class="expand-cell" colspan="9">
-          <div class="quick-check">
-            <div class="qc-block">
-              <div class="qc-label">Formula</div>
-              <div class="qc-value"><strong>30+ ingredients across 7 proprietary blends.</strong> Fiber Blend (1.6g), Green Superfood Blend (~1.5g), Pre/Probiotic Blend, Fruit &amp; Veggie Blend, Antioxidant/Beauty Blend, Digestive Enzyme Blend, Adaptogenic Blend. Zero individual ingredient doses disclosed. CFU count for probiotics not listed. Third-party tested per brand — testing organization not named.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Owner</div>
-              <div class="qc-value"><strong>Nutrabolt (majority, Sep 2025).</strong> Nutrabolt first bought 20% stake in Jan 2024 ($90M round). Nutrabolt itself is 30% owned by Keurig Dr Pepper. Ownership chain: Bloom → Nutrabolt → Keurig Dr Pepper (NYSE: KDP). Founders Mari Llewellyn and Greg LaVecchia remain operationally involved.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Key Gaps</div>
-              <div class="qc-highlight">
-                <span class="pos">✓ Non-GMO, gluten-free, no added sugar</span><br>
-                <span class="pos">✓ Strong TikTok-driven consumer awareness (viral)</span><br>
-                <span class="neg">✗ 7 proprietary blends — zero individual doses disclosed</span><br>
-                <span class="neg">✗ No NSF certification; testing org unnamed</span><br>
-                <span class="neg">✗ No batch COAs published</span><br>
-                <span class="neg">✗ No clinical research on formula</span><br>
-                <span class="neg">✗ Influencer FTC disclosures inconsistent (#bloompartner in caption vs video)</span><br>
-                <span class="neu">○ Ownership transferred: Keurig Dr Pepper → Nutrabolt → Bloom</span>
-              </div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Key Finding</div>
-              <div class="qc-value">Bloom built its category position entirely on taste, aesthetics, and influencer reach — not on formula transparency. <strong>7 proprietary blends with zero individual doses</strong> means there's no way to evaluate whether the probiotics, adaptogens, or greens hit any threshold supported by research. The influencer marketing engine also runs on inconsistent FTC disclosures. Now majority-owned by Nutrabolt (Keurig Dr Pepper chain).</div>
-            </div>
-            <div class="qc-cta">
-              <a href="#" class="qc-link">Full Report →</a>
-              <button class="qc-close" onclick="toggleQuickCheck('bloom'); event.stopPropagation();">Close ×</button>
-            </div>
-          </div>
-        </td>
-      </tr>
-
-      <!-- AMAZING GRASS -->
-      <tr class="brand-row" id="row-amazinggrass"
-          data-zone="yellow" data-full-disclosure="false" data-proprietary-blend="true"
-          data-batch-coas="false" data-nsf="false" data-vc-backed="false" data-bootstrapped="false"
-          data-brand="amazinggrass" onclick="toggleQuickCheck('amazinggrass')">
-        <td class="td-brand">
-          <div class="td-brand-name">Amazing Grass</div>
-          <div class="td-brand-sub">Green Superfood / Greens Blend</div>
-          <div class="td-brand-owner">Glanbia Performance Nutrition (acquired Jan 2017) — portfolio: Optimum Nutrition, BSN, Isopure</div>
-        </td>
-        <td class="td-cell"><span class="t-pill red">Conglomerate</span></td>
-        <td class="td-cell">
-          <span class="t-check no">✗</span><br>
-          <span style="font-size:9px;color:var(--red);margin-top:2px;display:block;">4 proprietary blends</span>
-        </td>
-        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Not published</span></td>
-        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Certified organic (CCOF); kosher; no NSF</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">No formula clinical trials</span></td>
-        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">No influencer equity conflicts found</span></td>
-        <td class="td-cell">
-          <span class="t-price">~$0.90</span>
-          <span class="t-price-sub">per serving</span>
-        </td>
-        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
-      </tr>
-      <tr class="expand-row" id="expand-amazinggrass">
-        <td class="expand-cell" colspan="9">
-          <div class="quick-check">
-            <div class="qc-block">
-              <div class="qc-label">Formula</div>
-              <div class="qc-value"><strong>25+ ingredients across 4 proprietary blends.</strong> Green Food Blend (~5.4g): wheatgrass, barley grass, alfalfa, spinach, spirulina, chlorella. Antioxidant Blend: rosehips, pineapple, carrot, acerola. Fiber Blend: organic flaxseed, apple pectin. Enzyme/Probiotic Blend. Greens grown on third-generation Kansas family farm. CCOF Certified Organic. Gluten-free, non-GMO, kosher. Green tea extract: caffeine level undisclosed. Prop 65 lead warning on Amazon listing.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Owner</div>
-              <div class="qc-value"><strong>Glanbia Performance Nutrition</strong> (acquired Jan 6, 2017, ~€181M combined deal). Glanbia is an Irish global nutrition group (Dublin-listed, ~€4B revenue). GPN portfolio includes Optimum Nutrition, BSN, Isopure, thinkThin. Amazing Grass co-founders Todd Habermehl and Brandon Bert bootstrapped the brand for 15 years before the sale.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Key Gaps</div>
-              <div class="qc-highlight">
-                <span class="pos">✓ CCOF Certified Organic — verified organic sourcing</span><br>
-                <span class="pos">✓ Family farm origin story with verifiable agricultural heritage</span><br>
-                <span class="pos">✓ No influencer equity conflicts found</span><br>
-                <span class="pos">✓ Lowest price in category (~$0.90/serving)</span><br>
-                <span class="neg">✗ 4 proprietary blends — all ingredient doses hidden</span><br>
-                <span class="neg">✗ No NSF certification; batch COAs not published</span><br>
-                <span class="neg">✗ Prop 65 lead warning (CA AG settlement: $213K penalty for heavy metals)</span><br>
-                <span class="neg">✗ Formula reportedly changed post-2017 Glanbia acquisition</span><br>
-                <span class="neu">○ Caffeine level from green tea extract not disclosed</span>
-              </div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Key Finding</div>
-              <div class="qc-value">The category's budget option has a genuine agricultural heritage — 3rd-generation family farm in Kansas, CCOF organic certification — but no mechanism for verifying what happens between farm and formula. <strong>A CA attorney general heavy metals settlement and post-acquisition formula changes make that verification gap more significant, not less.</strong> Cheapest in category; least verification infrastructure.</div>
-            </div>
-            <div class="qc-cta">
-              <a href="#" class="qc-link">Full Report →</a>
-              <button class="qc-close" onclick="toggleQuickCheck('amazinggrass'); event.stopPropagation();">Close ×</button>
-            </div>
-          </div>
-        </td>
-      </tr>
-
-      <!-- 8GREENS -->
-      <tr class="brand-row" id="row-8greens"
-          data-zone="yellow" data-full-disclosure="false" data-proprietary-blend="true"
-          data-batch-coas="false" data-nsf="false" data-vc-backed="true" data-bootstrapped="false"
-          data-brand="8greens" onclick="toggleQuickCheck('8greens')">
-        <td class="td-brand">
-          <div class="td-brand-name">8Greens</div>
-          <div class="td-brand-sub">Effervescent Tablet / Powder / Gummies</div>
-          <div class="td-brand-owner">Grove Collaborative (NYSE: GROV) — acquired March 2025</div>
-        </td>
-        <td class="td-cell">
-          <div class="td-ownership"><span class="t-pill yellow">Acquired</span></div>
-          <div class="td-ownership-sub">Grove Collaborative</div>
-        </td>
-        <td class="td-cell">
-          <span style="font-family:var(--font-mono);font-size:11px;color:var(--yellow)">688mg</span>
-          <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);display:block;margin-top:2px">proprietary greens blend<br>~86mg avg per green</span>
-        </td>
-        <td class="td-cell">
-          <span style="font-family:var(--font-mono);font-size:10px;color:var(--green)">✓ Vitamins</span>
-          <span style="font-family:var(--font-mono);font-size:9px;color:var(--red);display:block;margin-top:2px">✗ Greens undisclosed</span>
-        </td>
-        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">No NSF</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span></td>
-        <td class="td-cell">
-          <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted)">Cancer origin</span>
-          <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);display:block;">No paid influencers</span>
-        </td>
-        <td class="td-cell">
-          <span class="t-price">~$2.00/tablet</span>
-          <span class="t-price-sub">$20 per 10-tablet tube</span>
-        </td>
-        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
-      </tr>
-      <tr class="expand-row" id="expand-8greens">
-        <td class="expand-cell" colspan="9">
-          <div class="quick-check">
-            <div class="qc-block">
-              <div class="qc-label">Formula</div>
-              <div class="qc-value"><strong>688mg Proprietary Greens Blend (spinach, kale, aloe vera, wheatgrass, blue green algae, barley grass, chlorella, spirulina) + high-dose vitamins (C: 400mg/444% DV; B6: 3mg/176% DV; B12: 9mcg/375% DV; B5: 15mg/300% DV; Zinc: 6mg/55% DV)</strong><br>Individual greens doses not disclosed. 688mg ÷ 8 = ~86mg average per green — sub-clinical for most. Vitamins are well-dosed and disclosed.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Owner</div>
-              <div class="qc-value"><strong>Grove Collaborative Holdings, Inc. (NYSE: GROV)</strong><br>Acquired March 2025. Grove is a sustainable consumer products company and Public Benefit Corporation / B Corp. Revenue declined 21.5% in 2024 ($203M full-year). Acquisition is a strategic move to expand Grove's health & wellness category. Dawn Russell remains as consultant. Formula and taste confirmed unchanged post-acquisition.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Key Gaps</div>
-              <div class="qc-highlight">
-                <span class="neg">✗ 688mg total greens blend, no individual ingredient doses</span><br>
-                <span class="neg">✗ ~86mg average per green — sub-clinical for all 8</span><br>
-                <span class="neg">✗ No NSF certification, no batch COAs published</span><br>
-                <span class="neu">○ Acquired by a financially stressed public company (revenue -21.5% in 2024)</span><br>
-                <span class="pos">✓ Vitamins disclosed with exact doses; no paid influencers; authentic origin story</span>
-              </div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Key Finding</div>
-              <div class="qc-value">Format innovation (effervescent tablet, fizzy delivery) is genuinely differentiated. The authentic cancer-survivor origin story and no-paid-influencer policy are rare in the category. <strong>But the 688mg greens blend is underdosed for therapeutic effect and individual doses are hidden — the vitamins are doing the heavy lifting, not the greens.</strong> Now owned by a struggling public company.</div>
-            </div>
-            <div class="qc-cta">
-              <a href="#" class="qc-link">Full Report →</a>
-              <button class="qc-close" onclick="toggleQuickCheck('8greens'); event.stopPropagation();">Close ×</button>
-            </div>
-          </div>
-        </td>
-      </tr>
-
-    </tbody>
-  </table>
-</section>
-
-<!-- NARRATIVE PROFILE CARDS -->
-<section class="profiles-section">
-  <div class="section-label">Full Profiles</div>
-  <div class="profiles-grid" id="profiles-grid">
-
-    <!-- Ritual -->
-    <a class="profile-card zone-green" href="#"
-       data-zone="green" data-full-disclosure="true" data-proprietary-blend="false"
-       data-batch-coas="true" data-nsf="false" data-vc-backed="true" data-bootstrapped="false">
-      <span class="pc-zone-label green">Green — Benchmark</span>
-      <div class="pc-name">Ritual</div>
-      <div class="pc-sub">Essential Daily Greens+</div>
-      <p class="pc-verdict">Every ingredient dose disclosed. Every supplier named and geolocated. Batch COAs published via Certificate of Traceability. University-led RCT published in a peer-reviewed journal. Heavy metal results shared publicly. Certified B Corp. Advocates for FDA regulation of heavy metals in supplements. This is what category transparency looks like — no other major greens brand currently meets this standard.</p>
-      <div class="pc-footer">
-        <div class="pc-score-dots">
-          <div class="pc-dot yellow"></div>
-          <div class="pc-sep"></div>
-          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
-        </div>
-        <span class="pc-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- Organifi -->
-    <a class="profile-card zone-yellow" href="#"
-       data-zone="yellow" data-full-disclosure="false" data-proprietary-blend="true"
-       data-batch-coas="true" data-nsf="false" data-vc-backed="false" data-bootstrapped="true">
-      <span class="pc-zone-label yellow">Yellow — Purity Yes, Doses No</span>
-      <div class="pc-name">Organifi</div>
-      <div class="pc-sub">Green Juice Powder</div>
-      <p class="pc-verdict">The strongest purity story in the category: USDA Certified Organic, Glyphosate Residue-Free, batch COAs published, bootstrapped with no PE pressure. The gap is dose disclosure — the proprietary Alkaline Greens Blend hides individual amounts for spirulina, chlorella, matcha, and moringa, making it impossible to verify whether any of them hit clinical thresholds. The ashwagandha at 600mg stands out precisely because it's disclosed.</p>
-      <div class="pc-footer">
-        <div class="pc-score-dots">
-          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
-          <div class="pc-sep"></div>
-          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
-        </div>
-        <span class="pc-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- AG1 -->
-    <a class="profile-card zone-red" href="#"
-       data-zone="red" data-full-disclosure="false" data-proprietary-blend="true"
-       data-batch-coas="false" data-nsf="true" data-vc-backed="true" data-bootstrapped="false">
-      <span class="pc-zone-label red">Red — Structural Conflict</span>
-      <div class="pc-name">AG1</div>
-      <div class="pc-sub">Daily Greens Powder</div>
-      <p class="pc-verdict">75 ingredients, 49 undisclosed. The most heavily podcast-sponsored supplement in existence — Andrew Huberman, Joe Rogan, Peter Attia, Tim Ferriss (investor) — with financial relationships between brand and scientific advocates that are partially or incompletely disclosed. All supporting clinical research is company-funded. Harvard Medical School professor and McGill University researcher publicly criticized scientific rigor. NSF Certified for Sport confirms label accuracy, not dose adequacy. Most expensive in category at ~$3/serving.</p>
-      <div class="pc-footer">
-        <div class="pc-score-dots">
-          <div class="pc-dot red"></div><div class="pc-dot red"></div>
-          <div class="pc-sep"></div>
-          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
-          <div class="pc-sep"></div>
-          <div class="pc-dot green"></div><div class="pc-dot green"></div>
-        </div>
-        <span class="pc-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- Bloom -->
-    <a class="profile-card zone-yellow" href="#"
-       data-zone="yellow" data-full-disclosure="false" data-proprietary-blend="true"
-       data-batch-coas="false" data-nsf="false" data-vc-backed="true" data-bootstrapped="false">
-      <span class="pc-zone-label yellow">Yellow — Viral, Opaque</span>
-      <div class="pc-name">Bloom</div>
-      <div class="pc-sub">Greens &amp; Superfoods</div>
-      <p class="pc-verdict">The #1 greens brand in the US built its position on TikTok virality and flavor innovation, not formula transparency. Seven proprietary blends with zero individual doses disclosed — no way to evaluate whether probiotics, adaptogens, or greens hit any meaningful threshold. Third-party testing performed, but the testing organization is unnamed. Now majority-owned by Nutrabolt, which is itself 30% owned by Keurig Dr Pepper. The influencer marketing engine runs on FTC disclosures that appear in captions but not always videos.</p>
-      <div class="pc-footer">
-        <div class="pc-score-dots">
-          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
-          <div class="pc-sep"></div>
-          <div class="pc-dot green"></div><div class="pc-dot green"></div>
-        </div>
-        <span class="pc-arrow">→</span>
-    <div class="acq-timeline">
-<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2019</div><div class="acq-label found">Founded</div></div>
-<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2022</div><div class="acq-label acq">PE investment — undisclosed</div></div>
-</div>
-        </div>
-    </a>
-
-    <!-- Amazing Grass -->
-    <a class="profile-card zone-yellow" href="#"
-       data-zone="yellow" data-full-disclosure="false" data-proprietary-blend="true"
-       data-batch-coas="false" data-nsf="false" data-vc-backed="false" data-bootstrapped="false">
-      <span class="pc-zone-label yellow">Yellow — Heritage Claims, Verification Gap</span>
-      <div class="pc-name">Amazing Grass</div>
-      <div class="pc-sub">Green Superfood / Greens Blend</div>
-      <p class="pc-verdict">A genuine 3rd-generation family farm in Kansas and CCOF organic certification give Amazing Grass a credible agricultural origin story. But four proprietary blends hide all ingredient doses, no batch COAs are published, and a California attorney general settlement for heavy metals ($213K penalty) remains on record. The formula reportedly changed after Glanbia acquired the brand in 2017. Cheapest in the category at ~$0.90/serving — but the least verification infrastructure of any brand traced.</p>
-      <div class="pc-footer">
-        <div class="pc-score-dots">
-          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
-          <div class="pc-sep"></div>
-          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
-        </div>
-        <span class="pc-arrow">→</span>
-    <div class="acq-timeline">
-<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2002</div><div class="acq-label found">Founded — Bert family farm, Kansas</div></div>
-<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2017</div><div class="acq-label acq">Acquired — Glanbia plc ($210M)</div></div>
-</div>
-        </div>
-    </a>
-
-    <!-- 8Greens -->
-    <a class="profile-card zone-yellow" href="#"
-       data-zone="yellow" data-full-disclosure="false" data-proprietary-blend="true"
-       data-batch-coas="false" data-nsf="false" data-vc-backed="true" data-bootstrapped="false">
-      <span class="pc-zone-label yellow">Yellow — Format Innovation, Dose Opacity</span>
-      <div class="pc-name">8Greens</div>
-      <div class="pc-sub">Effervescent Tablet / Powder / Gummies</div>
-      <p class="pc-verdict">Genuine origin story: founder Dawn Russell developed the formula during cancer recovery, worked with an FDA nutrition scientist across 263 prototypes over five years, and publicly rejected paid influencers — a policy rare enough in the category to be worth noting. The effervescent tablet format is a real differentiation. But the 688mg greens blend hides individual ingredient doses for all eight greens (~86mg average each, sub-clinical for most), and the vitamins are doing the functional heavy lifting. Now acquired by Grove Collaborative (NYSE: GROV), a B Corp/PBC — values-aligned but financially stressed (revenue down 21.5% in 2024).</p>
-      <div class="pc-footer">
-        <div class="pc-score-dots">
-          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
-          <div class="pc-sep"></div>
-          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
-        </div>
-        <span class="pc-arrow">→</span>
-      </div>
-    </a>
-
-  </div>
-</section>
-<section class="context-section">
-  <div class="context-block">
-    <div class="context-block-label">What We Found</div>
-    <div class="context-body">
-      <p>The greens powder category sits at the intersection of two problems that rarely appear together this clearly: <strong>ingredient transparency failure and influencer economics failure</strong>. In most supplement categories you get one or the other. Here you get both, concentrated in the market leader.</p>
-      <p>Pixie-dusting — adding a named ingredient at a sub-clinical dose so it appears on the label without delivering any measurable effect — is impossible to detect when doses are hidden inside proprietary blends. The FDA requires that proprietary blend totals be disclosed, but not individual amounts. This loophole is load-bearing for the business model: it allows a brand to list 30 or 75 ingredients and imply that many benefits, while having no obligation to disclose that most of them may be present in amounts too small to matter.</p>
-      <p>Bloom's architecture makes this legible in miniature: 7 proprietary blends, zero individual doses, a third-party testing claim without naming the organization. The brand's growth happened almost entirely through taste and aesthetics — not through any verifiable claim about formula efficacy. That's a coherent business strategy. It is not a transparency story.</p>
-      <p>Amazing Grass represents a different category of problem: genuine agricultural heritage (third-generation farm, CCOF organic) with a verification gap that a California heavy metals settlement and a post-acquisition formula change make harder to dismiss. The cheapest option in the category is also the one with the least infrastructure to confirm what it's actually delivering.</p>
-      <p>8Greens introduces a third pattern: format differentiation and authentic origin story with dose opacity. The effervescent tablet is a genuine innovation. The cancer-survivor backstory and no-paid-influencer policy are genuinely rare. But the greens are underdosed and hidden inside a proprietary blend — the vitamins are what the formula actually delivers. Acquired by Grove Collaborative (NYSE: GROV) in March 2025, a values-aligned Public Benefit Corporation that nonetheless reported a 21.5% revenue decline in 2024 and is navigating real financial pressure.</p>
-      <p>What makes the greens category particularly acute is that the people most effectively communicating the science of these products — podcast hosts with medical credentials, longevity researchers — have financial relationships with the brands that are often disclosed incompletely or in ways that don't make the conflict visible to the average listener. That's not a fringe concern; it's the documented structure of how the category grew.</p>
-      <p>Ritual represents what's possible when a company decides to compete on transparency instead of around it. The approach requires more work and investment. It also makes every other claim in the category look worse by comparison.</p>
-    </div>
-  </div>
-  <div class="context-block">
-    <div class="context-block-label">How to Read This Category</div>
-    <ul class="context-list">
-      <li><strong>NSF Certified for Sport ≠ dose adequacy.</strong> NSF confirms a product contains what the label says, in the amounts listed, without banned substances. It does not evaluate whether those amounts are clinically meaningful. When the label hides ingredient amounts in proprietary blends, NSF cannot tell you whether those ingredients are pixie-dusted.</li>
-      <li><strong>"Peer-reviewed research" requires scrutiny of who funded it.</strong> AG1's research page cites studies — almost all company-funded, with sample sizes of 30–35, and co-authored by AG1 employees. Harvard Medical School's Dr. JoAnn Manson publicly contrasted this with gold-standard supplement research involving 15,000 participants.</li>
-      <li><strong>Third-party tested without naming the tester is not a transparency claim.</strong> Bloom states its formula is third-party tested but does not disclose the organization. That statement forecloses independent verification.</li>
-      <li><strong>Heritage isn't a substitute for verification.</strong> Amazing Grass has a real origin story: third-generation farm, bootstrapped founders, CCOF organic. None of that substitutes for published batch COAs or NSF certification. A California heavy metals settlement means the origin story and the safety record diverged at some point.</li>
-      <li><strong>Ingredient count is not a quality signal.</strong> 75 ingredients or 30 — neither number means anything without dose disclosure. More ingredients with hidden doses is worse for the consumer than fewer ingredients with disclosed doses.</li>
-      <li><strong>FTC disclosure rules apply to sponsored content</strong> — hashtags buried in captions that don't appear in the video itself do not constitute adequate disclosure per FTC guidance. The bar is whether a reasonable consumer would notice the disclosure.</li>
-      <li><strong>Vitamins doing the work ≠ greens doing the work.</strong> 8Greens' high-dose vitamins (400mg Vitamin C, 3mg B6, 9mcg B12) are disclosed and genuinely present. But the 688mg greens blend averages ~86mg per plant — sub-clinical for all eight. A brand can have an authentic origin story and a legitimate vitamin payload while still not delivering what its name implies about the greens themselves.</li>
-    </ul>
-  </div>
-</section>
-
-<footer class="page-footer">
-  <span class="footer-logo">Traced</span>
-  <span class="footer-note">Greens powders category — 6 profiles across 7 dimensions. Last reviewed February 2026.</span>
-</footer>
-
-<script>
-/* ── QUICK CHECK TOGGLE ── */
-let openBrand = null;
-function toggleQuickCheck(brand) {
-  const row = document.getElementById('expand-' + brand);
-  if (!row) return;
-  if (openBrand && openBrand !== brand) {
-    const prev = document.getElementById('expand-' + openBrand);
-    if (prev) prev.classList.remove('open');
-  }
-  if (openBrand === brand) {
-    row.classList.remove('open');
-    openBrand = null;
-  } else {
-    row.classList.add('open');
-    openBrand = brand;
-  }
-}
-function scrollToRow(brand) {
-  const row = document.getElementById('row-' + brand);
-  if (row) {
-    row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    row.style.background = 'var(--surface-2)';
-    setTimeout(() => { row.style.background = ''; }, 800);
-    toggleQuickCheck(brand);
-  }
-}
-
-/* ── FILTER LOGIC ── */
-const filterChips = document.querySelectorAll('.filter-chip');
-let activeFilters = new Set(['all']);
-
-filterChips.forEach(chip => {
-  chip.addEventListener('click', () => {
-    const f = chip.dataset.filter;
-    if (f === 'all') {
-      activeFilters.clear();
-      activeFilters.add('all');
-      filterChips.forEach(c => {
-        c.className = 'filter-chip';
-        if (c.dataset.filter === 'all') c.classList.add('active');
-      });
-    } else {
-      activeFilters.delete('all');
-      document.querySelector('[data-filter="all"]').className = 'filter-chip';
-      if (activeFilters.has(f)) {
-        activeFilters.delete(f);
-        chip.className = 'filter-chip';
-        if (activeFilters.size === 0) {
-          activeFilters.add('all');
-          document.querySelector('[data-filter="all"]').classList.add('active');
-        }
-      } else {
-        activeFilters.add(f);
-        if (['green','yellow','red'].includes(f)) chip.className = 'filter-chip active-' + f;
-        else chip.className = 'filter-chip active';
-      }
-    }
-    applyFilters();
-  });
-});
-
-function applyFilters() {
-  const tableRows = document.querySelectorAll('.brand-row');
-  const profileCards = document.querySelectorAll('.profile-card');
-  let visibleCount = 0;
-
-  tableRows.forEach(row => {
-    const show = matchesFilters(row);
-    row.classList.toggle('hidden', !show);
-    const expandRow = document.getElementById('expand-' + row.dataset.brand);
-    if (expandRow && !show) expandRow.classList.remove('open');
-    if (show) visibleCount++;
-  });
-
-  profileCards.forEach(card => {
-    card.classList.toggle('hidden', !matchesFilters(card));
-  });
-
-  document.getElementById('filter-count').textContent = visibleCount + ' of 5';
-}
-
-function matchesFilters(el) {
-  if (activeFilters.has('all')) return true;
-  for (const f of activeFilters) {
-    switch (f) {
-      case 'green': if (el.dataset.zone !== 'green') return false; break;
-      case 'yellow': if (el.dataset.zone !== 'yellow') return false; break;
-      case 'red': if (el.dataset.zone !== 'red') return false; break;
-      case 'full-disclosure': if (el.dataset.fullDisclosure !== 'true') return false; break;
-      case 'proprietary-blend': if (el.dataset.proprietaryBlend !== 'true') return false; break;
-      case 'batch-coas': if (el.dataset.batchCoas !== 'true') return false; break;
-      case 'nsf': if (el.dataset.nsf !== 'true') return false; break;
-      case 'vc-backed': if (el.dataset.vcBacked !== 'true') return false; break;
-      case 'bootstrapped': if (el.dataset.bootstrapped !== 'true') return false; break;
-    }
-  }
-  return true;
-}
-</script>
-</body>
-</html>
