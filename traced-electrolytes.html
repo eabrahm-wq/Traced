@@ -1,66 +1,1507 @@
-<!DOCTYPE html>\n     2\t<html lang=\"en\">\n     3\t<head>\n     4\t<meta charset=\"UTF-8\">\n     5\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n     6\t<title>Electrolytes — Traced</title>\n     7\t<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n     8\t<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n     9\t<link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap\" rel=\"stylesheet\">\n    10\t<style>\n    11\t/* \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n    12\t   DESIGN TOKENS\n    13\t\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */\n    14\t:root {\n    15\t  --bg: #080808;\n    16\t  --surface: #111111;\n    17\t  --surface-2: #181818;\n    18\t  --surface-3: #1e1e1e;\n    19\t  --border: #222222;\n    20\t  --border-light: #2a2a2a;\n    21\t  --text: #e8e4dc;\n    22\t  --text-muted: #7a7570;\n    23\t  --text-dim: #4a4642;\n    24\t  --accent: #C9A84C;\n    25\t  --red: #D94F3D;\n    26\t  --red-dim: rgba(217,79,61,0.10);\n    27\t  --yellow: #D4A84B;\n    28\t  --yellow-dim: rgba(212,168,75,0.10);\n    29\t  --green: #4E9B6F;\n    30\t  --green-dim: rgba(78,155,111,0.10);\n    31\t  --font-display: 'Playfair Display', Georgia, serif;\n    32\t  --font-body: 'DM Sans', sans-serif;\n    33\t  --font-mono: 'DM Mono', monospace;\n    34\t}\n    35\t* { margin: 0; padding: 0; box-sizing: border-box; }\n    36\thtml {\n    37\t  background: var(--bg);\n    38\t  color: var(--text);\n    39\t  font-family: var(--font-body);\n    40\t  font-size: 16px;\n    41\t  line-height: 1.6;\n    42\t  -webkit-font-smoothing: antialiased;\n    43\t}\n    44\t\n    45\t/* \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n    46\t   HEADER\n    47\t\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */\n    48\t.site-header {\n    49\t  position: fixed; top: 0; left: 0; right: 0; z-index: 200;\n    50\t  display: flex; align-items: center; justify-content: space-between;\n    51\t  padding: 0 40px; height: 56px;\n    52\t  background: rgba(8,8,8,0.94); backdrop-filter: blur(16px);\n    53\t  border-bottom: 1px solid var(--border);\n    54\t}\n    55\t.site-logo {\n    56\t  font-family: var(--font-mono); font-size: 13px; font-weight: 500;\n    57\t  letter-spacing: 0.18em; text-transform: uppercase;\n    58\t  color: var(--accent); text-decoration: none;\n    59\t}\n    60\t.site-logo span { color: var(--text-muted); font-weight: 400; }\n    61\t.site-nav { display: flex; gap: 32px; align-items: center; }\n    62\t.site-nav a {\n    63\t  font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;\n    64\t  color: var(--text-muted); text-decoration: none; transition: color 0.2s;\n    65\t}\n    66\t.site-nav a:hover { color: var(--text); }\n    67\t.site-nav a.active { color: var(--accent); }\n    68\t\n    69\t/* \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n    70\t   HERO\n    71\t\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */\n    72\t.category-hero { padding: 120px 40px 0; max-width: 1100px; margin: 0 auto; }\n    73\t.hero-breadcrumb {\n    74\t  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em;\n    75\t  text-transform: uppercase; color: var(--text-dim); margin-bottom: 32px;\n    76\t  display: flex; align-items: center; gap: 10px;\n    77\t}\n    78\t.hero-breadcrumb a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }\n    79\t.hero-breadcrumb a:hover { color: var(--text-muted); }\n    80\t.hero-breadcrumb .sep { color: var(--border-light); }\n",
-        "uuid": "cd10af18-0577-4f07-8e91-dcfb205573ad"
-      }
-    ],
-    "is_error": false,
-    "structured_content": null,
-    "meta": null,
-    "message": null,
-    "integration_name": null,
-    "integration_icon_url": null,
-    "icon_name": "file",
-    "display_content": {
-      "type": "json_block",
-      "json_block": "{\"language\": \"html\", \"code\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\">\\n<head>\\n<meta charset=\\\"UTF-8\\\">\\n<meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1.0\\\">\\n<title>Electrolytes \— Traced</title>\\n<link rel=\\\"preconnect\\\" href=\\\"https://fonts.googleapis.com\\\">\\n<link rel=\\\"preconnect\\\" href=\\\"https://fonts.gstatic.com\\\" crossorigin>\\n<link href=\\\"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap\\\" rel=\\\"stylesheet\\\">\\n<style>\\n/* \\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\n   DESIGN TOKENS\\n\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500 */\\n:root {\\n  --bg: #080808;\\n  --surface: #111111;\\n  --surface-2: #181818;\\n  --surface-3: #1e1e1e;\\n  --border: #222222;\\n  --border-light: #2a2a2a;\\n  --text: #e8e4dc;\\n  --text-muted: #7a7570;\\n  --text-dim: #4a4642;\\n  --accent: #C9A84C;\\n  --red: #D94F3D;\\n  --red-dim: rgba(217,79,61,0.10);\\n  --yellow: #D4A84B;\\n  --yellow-dim: rgba(212,168,75,0.10);\\n  --green: #4E9B6F;\\n  --green-dim: rgba(78,155,111,0.10);\\n  --font-display: 'Playfair Display', Georgia, serif;\\n  --font-body: 'DM Sans', sans-serif;\\n  --font-mono: 'DM Mono', monospace;\\n}\\n* { margin: 0; padding: 0; box-sizing: border-box; }\\nhtml {\\n  background: var(--bg);\\n  color: var(--text);\\n  font-family: var(--font-body);\\n  font-size: 16px;\\n  line-height: 1.6;\\n  -webkit-font-smoothing: antialiased;\\n}\\n\\n/* \\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\n   HEADER\\n\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500 */\\n.site-header {\\n  position: fixed; top: 0; left: 0; right: 0; z-index: 200;\\n  display: flex; align-items: center; justify-content: space-between;\\n  padding: 0 40px; height: 56px;\\n  background: rgba(8,8,8,0.94); backdrop-filter: blur(16px);\\n  border-bottom: 1px solid var(--border);\\n}\\n.site-logo {\\n  font-family: var(--font-mono); font-size: 13px; font-weight: 500;\\n  letter-spacing: 0.18em; text-transform: uppercase;\\n  color: var(--accent); text-decoration: none;\\n}\\n.site-logo span { color: var(--text-muted); font-weight: 400; }\\n.site-nav { display: flex; gap: 32px; align-items: center; }\\n.site-nav a {\\n  font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;\\n  color: var(--text-muted); text-decoration: none; transition: color 0.2s;\\n}\\n.site-nav a:hover { color: var(--text); }\\n.site-nav a.active { color: var(--accent); }\\n\\n/* \\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\n   HERO\\n\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500\\u2500 */\\n.category-hero { padding: 120px 40px 0; max-width: 1100px; margin: 0 auto; }\\n.hero-breadcrumb {\\n  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em;\\n  text-transform: uppercase; color: var(--text-dim); margin-bottom: 32px;\\n  display: flex; align-items: center; gap: 10px;\\n}\\n.hero-breadcrumb a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }\\n.hero-breadcrumb a:hover { color: var(--text-muted); }\\n.hero-breadcrumb .sep { color: var(--border-light); }\\n\", \"filename\": \"/mnt/user-data/outputs/traced-electrolytes.html\"}"
-    }
-  },
-  {
-    "start_timestamp": "2026-02-19T17:37:23.990683Z",
-    "stop_timestamp": "2026-02-19T17:37:24.363193Z",
-    "flags": null,
-    "type": "text",
-    "text": "Good — consistent token set confirmed. Now building.",
-    "citations": []
-  },
-  {
-    "start_timestamp": "2026-02-19T17:37:24.694892Z",
-    "stop_timestamp": "2026-02-19T17:40:57.371375Z",
-    "flags": null,
-    "type": "tool_use",
-    "id": "toolu_01FeWfQ1qjQCeGQDHVSFeur9",
-    "name": "create_file",
-    "input": {
-      "description": "Traced greens powders category page — AG1, Organifi, Ritual with spectrum rail, pixie-dust disclosure bar, comparison table, quick-check drawers, filter bar, editorial context",
-      "path": "/mnt/user-data/outputs/traced-greens-powders.html",
-      "file_text": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Greens Powders — Traced</title>\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap\" rel=\"stylesheet\">\n<style>\n:root {\n  --bg: #080808;\n  --surface: #111111;\n  --surface-2: #181818;\n  --surface-3: #1e1e1e;\n  --border: #222222;\n  --border-light: #2a2a2a;\n  --text: #e8e4dc;\n  --text-muted: #7a7570;\n  --text-dim: #4a4642;\n  --accent: #C9A84C;\n  --red: #D94F3D;\n  --red-dim: rgba(217,79,61,0.10);\n  --yellow: #D4A84B;\n  --yellow-dim: rgba(212,168,75,0.10);\n  --green: #4E9B6F;\n  --green-dim: rgba(78,155,111,0.10);\n  --font-display: 'Playfair Display', Georgia, serif;\n  --font-body: 'DM Sans', sans-serif;\n  --font-mono: 'DM Mono', monospace;\n}\n* { margin: 0; padding: 0; box-sizing: border-box; }\nhtml { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }\n\n/* HEADER */\n.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 56px; background: rgba(8,8,8,0.94); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }\n.site-logo { font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); text-decoration: none; }\n.site-logo span { color: var(--text-muted); font-weight: 400; }\n.site-nav { display: flex; gap: 32px; align-items: center; }\n.site-nav a { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }\n.site-nav a:hover { color: var(--text); }\n.site-nav a.active { color: var(--accent); }\n\n/* HERO */\n.category-hero { padding: 120px 40px 0; max-width: 1100px; margin: 0 auto; }\n.hero-breadcrumb { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 32px; display: flex; align-items: center; gap: 10px; }\n.hero-breadcrumb a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }\n.hero-breadcrumb a:hover { color: var(--text-muted); }\n.hero-breadcrumb .sep { color: var(--border-light); }\n.hero-breadcrumb .current { color: var(--accent); }\n.hero-layout { display: grid; grid-template-columns: 1fr 320px; gap: 80px; align-items: end; padding-bottom: 60px; border-bottom: 1px solid var(--border); }\n.hero-eyebrow { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }\n.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); opacity: 0.4; }\n.hero-headline { font-family: var(--font-display); font-size: clamp(52px, 6.5vw, 84px); font-weight: 900; line-height: 0.9; letter-spacing: -0.025em; color: var(--text); margin-bottom: 28px; }\n.hero-headline em { font-style: italic; color: var(--text-muted); }\n.hero-intro { font-size: 15.5px; font-weight: 300; line-height: 1.78; color: rgba(232,228,220,0.7); max-width: 560px; }\n.hero-intro strong { color: var(--text); font-weight: 500; }\n.hero-meta { display: flex; flex-direction: column; align-self: end; }\n.hero-meta-stat { padding: 18px 0; border-bottom: 1px solid var(--border); }\n.hero-meta-stat:first-child { border-top: 1px solid var(--border); }\n.meta-value { font-family: var(--font-display); font-size: 34px; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 4px; }\n.meta-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }\n\n/* SECTION LABEL */\n.section-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 32px; display: flex; align-items: center; gap: 16px; }\n.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }\n\n/* SPECTRUM RAIL */\n.spectrum-section { max-width: 1100px; margin: 0 auto; padding: 64px 40px 0; }\n.spectrum-track { height: 3px; background: linear-gradient(to right, var(--green) 0%, #8aaa58 25%, var(--yellow) 50%, #c97845 75%, var(--red) 100%); border-radius: 2px; }\n.spectrum-pins { position: relative; height: 120px; }\n.spectrum-pin { position: absolute; top: 0; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: opacity 0.2s; }\n.spectrum-pin:hover { opacity: 1 !important; }\n.pin-line { width: 1px; height: 24px; background: var(--border-light); margin-bottom: 10px; transition: background 0.2s; }\n.spectrum-pin:hover .pin-line { background: var(--text-dim); }\n.pin-label { font-family: var(--font-mono); font-size: 9.5px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; margin-bottom: 4px; text-align: center; transition: color 0.2s; }\n.spectrum-pin:hover .pin-label { color: var(--text); }\n.pin-score { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.06em; color: var(--text-dim); white-space: nowrap; }\n.spectrum-legend { display: flex; justify-content: space-between; margin-top: 8px; padding-top: 12px; border-top: 1px solid var(--border); }\n.legend-item { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }\n.legend-item.green { color: var(--green); opacity: 0.7; }\n.legend-item.red { color: var(--red); opacity: 0.7; }\n\n/* DISCLOSURE CONTEXT BAR — greens-specific */\n.disclosure-section { max-width: 1100px; margin: 0 auto; padding: 48px 40px 0; }\n.disclosure-wrap { background: var(--surface); border: 1px solid var(--border); padding: 28px 32px; }\n.disclosure-header { display: flex; align-items: baseline; gap: 20px; margin-bottom: 24px; }\n.disclosure-title { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); }\n.disclosure-note { font-size: 12px; font-weight: 300; color: var(--text-dim); }\n.disclosure-bars { display: flex; flex-direction: column; gap: 18px; }\n.disc-row { display: grid; grid-template-columns: 140px 1fr 1fr 80px; gap: 16px; align-items: center; }\n.disc-brand { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }\n.disc-bar-wrap { display: flex; flex-direction: column; gap: 4px; }\n.disc-bar-label { font-family: var(--font-mono); font-size: 7.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }\n.disc-track { height: 5px; background: var(--border); border-radius: 2px; }\n.disc-fill { height: 100%; border-radius: 2px; }\n.disc-fill.green { background: var(--green); }\n.disc-fill.yellow { background: var(--yellow); }\n.disc-fill.red { background: var(--red); }\n.disc-status { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); text-align: right; line-height: 1.4; }\n.disc-ref { display: flex; gap: 28px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); }\n.disc-ref-item { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }\n.disc-ref-item span { color: var(--text-muted); }\n\n/* FILTER BAR */\n.filter-section { max-width: 1100px; margin: 0 auto; padding: 48px 40px 0; }\n.filter-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding-bottom: 20px; border-bottom: 1px solid var(--border); }\n.filter-group-label { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-right: 4px; flex-shrink: 0; }\n.filter-chip { font-family: var(--font-mono); font-size: 9.5px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; border: 1px solid var(--border-light); background: transparent; color: var(--text-muted); cursor: pointer; transition: all 0.15s; white-space: nowrap; }\n.filter-chip:hover { border-color: var(--text-dim); color: var(--text); }\n.filter-chip.active { background: var(--surface-2); border-color: var(--text-dim); color: var(--text); }\n.filter-chip.active-green { background: var(--green-dim); border-color: rgba(78,155,111,0.35); color: var(--green); }\n.filter-chip.active-yellow { background: var(--yellow-dim); border-color: rgba(212,168,75,0.35); color: var(--yellow); }\n.filter-chip.active-red { background: var(--red-dim); border-color: rgba(217,79,61,0.35); color: var(--red); }\n.filter-divider { width: 1px; height: 18px; background: var(--border-light); flex-shrink: 0; margin: 0 4px; }\n.filter-count { margin-left: auto; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); flex-shrink: 0; }\n\n/* COMPARISON TABLE */\n.table-section { max-width: 1100px; margin: 0 auto; padding: 40px 40px 0; }\n.comparison-table { width: 100%; border-collapse: collapse; border: 1px solid var(--border); }\n.table-head { position: sticky; top: 56px; z-index: 10; background: var(--surface); }\n.th-brand { padding: 14px 20px; text-align: left; font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); width: 180px; }\n.th-dim { padding: 14px 16px; text-align: center; font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); min-width: 95px; }\n.th-dim:last-child { border-right: none; }\n.brand-row { border-bottom: 1px solid var(--border); transition: background 0.15s; cursor: pointer; }\n.brand-row:last-child { border-bottom: none; }\n.brand-row:hover { background: var(--surface); }\n.brand-row.hidden { display: none; }\n.td-brand { padding: 18px 20px; border-right: 1px solid var(--border); vertical-align: middle; }\n.td-brand-name { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 4px; letter-spacing: -0.01em; }\n.td-brand-sub { font-size: 11px; font-weight: 300; color: var(--text-dim); line-height: 1.3; }\n.td-brand-owner { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-top: 6px; letter-spacing: 0.04em; }\n.td-cell { padding: 18px 16px; text-align: center; border-right: 1px solid var(--border); vertical-align: middle; }\n.td-cell:last-child { border-right: none; }\n.t-pill { font-family: var(--font-mono); font-size: 8.5px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; display: inline-block; }\n.t-pill.green { color: var(--green); background: var(--green-dim); border: 1px solid rgba(78,155,111,0.2); }\n.t-pill.yellow { color: var(--yellow); background: var(--yellow-dim); border: 1px solid rgba(212,168,75,0.2); }\n.t-pill.red { color: var(--red); background: var(--red-dim); border: 1px solid rgba(217,79,61,0.2); }\n.t-check { display: inline-flex; width: 18px; height: 18px; align-items: center; justify-content: center; border-radius: 50%; font-size: 9px; }\n.t-check.yes { background: var(--green-dim); color: var(--green); border: 1px solid rgba(78,155,111,0.25); }\n.t-check.no { background: var(--red-dim); color: var(--red); border: 1px solid rgba(217,79,61,0.25); }\n.t-check.partial { background: var(--yellow-dim); color: var(--yellow); border: 1px solid rgba(212,168,75,0.25); }\n.t-price { font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: var(--text-muted); }\n.t-price-sub { font-family: var(--font-mono); font-size: 8px; color: var(--text-dim); display: block; margin-top: 2px; letter-spacing: 0.04em; }\n.t-ingr { font-family: var(--font-mono); font-size: 11px; font-weight: 500; display: block; }\n.t-ingr-sub { font-family: var(--font-mono); font-size: 8px; color: var(--text-dim); display: block; margin-top: 2px; }\n.expand-row { display: none; border-bottom: 1px solid var(--border); }\n.expand-row.open { display: table-row; }\n.expand-cell { padding: 0; border-right: none; }\n\n/* QUICK CHECK DRAWER */\n.quick-check { background: var(--surface-2); border-top: 1px solid var(--border-light); display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: 0; }\n.qc-block { padding: 20px 24px; border-right: 1px solid var(--border); }\n.qc-block:last-child { border-right: none; }\n.qc-label { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }\n.qc-value { font-size: 13px; font-weight: 400; color: var(--text-muted); line-height: 1.5; }\n.qc-value strong { color: var(--text); font-weight: 500; font-size: 14px; }\n.qc-highlight { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); line-height: 1.7; }\n.qc-highlight .pos { color: var(--green); }\n.qc-highlight .neg { color: var(--red); }\n.qc-highlight .neu { color: var(--yellow); }\n.qc-cta { padding: 20px 24px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; min-width: 140px; }\n.qc-link { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); text-decoration: none; border: 1px solid rgba(201,168,76,0.3); padding: 8px 14px; display: block; transition: all 0.15s; text-align: center; white-space: nowrap; }\n.qc-link:hover { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.5); }\n.qc-close { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); background: none; border: none; cursor: pointer; transition: color 0.15s; padding: 0; }\n.qc-close:hover { color: var(--text-muted); }\n\n/* PROFILE CARDS */\n.profiles-section { max-width: 1100px; margin: 0 auto; padding: 72px 40px 0; }\n.profiles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 32px; }\n.profile-card { background: var(--bg); padding: 28px; text-decoration: none; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: background 0.2s; }\n.profile-card:hover { background: var(--surface); }\n.profile-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0; transition: opacity 0.2s; }\n.profile-card:hover::before { opacity: 1; }\n.profile-card.zone-green::before { background: var(--green); }\n.profile-card.zone-yellow::before { background: var(--yellow); }\n.profile-card.zone-red::before { background: var(--red); }\n.profile-card.hidden { display: none; }\n.pc-zone-label { font-family: var(--font-mono); font-size: 8.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 2px 7px; border-radius: 2px; margin-bottom: 16px; width: fit-content; }\n.pc-zone-label.green { color: var(--green); background: var(--green-dim); border: 1px solid rgba(78,155,111,0.2); }\n.pc-zone-label.yellow { color: var(--yellow); background: var(--yellow-dim); border: 1px solid rgba(212,168,75,0.2); }\n.pc-zone-label.red { color: var(--red); background: var(--red-dim); border: 1px solid rgba(217,79,61,0.2); }\n.pc-name { font-family: var(--font-display); font-size: clamp(26px, 3vw, 38px); font-weight: 900; line-height: 0.92; letter-spacing: -0.02em; color: var(--text); margin-bottom: 6px; }\n.pc-sub { font-size: 11.5px; font-weight: 300; color: var(--text-dim); margin-bottom: 16px; }\n.pc-verdict { font-size: 12.5px; font-weight: 300; line-height: 1.65; color: var(--text-muted); flex: 1; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }\n.pc-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--border); margin-top: auto; }\n.pc-score-dots { display: flex; gap: 3px; align-items: center; }\n.pc-dot { width: 7px; height: 7px; border-radius: 50%; }\n.pc-dot.green { background: var(--green); }\n.pc-dot.yellow { background: var(--yellow); }\n.pc-dot.red { background: var(--red); }\n.pc-sep { width: 1px; height: 10px; background: var(--border-light); margin: 0 5px; }\n.pc-arrow { font-size: 14px; color: var(--text-dim); transition: color 0.2s, transform 0.2s; }\n.profile-card:hover .pc-arrow { color: var(--text-muted); transform: translateX(3px); }\n\n/* EDITORIAL CONTEXT */\n.context-section { max-width: 1100px; margin: 0 auto; padding: 80px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; border-top: 1px solid var(--border); margin-top: 72px; }\n.context-block-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }\n.context-block-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); opacity: 0.4; }\n.context-body { font-size: 14.5px; font-weight: 300; line-height: 1.8; color: rgba(232,228,220,0.7); }\n.context-body strong { color: var(--text); font-weight: 500; }\n.context-body p { margin-bottom: 16px; }\n.context-body p:last-child { margin-bottom: 0; }\n.context-list { list-style: none; margin-top: 16px; }\n.context-list li { font-size: 13px; font-weight: 300; color: var(--text-muted); padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start; line-height: 1.5; }\n.context-list li:last-child { border-bottom: none; }\n.context-list li::before { content: '\u2192'; color: var(--text-dim); flex-shrink: 0; font-size: 11px; margin-top: 2px; }\n\n/* FOOTER */\n.page-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 32px 40px; display: flex; align-items: center; justify-content: space-between; }\n.footer-logo { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); }\n.footer-note { font-size: 11.5px; font-weight: 300; color: var(--text-dim); max-width: 420px; text-align: right; line-height: 1.5; }\n\n/* ANIMATIONS */\n@keyframes fadeInUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }\n.hero-breadcrumb { animation: fadeInUp 0.4s ease both; }\n.hero-eyebrow    { animation: fadeInUp 0.45s 0.05s ease both; }\n.hero-headline   { animation: fadeInUp 0.5s 0.1s ease both; }\n.hero-intro      { animation: fadeInUp 0.5s 0.15s ease both; }\n.hero-meta       { animation: fadeInUp 0.5s 0.2s ease both; }\n\n/* RESPONSIVE */\n@media (max-width: 900px) {\n  .site-header { padding: 0 24px; }\n  .category-hero { padding: 100px 24px 0; }\n  .hero-layout { grid-template-columns: 1fr; gap: 40px; }\n  .hero-meta { flex-direction: row; gap: 24px; flex-wrap: wrap; }\n  .hero-meta-stat { border: none; padding: 0; }\n  .spectrum-section, .filter-section, .table-section, .profiles-section, .context-section, .disclosure-section { padding-left: 24px; padding-right: 24px; }\n  .profiles-grid { grid-template-columns: 1fr; }\n  .context-section { grid-template-columns: 1fr; gap: 48px; }\n  .quick-check { grid-template-columns: 1fr 1fr; }\n  .disc-row { grid-template-columns: 100px 1fr; }\n  .disc-row > *:nth-child(3), .disc-row > *:nth-child(4) { display: none; }\n}\n
-    /* ── WTLF ACCORDION ── */
-    .wtlf-grid { display: flex; flex-direction: column; gap: 2px; }
-    .wtlf-card { background: var(--bg-card, #111009); border: 1px solid var(--border, #232018); border-radius: 3px; overflow: hidden; padding: 0; }
-    .wtlf-card-head { display: flex; align-items: center; gap: 12px; padding: 14px 18px; cursor: pointer; user-select: none; transition: background 0.15s; }
-    .wtlf-card-head:hover { background: rgba(255,255,255,0.02); }
-    .wtlf-icon { font-size: 16px; flex-shrink: 0; }
-    .wtlf-signal-label { font-size: 17px; font-weight: 600; color: var(--text, #ede9e0); line-height: 1.3; flex: 1; }
-    .wtlf-flag { font-family: var(--font-mono, 'DM Mono', monospace); font-size: 9px; letter-spacing: 0.08em; padding: 3px 8px; border-radius: 2px; white-space: nowrap; flex-shrink: 0; }
-    .wtlf-flag.red   { color: var(--red, #c94d3c); background: rgba(201,77,60,0.08); border: 1px solid rgba(201,77,60,0.2); }
-    .wtlf-flag.amber { color: var(--amber, #c8943a); background: rgba(200,148,58,0.08); border: 1px solid rgba(200,148,58,0.2); }
-    .wtlf-flag.yellow{ color: var(--yellow, #d4a84b); background: rgba(212,168,75,0.08); border: 1px solid rgba(212,168,75,0.2); }
-    .wtlf-flag.green { color: var(--green, #4e9b6f); background: rgba(78,155,111,0.08); border: 1px solid rgba(78,155,111,0.2); }
-    .wtlf-chevron { font-size: 10px; color: var(--text-muted, #9a9284); flex-shrink: 0; transition: transform 0.2s; }
-    .wtlf-card.open .wtlf-chevron { transform: rotate(180deg); }
-    .wtlf-body { display: none; padding: 0 18px 14px 46px; border-top: 1px solid var(--border, #232018); }
-    .wtlf-card.open .wtlf-body { display: block; }
-    .wtlf-bullets { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
-    .wtlf-bullets li { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; font-weight: 300; color: var(--text-muted, #9a9284); line-height: 1.5; }
-    .wtlf-bullets li::before { content: '—'; color: var(--border-strong, #3a3630); flex-shrink: 0; font-size: 11px; line-height: 1.7; }
-    .wtlf-bullets li strong { color: var(--text, #ede9e0); font-weight: 500; }
-  </style>\n</head>\n<body>\n\n<!-- HEADER -->\n<header class=\"site-header\">\n  <a href=\"traced-index.html\" class=\"site-logo\">Traced <span>/ by origin</span></a>\n  <nav class=\"site-nav\">\n    <a href=\"traced-index.html\">Index</a>\n    <a href=\"traced-protein-supplements.html\">Protein</a>\n    <a href=\"traced-electrolytes.html\">Electrolytes</a>\n    <a href=\"#\" class=\"active\">Greens</a>\n    <a href=\"#\">Methodology</a>\n  </nav>\n</header>\n\n<!-- HERO -->\n<section class=\"category-hero\">\n  <div class=\"hero-breadcrumb\">\n    <a href=\"traced-index.html\">Traced</a>\n    <span class=\"sep\">/</span>\n    <span class=\"current\">Greens Powders</span>\n  </div>\n  <div class=\"hero-layout\">\n    <div>\n      <div class=\"hero-eyebrow\">Category Report</div>\n      <h1 class=\"hero-headline\">Greens<br><em>Powders</em></h1>\n      <p class=\"hero-intro\">\n        The category where influencer economics, proprietary blends, and borrowed science converge most visibly. Brands built on the promise that a single scoop replaces an entire diet — a claim scientists openly contest. <strong>The central transparency question isn't whether the ingredients work; it's whether the doses listed are enough to do anything</strong>, and whether the people selling them disclosed what they're financially owed when they told you to buy. We traced three brands across the transparency spectrum. The findings are not close.\n      </p>\n    </div>\n    <div class=\"hero-meta\">\n      <div class=\"hero-meta-stat\">\n        <div class=\"meta-value\">3</div>\n        <div class=\"meta-label\">Profiles traced</div>\n      </div>\n      <div class=\"hero-meta-stat\">\n        <div class=\"meta-value\" style=\"color:var(--green)\">1</div>\n        <div class=\"meta-label\">Green-zone profile</div>\n      </div>\n      <div class=\"hero-meta-stat\">\n        <div class=\"meta-value\" style=\"color:var(--yellow)\">1</div>\n        <div class=\"meta-label\">Yellow-zone profile</div>\n      </div>\n      <div class=\"hero-meta-stat\">\n        <div class=\"meta-value\" style=\"color:var(--red)\">1</div>\n        <div class=\"meta-label\">Red-zone profile</div>\n      </div>\n    </div>\n  </div>\n</section>\n\n<!-- SPECTRUM RAIL -->\n<section class=\"spectrum-section\">\n  <div class=\"section-label\">Transparency Spectrum</div>\n  <div class=\"spectrum-track\"></div>\n  <div class=\"spectrum-pins\">\n    <!-- Ritual: ~14% — green zone -->\n    <div class=\"spectrum-pin\" style=\"left:14%\" onclick=\"scrollToRow('ritual')\">\n      <div class=\"pin-line\"></div>\n      <div class=\"pin-label\">Ritual</div>\n      <div class=\"pin-score\">0R \u00b7 1Y \u00b7 6G</div>\n    </div>\n    <!-- Organifi: ~44% — yellow zone -->\n    <div class=\"spectrum-pin\" style=\"left:44%\" onclick=\"scrollToRow('organifi')\">\n      <div class=\"pin-line\"></div>\n      <div class=\"pin-label\">Organifi</div>\n      <div class=\"pin-score\">0R \u00b7 4Y \u00b7 3G</div>\n    </div>\n    <!-- AG1: ~75% — red zone -->\n    <div class=\"spectrum-pin\" style=\"left:74%\" onclick=\"scrollToRow('ag1')\">\n      <div class=\"pin-line\"></div>\n      <div class=\"pin-label\">AG1</div>\n      <div class=\"pin-score\">2R \u00b7 3Y \u00b7 2G</div>\n    </div>\n  </div>\n  <div class=\"spectrum-legend\">\n    <span class=\"legend-item green\">\u2190 Most transparent</span>\n    <span class=\"legend-item\">Methodology: 7-dimension score</span>\n    <span class=\"legend-item red\">Least transparent \u2192</span>\n  </div>\n</section>\n\n<!-- INGREDIENT DISCLOSURE BAR — greens-specific -->\n<section class=\"disclosure-section\">\n  <div class=\"section-label\">Ingredient Disclosure — What the Label Actually Tells You</div>\n  <div class=\"disclosure-wrap\">\n    <div class=\"disclosure-header\">\n      <span class=\"disclosure-title\">% of ingredients with disclosed individual doses</span>\n      <span class=\"disclosure-note\">Proprietary blends list ingredients by name but not amount — making clinical dose verification impossible</span>\n    </div>\n    <div class=\"disclosure-bars\">\n\n      <div class=\"disc-row\">\n        <span class=\"disc-brand\">Ritual</span>\n        <div class=\"disc-bar-wrap\">\n          <span class=\"disc-bar-label\">Dose-disclosed</span>\n          <div class=\"disc-track\"><div class=\"disc-fill green\" style=\"width:100%\"></div></div>\n        </div>\n        <div class=\"disc-bar-wrap\">\n          <span class=\"disc-bar-label\">Proprietary blend</span>\n          <div class=\"disc-track\"><div class=\"disc-fill\" style=\"width:0%; background:var(--border)\"></div></div>\n        </div>\n        <span class=\"disc-status\" style=\"color:var(--green)\">100% disclosed</span>\n      </div>\n\n      <div class=\"disc-row\">\n        <span class=\"disc-brand\">Organifi</span>\n        <div class=\"disc-bar-wrap\">\n          <span class=\"disc-bar-label\">Dose-disclosed</span>\n          <div class=\"disc-track\"><div class=\"disc-fill yellow\" style=\"width:35%\"></div></div>\n        </div>\n        <div class=\"disc-bar-wrap\">\n          <span class=\"disc-bar-label\">Proprietary blend</span>\n          <div class=\"disc-track\"><div class=\"disc-fill red\" style=\"width:65%\"></div></div>\n        </div>\n        <span class=\"disc-status\" style=\"color:var(--yellow)\">~35% disclosed</span>\n      </div>\n\n      <div class=\"disc-row\">\n        <span class=\"disc-brand\">AG1</span>\n        <div class=\"disc-bar-wrap\">\n          <span class=\"disc-bar-label\">Dose-disclosed</span>\n          <div class=\"disc-track\"><div class=\"disc-fill yellow\" style=\"width:35%\"></div></div>\n        </div>\n        <div class=\"disc-bar-wrap\">\n          <span class=\"disc-bar-label\">Proprietary blend</span>\n          <div class=\"disc-track\"><div class=\"disc-fill red\" style=\"width:65%\"></div></div>\n        </div>\n        <span class=\"disc-status\" style=\"color:var(--red)\">49/75 hidden</span>\n      </div>\n\n    </div>\n    <div class=\"disc-ref\">\n      <span class=\"disc-ref-item\"><span>Pixie-dusting</span> — adding a named ingredient at sub-clinical dose to justify marketing claim without delivering measurable effect. Undetectable when doses are hidden in proprietary blends.</span>\n      <span class=\"disc-ref-item\"><span>Clinical dose</span> — the amount of an ingredient used in peer-reviewed studies showing the claimed effect. Without disclosure, there is no way to verify alignment.</span>\n      <span class=\"disc-ref-item\"><span>Ritual</span> discloses every ingredient, every dose, every supplier. Standard the category should meet but almost universally doesn't.</span>\n    </div>\n  </div>\n</section>\n\n<!-- FILTER BAR -->\n<section class=\"filter-section\">\n  <div class=\"filter-row\">\n    <span class=\"filter-group-label\">Score</span>\n    <button class=\"filter-chip active\" data-filter=\"all\">All</button>\n    <button class=\"filter-chip\" data-filter=\"green\">Green</button>\n    <button class=\"filter-chip\" data-filter=\"yellow\">Yellow</button>\n    <button class=\"filter-chip\" data-filter=\"red\">Red</button>\n\n    <div class=\"filter-divider\"></div>\n    <span class=\"filter-group-label\">Disclosure</span>\n    <button class=\"filter-chip\" data-filter=\"full-disclosure\">Full Disclosure</button>\n    <button class=\"filter-chip\" data-filter=\"proprietary-blend\">Proprietary Blend</button>\n\n    <div class=\"filter-divider\"></div>\n    <span class=\"filter-group-label\">Testing</span>\n    <button class=\"filter-chip\" data-filter=\"batch-coas\">Batch COAs Public</button>\n    <button class=\"filter-chip\" data-filter=\"nsf\">NSF Certified</button>\n\n    <div class=\"filter-divider\"></div>\n    <span class=\"filter-group-label\">Ownership</span>\n    <button class=\"filter-chip\" data-filter=\"vc-backed\">VC-Backed</button>\n    <button class=\"filter-chip\" data-filter=\"bootstrapped\">Bootstrapped</button>\n\n    <span class=\"filter-count\" id=\"filter-count\">3 of 3</span>\n  </div>\n</section>\n\n<!-- COMPARISON TABLE -->\n<section class=\"table-section\">\n  <table class=\"comparison-table\" id=\"comparison-table\">\n    <thead class=\"table-head\">\n      <tr>\n        <th class=\"th-brand\">Brand</th>\n        <th class=\"th-dim\">Ownership</th>\n        <th class=\"th-dim\">Ingredient<br>Disclosure</th>\n        <th class=\"th-dim\">Batch<br>COAs</th>\n        <th class=\"th-dim\">3rd-Party<br>Certified</th>\n        <th class=\"th-dim\">Clinical<br>Evidence</th>\n        <th class=\"th-dim\">Influencer<br>Equity</th>\n        <th class=\"th-dim\">Price<br>/ Serving</th>\n        <th class=\"th-dim\">Overall</th>\n      </tr>\n    </thead>\n    <tbody id=\"table-body\">\n\n      <!-- RITUAL -->\n      <tr class=\"brand-row\" id=\"row-ritual\"\n          data-zone=\"green\" data-full-disclosure=\"true\" data-proprietary-blend=\"false\"\n          data-batch-coas=\"true\" data-nsf=\"false\" data-vc-backed=\"true\" data-bootstrapped=\"false\"\n          data-brand=\"ritual\" onclick=\"toggleQuickCheck('ritual')\">\n        <td class=\"td-brand\">\n          <div class=\"td-brand-name\">Ritual</div>\n          <div class=\"td-brand-sub\">Essential Daily Greens+</div>\n          <div class=\"td-brand-owner\">VC-backed (Norwest, Forerunner, Founders Fund) — Founder-led, Certified B Corp</div>\n        </td>\n        <td class=\"td-cell\"><span class=\"t-pill yellow\">VC-Backed</span></td>\n        <td class=\"td-cell\">\n          <span class=\"t-check yes\">\u2713</span><br>\n          <span style=\"font-size:9px;color:var(--green);margin-top:2px;display:block;\">100% disclosed</span>\n        </td>\n        <td class=\"td-cell\"><span class=\"t-check yes\">\u2713</span><br><span style=\"font-size:9px;color:var(--text-dim);margin-top:2px;display:block;\">Certificate of Traceability</span></td>\n        <td class=\"td-cell\"><span class=\"t-check partial\">~</span><br><span style=\"font-size:9px;color:var(--text-dim);margin-top:2px;display:block;\">USP Verified (multi); Informed Sport (protein)</span></td>\n        <td class=\"td-cell\"><span class=\"t-check yes\">\u2713</span><br><span style=\"font-size:9px;color:var(--text-dim);margin-top:2px;display:block;\">University RCT published</span></td>\n        <td class=\"td-cell\"><span class=\"t-check yes\">\u2713</span><br><span style=\"font-size:9px;color:var(--text-dim);margin-top:2px;display:block;\">None apparent</span></td>\n        <td class=\"td-cell\">\n          <span class=\"t-price\">~$1.17</span>\n          <span class=\"t-price-sub\">per serving</span>\n        </td>\n        <td class=\"td-cell\"><span class=\"t-pill green\">Green</span></td>\n      </tr>\n      <tr class=\"expand-row\" id=\"expand-ritual\">\n        <td class=\"expand-cell\" colspan=\"9\">\n          <div class=\"quick-check\">\n            <div class=\"qc-block\">\n              <div class=\"qc-label\">Formula</div>\n              <div class=\"qc-value\"><strong>Full ingredient + dose disclosure.</strong> Every active ingredient's amount, form, supplier name, and country of origin published. Methylated B vitamins (MTHF, not folic acid). USP-verified formulation for Essential for Women. No proprietary blends.</div>\n            </div>\n            <div class=\"qc-block\">\n              <div class=\"qc-label\">Owner</div>\n              <div class=\"qc-value\"><strong>Ritual Inc.</strong> VC-backed (Norwest, Forerunner, Founders Fund). $40.5M+ raised. Founded 2016 by Kat Schneider — still CEO. Certified B Corp since 2022. Lobbies FDA for heavy metals limits in supplements.</div>\n            </div>\n            <div class=\"qc-block\">\n              <div class=\"qc-label\">Key Gaps</div>\n              <div class=\"qc-highlight\">\n                <span class=\"pos\">\u2713 100% ingredient dose disclosure</span><br>\n                <span class=\"pos\">\u2713 Public batch COAs (Certificate of Traceability)</span><br>\n                <span class=\"pos\">\u2713 University-led RCT published in peer-reviewed journal</span><br>\n                <span class=\"pos\">\u2713 Certified B Corp</span><br>\n                <span class=\"neu\">\u25cb Not NSF for Sport on multivitamin line</span><br>\n                <span class=\"neu\">\u25cb VC-backed — watch for formulation drift at scale</span>\n              </div>\n            </div>\n            <div class=\"qc-block\">\n              <div class=\"qc-label\">Key Finding</div>\n              <div class=\"qc-value\">The category transparency benchmark. <strong>Ritual does what every brand in this space should do</strong> — discloses every dose, maps every supplier, publishes heavy metal results, and commissions independent clinical research. It sets the standard none of its major competitors currently meet.</div>\n            </div>\n            <div class=\"qc-cta\">\n              <a href=\"#\" class=\"qc-link\">Full Report \u2192</a>\n              <button class=\"qc-close\" onclick=\"toggleQuickCheck('ritual'); event.stopPropagation();\">Close \u00d7</button>\n            </div>\n          </div>\n        </td>\n      </tr>\n\n      <!-- ORGANIFI -->\n      <tr class=\"brand-row\" id=\"row-organifi\"\n          data-zone=\"yellow\" data-full-disclosure=\"false\" data-proprietary-blend=\"true\"\n          data-batch-coas=\"true\" data-nsf=\"false\" data-vc-backed=\"false\" data-bootstrapped=\"true\"\n          data-brand=\"organifi\" onclick=\"toggleQuickCheck('organifi')\">\n        <td class=\"td-brand\">\n          <div class=\"td-brand-name\">Organifi</div>\n          <div class=\"td-brand-sub\">Green Juice Powder</div>\n          <div class=\"td-brand-owner\">Organifi LLC — Drew Canole, co-founder; bootstrapped (no external financing)</div>\n        </td>\n        <td class=\"td-cell\"><span class=\"t-pill green\">Bootstrapped</span></td>\n        <td class=\"td-cell\">\n          <span class=\"t-check partial\">~</span><br>\n          <span style=\"font-size:9px;color:var(--yellow);margin-top:2px;display:block;\">~35% disclosed</span>\n        </td>\n        <td class=\"td-cell\"><span class=\"t-check yes\">\u2713</span><br><span style=\"font-size:9px;color:var(--text-dim);margin-top:2px;display:block;\">Published per batch</span></td>\n        <td class=\"td-cell\"><span class=\"t-check partial\">~</span><br><span style=\"font-size:9px;color:var(--text-dim);margin-top:2px;display:block;\">USDA Organic; Glyphosate-Free; Non-GMO; no NSF</span></td>\n        <td class=\"td-cell\"><span class=\"t-check no\">\u2717</span><br><span style=\"font-size:9px;color:var(--text-dim);margin-top:2px;display:block;\">No independent RCTs on formula</span></td>\n        <td class=\"td-cell\"><span class=\"t-check partial\">~</span><br><span style=\"font-size:9px;color:var(--text-dim);margin-top:2px;display:block;\">Affiliate-heavy; no investor overlap found</span></td>\n        <td class=\"td-cell\">\n          <span class=\"t-price\">~$2.67</span>\n          <span class=\"t-price-sub\">per serving</span>\n        </td>\n        <td class=\"td-cell\"><span class=\"t-pill yellow\">Yellow</span></td>\n      </tr>\n      <tr class=\"expand-row\" id=\"expand-organifi\">\n        <td class=\"expand-cell\" colspan=\"9\">\n          <div class=\"quick-check\">\n            <div class=\"qc-block\">\n              <div class=\"qc-label\">Formula</div>\n              <div class=\"qc-value\"><strong>11 organic superfoods.</strong> Ashwagandha at 600mg (clinical dose, disclosed). Alkaline Greens Blend (5.1g): spirulina, chlorella, matcha, moringa, wheatgrass — individual amounts hidden. Superfood Blend (1.45g): coconut water, beet, turmeric, lemon — amounts hidden.</div>\n            </div>\n            <div class=\"qc-block\">\n              <div class=\"qc-label\">Owner</div>\n              <div class=\"qc-value\"><strong>Organifi LLC</strong> — Co-founded by Drew Canole (YouTuber/FitLife.TV) and Djamel Bettehar. Bootstrapped since 2014; never taken external financing per supply chain partner documentation. Drew Canole returned as CEO in 2023 after a 5-year absence.</div>\n            </div>\n            <div class=\"qc-block\">\n              <div class=\"qc-label\">Key Gaps</div>\n              <div class=\"qc-highlight\">\n                <span class=\"pos\">\u2713 USDA Certified Organic + Glyphosate-Free</span><br>\n                <span class=\"pos\">\u2713 Batch COAs published publicly</span><br>\n                <span class=\"pos\">\u2713 Bootstrapped — no PE/conglomerate pressure</span><br>\n                <span class=\"neg\">\u2717 Alkaline Greens blend: individual doses undisclosed</span><br>\n                <span class=\"neg\">\u2717 No NSF Certified for Sport</span><br>\n                <span class=\"neg\">\u2717 No independent clinical trials on formula</span><br>\n                <span class=\"neu\">\u25cb \"Detox\" marketing language not well-supported by research</span>\n              </div>\n            </div>\n            <div class=\"qc-block\">\n              <div class=\"qc-label\">Key Finding</div>\n              <div class=\"qc-value\">The best purity story in the category — organic, glyphosate-free, batch COAs public. The transparency gap is ingredient <strong>dose disclosure, not contamination</strong>. The proprietary blends make it impossible to verify whether spirulina, chlorella, or matcha are present at amounts that would do anything in clinical literature. The ashwagandha is the exception: 600mg, disclosed, clinically meaningful.</div>\n            </div>\n            <div class=\"qc-cta\">\n              <a href=\"#\" class=\"qc-link\">Full Report \u2192</a>\n              <button class=\"qc-close\" onclick=\"toggleQuickCheck('organifi'); event.stopPropagation();\">Close \u00d7</button>\n            </div>\n          </div>\n        </td>\n      </tr>\n\n      <!-- AG1 -->\n      <tr class=\"brand-row\" id=\"row-ag1\"\n          data-zone=\"red\" data-full-disclosure=\"false\" data-proprietary-blend=\"true\"\n          data-batch-coas=\"false\" data-nsf=\"true\" data-vc-backed=\"true\" data-bootstrapped=\"false\"\n          data-brand=\"ag1\" onclick=\"toggleQuickCheck('ag1')\">\n        <td class=\"td-brand\">\n          <div class=\"td-brand-name\">AG1</div>\n          <div class=\"td-brand-sub\">Daily Greens Powder (formerly Athletic Greens)</div>\n          <div class=\"td-brand-owner\">VC-backed (Alpha Wave Global + others) — $1.2B valuation; founder departed 2024</div>\n        </td>\n        <td class=\"td-cell\"><span class=\"t-pill yellow\">VC-Backed</span></td>\n        <td class=\"td-cell\">\n          <span class=\"t-check no\">\u2717</span><br>\n          <span style=\"font-size:9px;color:var(--red);margin-top:2px;display:block;\">49 of 75 hidden</span>\n        </td>\n        <td class=\"td-cell\"><span class=\"t-check no\">\u2717</span><br><span style=\"font-size:9px;color:var(--text-dim);margin-top:2px;display:block;\">Not public</span></td>\n        <td class=\"td-cell\"><span class=\"t-check yes\">\u2713</span><br><span style=\"font-size:9px;color:var(--text-dim);margin-top:2px;display:block;\">NSF Certified for Sport</span></td>\n        <td class=\"td-cell\"><span class=\"t-check no\">\u2717</span><br><span style=\"font-size:9px;color:var(--text-dim);margin-top:2px;display:block;\">Internal studies only (35-person single-arm)</span></td>\n        <td class=\"td-cell\"><span class=\"t-check no\">\u2717</span><br><span style=\"font-size:9px;color:var(--text-dim);margin-top:2px;display:block;\">Huberman, Attia, Ferriss (investor)</span></td>\n        <td class=\"td-cell\">\n          <span class=\"t-price\">~$3.00</span>\n          <span class=\"t-price-sub\">per serving</span>\n        </td>\n        <td class=\"td-cell\"><span class=\"t-pill red\">Red</span></td>\n      </tr>\n      <tr class=\"expand-row\" id=\"expand-ag1\">\n        <td class=\"expand-cell\" colspan=\"9\">\n          <div class=\"quick-check\">\n            <div class=\"qc-block\">\n              <div class=\"qc-label\">Formula</div>\n              <div class=\"qc-value\"><strong>75 ingredients, 49 in proprietary blends.</strong> NSF Certified for Sport (confirms absence of banned substances and label accuracy — not clinical dose adequacy). Vitamins/minerals mostly disclosed. All adaptogens, superfoods, and probiotics: undisclosed amounts.</div>\n            </div>\n            <div class=\"qc-block\">\n              <div class=\"qc-label\">Owner</div>\n              <div class=\"qc-value\"><strong>AG1 Inc.</strong> VC-backed. Alpha Wave Global led $115M round (2022) at $1.2B valuation. Founder Chris Ashenden resigned July 2024 (NZ Fair Trading Act conviction disclosed). Kat Cole (new CEO) — consumer brand veteran. Tim Ferriss: early investor + endorser.</div>\n            </div>\n            <div class=\"qc-block\">\n              <div class=\"qc-label\">Key Gaps</div>\n              <div class=\"qc-highlight\">\n                <span class=\"pos\">\u2713 NSF Certified for Sport</span><br>\n                <span class=\"neg\">\u2717 49/75 ingredient doses hidden — pixie-dust risk</span><br>\n                <span class=\"neg\">\u2717 All clinical studies company-funded (35-person single-arm)</span><br>\n                <span class=\"neg\">\u2717 Huberman, Rogan, Attia: sponsor and investor overlap undisclosed</span><br>\n                <span class=\"neg\">\u2717 Batch COAs not published</span><br>\n                <span class=\"neg\">\u2717 Harvard Medical, McGill researchers publicly criticized scientific rigor</span>\n              </div>\n            </div>\n            <div class=\"qc-block\">\n              <div class=\"qc-label\">Key Finding</div>\n              <div class=\"qc-value\">The category's most visible structural conflict: <strong>financial relationships between the brand and its most authoritative-sounding advocates are not fully disclosed</strong>. The NSF cert confirms label accuracy but not dose adequacy — which is the actual question when 49 of 75 ingredient amounts are hidden. The science presented as \"peer-reviewed\" is almost entirely company-sponsored.</div>\n            </div>\n            <div class=\"qc-cta\">\n              <a href=\"#\" class=\"qc-link\">Full Report \u2192</a>\n              <button class=\"qc-close\" onclick=\"toggleQuickCheck('ag1'); event.stopPropagation();\">Close \u00d7</button>\n            </div>\n          </div>\n        </td>\n      </tr>\n\n    </tbody>\n  </table>\n</section>\n\n<!-- NARRATIVE PROFILE CARDS -->\n<section class=\"profiles-section\">\n  <div class=\"section-label\">Full Profiles</div>\n  <div class=\"profiles-grid\" id=\"profiles-grid\">\n\n    <!-- Ritual -->\n    <a class=\"profile-card zone-green\" href=\"#\"\n       data-zone=\"green\" data-full-disclosure=\"true\" data-proprietary-blend=\"false\"\n       data-batch-coas=\"true\" data-nsf=\"false\" data-vc-backed=\"true\" data-bootstrapped=\"false\">\n      <span class=\"pc-zone-label green\">Green — Benchmark</span>\n      <div class=\"pc-name\">Ritual</div>\n      <div class=\"pc-sub\">Essential Daily Greens+</div>\n      <p class=\"pc-verdict\">Every ingredient dose disclosed. Every supplier named and geolocated. Batch COAs published via Certificate of Traceability. University-led RCT published in a peer-reviewed journal. Heavy metal results shared publicly. Certified B Corp. Advocates for FDA regulation of heavy metals in supplements. This is what category transparency looks like — no other major greens brand currently meets this standard.</p>\n      <div class=\"pc-footer\">\n        <div class=\"pc-score-dots\">\n          <div class=\"pc-dot yellow\"></div>\n          <div class=\"pc-sep\"></div>\n          <div class=\"pc-dot green\"></div><div class=\"pc-dot green\"></div><div class=\"pc-dot green\"></div><div class=\"pc-dot green\"></div><div class=\"pc-dot green\"></div><div class=\"pc-dot green\"></div>\n        </div>\n        <span class=\"pc-arrow\">\u2192</span>\n      </div>\n    </a>\n\n    <!-- Organifi -->\n    <a class=\"profile-card zone-yellow\" href=\"#\"\n       data-zone=\"yellow\" data-full-disclosure=\"false\" data-proprietary-blend=\"true\"\n       data-batch-coas=\"true\" data-nsf=\"false\" data-vc-backed=\"false\" data-bootstrapped=\"true\">\n      <span class=\"pc-zone-label yellow\">Yellow — Purity Yes, Doses No</span>\n      <div class=\"pc-name\">Organifi</div>\n      <div class=\"pc-sub\">Green Juice Powder</div>\n      <p class=\"pc-verdict\">The strongest purity story in the category: USDA Certified Organic, Glyphosate Residue-Free, batch COAs published, bootstrapped with no PE pressure. The gap is dose disclosure — the proprietary Alkaline Greens Blend hides individual amounts for spirulina, chlorella, matcha, and moringa, making it impossible to verify whether any of them hit clinical thresholds. The ashwagandha at 600mg stands out precisely because it's disclosed.</p>\n      <div class=\"pc-footer\">\n        <div class=\"pc-score-dots\">\n          <div class=\"pc-dot yellow\"></div><div class=\"pc-dot yellow\"></div><div class=\"pc-dot yellow\"></div><div class=\"pc-dot yellow\"></div>\n          <div class=\"pc-sep\"></div>\n          <div class=\"pc-dot green\"></div><div class=\"pc-dot green\"></div><div class=\"pc-dot green\"></div>\n        </div>\n        <span class=\"pc-arrow\">\u2192</span>\n      </div>\n    </a>\n\n    <!-- AG1 -->\n    <a class=\"profile-card zone-red\" href=\"#\"\n       data-zone=\"red\" data-full-disclosure=\"false\" data-proprietary-blend=\"true\"\n       data-batch-coas=\"false\" data-nsf=\"true\" data-vc-backed=\"true\" data-bootstrapped=\"false\">\n      <span class=\"pc-zone-label red\">Red — Structural Conflict</span>\n      <div class=\"pc-name\">AG1</div>\n      <div class=\"pc-sub\">Daily Greens Powder</div>\n      <p class=\"pc-verdict\">75 ingredients, 49 undisclosed. The most heavily podcast-sponsored supplement in existence — Andrew Huberman, Joe Rogan, Peter Attia, Tim Ferriss (investor) — with financial relationships between brand and scientific advocates that are partially or incompletely disclosed. All supporting clinical research is company-funded. Harvard Medical School professor and McGill University researcher publicly criticized scientific rigor. NSF Certified for Sport confirms label accuracy, not dose adequacy. Most expensive in category at ~$3/serving.</p>\n      <div class=\"pc-footer\">\n        <div class=\"pc-score-dots\">\n          <div class=\"pc-dot red\"></div><div class=\"pc-dot red\"></div>\n          <div class=\"pc-sep\"></div>\n          <div class=\"pc-dot yellow\"></div><div class=\"pc-dot yellow\"></div><div class=\"pc-dot yellow\"></div>\n          <div class=\"pc-sep\"></div>\n          <div class=\"pc-dot green\"></div><div class=\"pc-dot green\"></div>\n        </div>\n        <span class=\"pc-arrow\">\u2192</span>\n      </div>\n    </a>\n\n  </div>\n</section>\n\n<!-- EDITORIAL CONTEXT -->\n<section class=\"context-section\">\n  <div class=\"context-block\">\n    <div class=\"context-block-label\">What We Found</div>\n    <div class=\"context-body\">\n      <p>The greens powder category sits at the intersection of two problems that rarely appear together this clearly: <strong>ingredient transparency failure and influencer economics failure</strong>. In most supplement categories you get one or the other. Here you get both, concentrated in the market leader.</p>\n      <p>Pixie-dusting — adding a named ingredient at a sub-clinical dose so it appears on the label without delivering any measurable effect — is impossible to detect when doses are hidden inside proprietary blends. The FDA requires that proprietary blend totals be disclosed, but not individual amounts. This loophole is load-bearing for the business model: it allows a brand to list 75 ingredients and imply a 75-ingredient benefit, while having no obligation to disclose that most of them may be present in amounts too small to matter.</p>\n      <p>What makes the greens category particularly acute is that the people most effectively communicating the science of these products — podcast hosts with medical credentials, longevity researchers — have financial relationships with the brands that are often disclosed incompletely or in ways that don't make the conflict visible to the average listener. That's not a fringe concern; it's the documented structure of how the category grew.</p>\n      <p>Ritual represents what's possible when a company decides to compete on transparency instead of around it. The approach requires more work and investment. It also makes every other claim in the category look worse by comparison.</p>\n    </div>\n  </div>\n  <div class=\"context-block\">\n    <div class=\"context-block-label\">How to Read This Category</div>\n    <ul class=\"context-list\">\n      <li><strong>NSF Certified for Sport \u2260 dose adequacy.</strong> NSF confirms a product contains what the label says, in the amounts listed, without banned substances. It does not evaluate whether those amounts are clinically meaningful. When the label hides 49 of 75 ingredient amounts in proprietary blends, NSF cannot tell you whether those ingredients are pixie-dusted.</li>\n      <li><strong>\"Peer-reviewed research\" requires scrutiny of who funded it.</strong> AG1's research page cites studies — almost all company-funded, with sample sizes of 30\u201335, and co-authored by AG1 employees. Harvard Medical School's Dr. JoAnn Manson publicly contrasted this with gold-standard supplement research involving 15,000 participants. That's not a minor methodological footnote.</li>\n      <li><strong>Batch COAs \u2260 full disclosure.</strong> Organifi publishes batch COAs showing heavy metals, microbes, and contaminants per batch. AG1 does not publish batch COAs. But COAs confirm what's absent from the product — they don't address whether functional ingredients hit clinical doses. Both questions matter.</li>\n      <li><strong>FTC disclosure rules apply to sponsored content</strong> — but the threshold of what constitutes a \"material connection\" is underenforced. An investor-endorser is not the same as a paid sponsor, and the disclosure requirement differs. When a podcast host holds equity, invests in, and simultaneously sponsors a brand, the disclosure obligation is more complex — and compliance is inconsistent.</li>\n      <li><strong>Ingredient count is not a quality signal.</strong> 75 ingredients does not mean 75 benefits. For adaptogens in particular, clinical efficacy requires doses that rarely fit inside a 12\u201313 gram serving when shared with dozens of other ingredients. More ingredients with hidden doses is worse for the consumer than fewer ingredients with disclosed doses.</li>\n    </ul>\n  </div>\n</section>\n\n<footer class=\"page-footer\">\n  <span class=\"footer-logo\">Traced</span>\n  <span class=\"footer-note\">Greens powders category — 3 profiles across 7 dimensions. Last reviewed February 2026. More profiles (Bloom, Supergreen Tonik, others) added as research is completed.</span>\n</footer>\n\n<script>\n/* \u2500\u2500 QUICK CHECK TOGGLE \u2500\u2500 */\nlet openBrand = null;\nfunction toggleQuickCheck(brand) {\n  const row = document.getElementById('expand-' + brand);\n  if (!row) return;\n  if (openBrand && openBrand !== brand) {\n    const prev = document.getElementById('expand-' + openBrand);\n    if (prev) prev.classList.remove('open');\n  }\n  if (openBrand === brand) {\n    row.classList.remove('open');\n    openBrand = null;\n  } else {\n    row.classList.add('open');\n    openBrand = brand;\n  }\n}\nfunction scrollToRow(brand) {\n  const row = document.getElementById('row-' + brand);\n  if (row) {\n    row.scrollIntoView({ behavior: 'smooth', block: 'center' });\n    row.style.background = 'var(--surface-2)';\n    setTimeout(() => { row.style.background = ''; }, 800);\n    toggleQuickCheck(brand);\n  }\n}\n\n/* \u2500\u2500 FILTER LOGIC \u2500\u2500 */\nconst filterChips = document.querySelectorAll('.filter-chip');\nlet activeFilters = new Set(['all']);\n\nfilterChips.forEach(chip => {\n  chip.addEventListener('click', () => {\n    const f = chip.dataset.filter;\n    if (f === 'all') {\n      activeFilters.clear();\n      activeFilters.add('all');\n      filterChips.forEach(c => {\n        c.className = 'filter-chip';\n        if (c.dataset.filter === 'all') c.classList.add('active');\n      });\n    } else {\n      activeFilters.delete('all');\n      document.querySelector('[data-filter=\"all\"]').className = 'filter-chip';\n      if (activeFilters.has(f)) {\n        activeFilters.delete(f);\n        chip.className = 'filter-chip';\n        if (activeFilters.size === 0) {\n          activeFilters.add('all');\n          document.querySelector('[data-filter=\"all\"]').classList.add('active');\n        }\n      } else {\n        activeFilters.add(f);\n        if (['green','yellow','red'].includes(f)) chip.className = 'filter-chip active-' + f;\n        else chip.className = 'filter-chip active';\n      }\n    }\n    applyFilters();\n  });\n});\n\nfunction applyFilters() {\n  const tableRows = document.querySelectorAll('.brand-row');\n  const profileCards = document.querySelectorAll('.profile-card');\n  let visibleCount = 0;\n\n  tableRows.forEach(row => {\n    const show = matchesFilters(row);\n    row.classList.toggle('hidden', !show);\n    const expandRow = document.getElementById('expand-' + row.dataset.brand);\n    if (expandRow && !show) expandRow.classList.remove('open');\n    if (show) visibleCount++;\n  });\n\n  profileCards.forEach(card => {\n    card.classList.toggle('hidden', !matchesFilters(card));\n  });\n\n  document.getElementById('filter-count').textContent = visibleCount + ' of 3';\n}\n\nfunction matchesFilters(el) {\n  if (activeFilters.has('all')) return true;\n  for (const f of activeFilters) {\n    switch (f) {\n      case 'green': if (el.dataset.zone !== 'green') return false; break;\n      case 'yellow': if (el.dataset.zone !== 'yellow') return false; break;\n      case 'red': if (el.dataset.zone !== 'red') return false; break;\n      case 'full-disclosure': if (el.dataset.fullDisclosure !== 'true') return false; break;\n      case 'proprietary-blend': if (el.dataset.proprietaryBlend !== 'true') return false; break;\n      case 'batch-coas': if (el.dataset.batchCoas !== 'true') return false; break;\n      case 'nsf': if (el.dataset.nsf !== 'true') return false; break;\n      case 'vc-backed': if (el.dataset.vcBacked !== 'true') return false; break;\n      case 'bootstrapped': if (el.dataset.bootstrapped !== 'true') return false; break;\n    }\n  }\n  return true;\n}\n</script>\n<script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electrolytes — Traced</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────────── */
+:root {
+  --bg: #080808;
+  --surface: #111111;
+  --surface-2: #181818;
+  --surface-3: #1e1e1e;
+  --border: #222222;
+  --border-light: #2a2a2a;
+  --text: #e8e4dc;
+  --text-muted: #7a7570;
+  --text-dim: #4a4642;
+  --accent: #C9A84C;
+  --red: #D94F3D;
+  --red-dim: rgba(217,79,61,0.10);
+  --yellow: #D4A84B;
+  --yellow-dim: rgba(212,168,75,0.10);
+  --green: #4E9B6F;
+  --green-dim: rgba(78,155,111,0.10);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─────────────────────────────────────────────
+   HEADER
+───────────────────────────────────────────── */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 56px;
+  background: rgba(8,8,8,0.94); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.site-logo {
+  font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); text-decoration: none;
+}
+.site-logo span { color: var(--text-muted); font-weight: 400; }
+.site-nav { display: flex; gap: 32px; align-items: center; }
+.site-nav a {
+  font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-muted); text-decoration: none; transition: color 0.2s;
+}
+.site-nav a:hover { color: var(--text); }
+.site-nav a.active { color: var(--accent); }
+
+/* ─────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────── */
+.category-hero { padding: 120px 40px 0; max-width: 1100px; margin: 0 auto; }
+.hero-breadcrumb {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--text-dim); margin-bottom: 32px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-breadcrumb a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+.hero-breadcrumb a:hover { color: var(--text-muted); }
+.hero-breadcrumb .sep { color: var(--border-light); }
+.hero-breadcrumb .current { color: var(--accent); }
+
+.hero-layout {
+  display: grid; grid-template-columns: 1fr 320px;
+  gap: 80px; align-items: end;
+  padding-bottom: 60px; border-bottom: 1px solid var(--border);
+}
+.hero-eyebrow {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before {
+  content: ''; display: block; width: 28px; height: 1px;
+  background: var(--accent); opacity: 0.4;
+}
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 6.5vw, 84px);
+  font-weight: 900; line-height: 0.9;
+  letter-spacing: -0.025em; color: var(--text); margin-bottom: 28px;
+}
+.hero-headline em { font-style: italic; color: var(--text-muted); }
+.hero-intro {
+  font-size: 15.5px; font-weight: 300; line-height: 1.78;
+  color: rgba(232,228,220,0.7); max-width: 560px;
+}
+.hero-intro strong { color: var(--text); font-weight: 500; }
+.hero-meta { display: flex; flex-direction: column; align-self: end; }
+.hero-meta-stat { padding: 18px 0; border-bottom: 1px solid var(--border); }
+.hero-meta-stat:first-child { border-top: 1px solid var(--border); }
+.meta-value {
+  font-family: var(--font-display); font-size: 34px; font-weight: 700;
+  color: var(--text); line-height: 1; margin-bottom: 4px;
+}
+.meta-label {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim);
+}
+
+/* ─────────────────────────────────────────────
+   SECTION LABEL
+───────────────────────────────────────────── */
+.section-label {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--text-dim);
+  margin-bottom: 32px; display: flex; align-items: center; gap: 16px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ─────────────────────────────────────────────
+   SPECTRUM RAIL
+───────────────────────────────────────────── */
+.spectrum-section { max-width: 1100px; margin: 0 auto; padding: 64px 40px 0; }
+.spectrum-track {
+  height: 3px;
+  background: linear-gradient(to right, var(--green) 0%, #8aaa58 25%, var(--yellow) 50%, #c97845 75%, var(--red) 100%);
+  border-radius: 2px;
+}
+.spectrum-pins { position: relative; height: 120px; }
+.spectrum-pin {
+  position: absolute; top: 0; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center;
+  cursor: pointer; transition: opacity 0.2s;
+}
+.spectrum-pin:hover { opacity: 1 !important; }
+.pin-line {
+  width: 1px; height: 24px; background: var(--border-light); margin-bottom: 10px;
+  transition: background 0.2s;
+}
+.spectrum-pin:hover .pin-line { background: var(--text-dim); }
+.pin-label {
+  font-family: var(--font-mono); font-size: 9.5px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-muted); white-space: nowrap; margin-bottom: 4px;
+  text-align: center; transition: color 0.2s;
+}
+.spectrum-pin:hover .pin-label { color: var(--text); }
+.pin-score { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.06em; color: var(--text-dim); white-space: nowrap; }
+.spectrum-legend {
+  display: flex; justify-content: space-between;
+  margin-top: 8px; padding-top: 12px; border-top: 1px solid var(--border);
+}
+.legend-item { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+.legend-item.green { color: var(--green); opacity: 0.7; }
+.legend-item.red { color: var(--red); opacity: 0.7; }
+
+/* ─────────────────────────────────────────────
+   SODIUM CONTEXT BAR
+   (unique to electrolytes — visual anchors the
+   sodium-dosing question immediately)
+───────────────────────────────────────────── */
+.sodium-context {
+  max-width: 1100px; margin: 0 auto; padding: 48px 40px 0;
+}
+.sodium-bar-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 28px 32px;
+}
+.sodium-bar-header {
+  display: flex; align-items: baseline; gap: 20px; margin-bottom: 24px;
+}
+.sodium-bar-title {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--text-dim);
+}
+.sodium-bar-note {
+  font-size: 12px; font-weight: 300; color: var(--text-dim);
+}
+.sodium-bars { display: flex; flex-direction: column; gap: 14px; }
+.sodium-row { display: flex; align-items: center; gap: 16px; }
+.sodium-brand {
+  font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--text-muted);
+  width: 140px; flex-shrink: 0;
+}
+.sodium-track {
+  flex: 1; height: 6px; background: var(--border); border-radius: 3px; position: relative;
+}
+.sodium-fill {
+  height: 100%; border-radius: 3px;
+  transition: width 0.6s ease;
+}
+.sodium-fill.high { background: var(--yellow); }
+.sodium-fill.medium { background: var(--green); }
+.sodium-fill.low { background: var(--text-dim); }
+.sodium-value {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  color: var(--text-muted); width: 80px; text-align: right; flex-shrink: 0;
+}
+/* reference lines */
+.sodium-ref {
+  display: flex; gap: 28px; margin-top: 18px; padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.sodium-ref-item { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
+.sodium-ref-item span { color: var(--text-muted); }
+
+/* ─────────────────────────────────────────────
+   FILTER BAR
+───────────────────────────────────────────── */
+.filter-section { max-width: 1100px; margin: 0 auto; padding: 48px 40px 0; }
+.filter-row {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding-bottom: 20px; border-bottom: 1px solid var(--border);
+}
+.filter-group-label {
+  font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--text-dim); margin-right: 4px; flex-shrink: 0;
+}
+.filter-chip {
+  font-family: var(--font-mono); font-size: 9.5px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 2px;
+  border: 1px solid var(--border-light); background: transparent;
+  color: var(--text-muted); cursor: pointer; transition: all 0.15s; white-space: nowrap;
+}
+.filter-chip:hover { border-color: var(--text-dim); color: var(--text); }
+.filter-chip.active { background: var(--surface-2); border-color: var(--text-dim); color: var(--text); }
+.filter-chip.active-green { background: var(--green-dim); border-color: rgba(78,155,111,0.35); color: var(--green); }
+.filter-chip.active-yellow { background: var(--yellow-dim); border-color: rgba(212,168,75,0.35); color: var(--yellow); }
+.filter-chip.active-red { background: var(--red-dim); border-color: rgba(217,79,61,0.35); color: var(--red); }
+.filter-chip.active-green { background: var(--green-dim); border-color: rgba(78,155,111,0.35); color: var(--green); }
+.filter-divider { width: 1px; height: 18px; background: var(--border-light); flex-shrink: 0; margin: 0 4px; }
+.filter-count { margin-left: auto; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); flex-shrink: 0; }
+
+/* ─────────────────────────────────────────────
+   COMPARISON TABLE
+───────────────────────────────────────────── */
+.table-section { max-width: 1100px; margin: 0 auto; padding: 40px 40px 0; }
+.comparison-table { width: 100%; border-collapse: collapse; border: 1px solid var(--border); }
+.table-head { position: sticky; top: 56px; z-index: 10; background: var(--surface); }
+.th-brand {
+  padding: 14px 20px; text-align: left;
+  font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-dim); border-bottom: 1px solid var(--border); border-right: 1px solid var(--border);
+  width: 180px;
+}
+.th-dim {
+  padding: 14px 16px; text-align: center;
+  font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-dim); border-bottom: 1px solid var(--border); border-right: 1px solid var(--border);
+  min-width: 95px;
+}
+.th-dim:last-child { border-right: none; }
+.brand-row { border-bottom: 1px solid var(--border); transition: background 0.15s; cursor: pointer; }
+.brand-row:last-child { border-bottom: none; }
+.brand-row:hover { background: var(--surface); }
+.brand-row.hidden { display: none; }
+.td-brand { padding: 18px 20px; border-right: 1px solid var(--border); vertical-align: middle; }
+.td-brand-name { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 4px; letter-spacing: -0.01em; }
+.td-brand-sub { font-size: 11px; font-weight: 300; color: var(--text-dim); line-height: 1.3; }
+.td-brand-owner { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-top: 6px; letter-spacing: 0.04em; }
+.td-cell { padding: 18px 16px; text-align: center; border-right: 1px solid var(--border); vertical-align: middle; }
+.td-cell:last-child { border-right: none; }
+.t-pill {
+  font-family: var(--font-mono); font-size: 8.5px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px;
+  border-radius: 2px; display: inline-block;
+}
+.t-pill.green { color: var(--green); background: var(--green-dim); border: 1px solid rgba(78,155,111,0.2); }
+.t-pill.yellow { color: var(--yellow); background: var(--yellow-dim); border: 1px solid rgba(212,168,75,0.2); }
+.t-pill.red { color: var(--red); background: var(--red-dim); border: 1px solid rgba(217,79,61,0.2); }
+.t-check { display: inline-flex; width: 18px; height: 18px; align-items: center; justify-content: center; border-radius: 50%; font-size: 9px; }
+.t-check.yes { background: var(--green-dim); color: var(--green); border: 1px solid rgba(78,155,111,0.25); }
+.t-check.no { background: var(--red-dim); color: var(--red); border: 1px solid rgba(217,79,61,0.25); }
+.t-check.partial { background: var(--yellow-dim); color: var(--yellow); border: 1px solid rgba(212,168,75,0.25); }
+.t-sodium {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500; display: block;
+}
+.t-sodium-sub { font-family: var(--font-mono); font-size: 8px; color: var(--text-dim); display: block; margin-top: 2px; }
+.t-price { font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: var(--text-muted); }
+.t-price-sub { font-family: var(--font-mono); font-size: 8px; color: var(--text-dim); display: block; margin-top: 2px; letter-spacing: 0.04em; }
+
+/* expand rows */
+.expand-row { display: none; border-bottom: 1px solid var(--border); }
+.expand-row.open { display: table-row; }
+.expand-cell { padding: 0; border-right: none; }
+
+/* ─────────────────────────────────────────────
+   QUICK CHECK DRAWER
+───────────────────────────────────────────── */
+.quick-check {
+  background: var(--surface-2); border-top: 1px solid var(--border-light);
+  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: 0;
+}
+.qc-block { padding: 20px 24px; border-right: 1px solid var(--border); }
+.qc-block:last-child { border-right: none; }
+.qc-label { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
+.qc-value { font-size: 13px; font-weight: 400; color: var(--text-muted); line-height: 1.5; }
+.qc-value strong { color: var(--text); font-weight: 500; font-size: 14px; }
+.qc-highlight { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); line-height: 1.7; }
+.qc-highlight .pos { color: var(--green); }
+.qc-highlight .neg { color: var(--red); }
+.qc-highlight .neu { color: var(--yellow); }
+.qc-cta { padding: 20px 24px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; min-width: 140px; }
+.qc-link {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); text-decoration: none; border: 1px solid rgba(201,168,76,0.3);
+  padding: 8px 14px; display: block; transition: all 0.15s; text-align: center; white-space: nowrap;
+}
+.qc-link:hover { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.5); }
+.qc-close {
+  font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-dim); background: none; border: none; cursor: pointer; transition: color 0.15s; padding: 0;
+}
+.qc-close:hover { color: var(--text-muted); }
+
+/* ─────────────────────────────────────────────
+   PROFILE CARDS
+───────────────────────────────────────────── */
+.profiles-section { max-width: 1100px; margin: 0 auto; padding: 72px 40px 0; }
+.profiles-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 32px;
+}
+.profile-card {
+  background: var(--bg); padding: 28px; text-decoration: none;
+  display: flex; flex-direction: column; position: relative; overflow: hidden; transition: background 0.2s;
+}
+.profile-card:hover { background: var(--surface); }
+.profile-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0; transition: opacity 0.2s;
+}
+.profile-card:hover::before { opacity: 1; }
+.profile-card.zone-green::before { background: var(--green); }
+.profile-card.zone-yellow::before { background: var(--yellow); }
+.profile-card.zone-red::before { background: var(--red); }
+.profile-card.hidden { display: none; }
+.pc-zone-label {
+  font-family: var(--font-mono); font-size: 8.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 2px 7px; border-radius: 2px; margin-bottom: 16px; width: fit-content;
+}
+.pc-zone-label.green { color: var(--green); background: var(--green-dim); border: 1px solid rgba(78,155,111,0.2); }
+.pc-zone-label.yellow { color: var(--yellow); background: var(--yellow-dim); border: 1px solid rgba(212,168,75,0.2); }
+.pc-zone-label.red { color: var(--red); background: var(--red-dim); border: 1px solid rgba(217,79,61,0.2); }
+.pc-name { font-family: var(--font-display); font-size: clamp(26px, 3vw, 38px); font-weight: 900; line-height: 0.92; letter-spacing: -0.02em; color: var(--text); margin-bottom: 6px; }
+.pc-sub { font-size: 11.5px; font-weight: 300; color: var(--text-dim); margin-bottom: 16px; }
+.pc-verdict { font-size: 12.5px; font-weight: 300; line-height: 1.65; color: var(--text-muted); flex: 1; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.pc-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--border); margin-top: auto; }
+.pc-score-dots { display: flex; gap: 3px; align-items: center; }
+.pc-dot { width: 7px; height: 7px; border-radius: 50%; }
+.pc-dot.green { background: var(--green); }
+.pc-dot.yellow { background: var(--yellow); }
+.pc-dot.red { background: var(--red); }
+.pc-sep { width: 1px; height: 10px; background: var(--border-light); margin: 0 5px; }
+.pc-arrow { font-size: 14px; color: var(--text-dim); transition: color 0.2s, transform 0.2s; }
+.profile-card:hover .pc-arrow { color: var(--text-muted); transform: translateX(3px); }
+
+/* ─────────────────────────────────────────────
+   EDITORIAL CONTEXT
+───────────────────────────────────────────── */
+.context-section {
+  max-width: 1100px; margin: 0 auto; padding: 80px 40px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  border-top: 1px solid var(--border); margin-top: 72px;
+}
+.context-block-label {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+}
+.context-block-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); opacity: 0.4; }
+.context-body { font-size: 14.5px; font-weight: 300; line-height: 1.8; color: rgba(232,228,220,0.7); }
+.context-body strong { color: var(--text); font-weight: 500; }
+.context-body p { margin-bottom: 16px; }
+.context-body p:last-child { margin-bottom: 0; }
+.context-list { list-style: none; margin-top: 16px; }
+.context-list li {
+  font-size: 13px; font-weight: 300; color: var(--text-muted); padding: 10px 0;
+  border-bottom: 1px solid var(--border); display: flex; gap: 12px;
+  align-items: flex-start; line-height: 1.5;
+}
+.context-list li:last-child { border-bottom: none; }
+.context-list li::before { content: '→'; color: var(--text-dim); flex-shrink: 0; font-size: 11px; margin-top: 2px; }
+
+/* ─────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────── */
+.page-footer {
+  background: var(--surface); border-top: 1px solid var(--border);
+  padding: 32px 40px; display: flex; align-items: center; justify-content: space-between;
+}
+.footer-logo { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); }
+.footer-note { font-size: 11.5px; font-weight: 300; color: var(--text-dim); max-width: 420px; text-align: right; line-height: 1.5; }
+
+/* ─────────────────────────────────────────────
+   ANIMATIONS
+───────────────────────────────────────────── */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.hero-breadcrumb { animation: fadeInUp 0.4s ease both; }
+.hero-eyebrow    { animation: fadeInUp 0.45s 0.05s ease both; }
+.hero-headline   { animation: fadeInUp 0.5s 0.1s ease both; }
+.hero-intro      { animation: fadeInUp 0.5s 0.15s ease both; }
+.hero-meta       { animation: fadeInUp 0.5s 0.2s ease both; }
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .site-header { padding: 0 24px; }
+  .category-hero { padding: 100px 24px 0; }
+  .hero-layout { grid-template-columns: 1fr; gap: 40px; }
+  .hero-meta { flex-direction: row; gap: 24px; flex-wrap: wrap; }
+  .hero-meta-stat { border: none; padding: 0; }
+  .spectrum-section, .filter-section, .table-section,
+  .profiles-section, .context-section, .sodium-context { padding-left: 24px; padding-right: 24px; }
+  .profiles-grid { grid-template-columns: 1fr; }
+  .context-section { grid-template-columns: 1fr; gap: 48px; }
+  .quick-check { grid-template-columns: 1fr 1fr; }
+  .sodium-brand { width: 100px; }
+}
+
+/* ─────────────────────────────────────────────
+   BEFORE YOU BUY — ACCORDION
+───────────────────────────────────────────── */
+.wtlf-section { padding: 64px 48px; max-width: 1200px; margin: 0 auto; }
+.wtlf-header { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+.wtlf-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); white-space: nowrap; }
+.wtlf-rule { flex: 1; height: 1px; background: var(--border); }
+.wtlf-title { font-family: var(--display); font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 24px; }
+.wtlf-title em { color: var(--amber); font-style: italic; }
+.wtlf-grid { display: flex; flex-direction: column; gap: 2px; }
+
+/* Each card is a full-width row */
+.wtlf-card { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+
+/* Clickable header row — always visible */
+.wtlf-card-head {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.wtlf-card-head:hover { background: rgba(255,255,255,0.02); }
+.wtlf-icon { font-size: 16px; flex-shrink: 0; }
+.wtlf-signal-label { font-size: 17px; font-weight: 600; color: var(--text); line-height: 1.3; flex: 1; }
+.wtlf-flag {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em;
+  padding: 3px 8px; border-radius: 2px; white-space: nowrap; flex-shrink: 0;
+}
+.wtlf-flag.red   { color: var(--red, #c94d3c); background: rgba(201,77,60,0.08); border: 1px solid rgba(201,77,60,0.2); }
+.wtlf-flag.amber { color: var(--amber); background: rgba(200,148,58,0.08); border: 1px solid rgba(200,148,58,0.2); }
+.wtlf-flag.green { color: var(--green,#4e9b6f); background: rgba(78,155,111,0.08); border: 1px solid rgba(78,155,111,0.2); }
+.wtlf-chevron { font-size: 10px; color: var(--muted, #9a9284); flex-shrink: 0; transition: transform 0.2s; }
+.wtlf-card.open .wtlf-chevron { transform: rotate(180deg); }
+
+/* Expandable body */
+.wtlf-body {
+  display: none;
+  padding: 0 18px 14px 46px;
+  border-top: 1px solid var(--border);
+}
+.wtlf-card.open .wtlf-body { display: block; }
+.wtlf-bullets { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.wtlf-bullets li {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 12px; font-weight: 300; color: var(--muted, #9a9284); line-height: 1.5;
+}
+.wtlf-bullets li::before { content: '—'; color: var(--border-strong, #3a3630); flex-shrink: 0; font-size: 11px; line-height: 1.7; }
+.wtlf-bullets li strong { color: var(--text); font-weight: 500; }
+
+@media (max-width: 900px) {
+  .wtlf-section { padding: 48px 24px; }
+  .wtlf-section { padding: 48px 24px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="index.html" class="site-logo">Traced <span>/ by origin</span></a>
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="traced-protein-supplements.html">Proteins</a>
+    <a href="traced-electrolytes.html">Electrolytes</a>
+    <a href="traced-greens-powders.html">Greens</a>
+    <a href="traced-chocolate.html">Chocolate</a>
+    <a href="traced-protein-bars.html">Protein Bars</a>
+    <a href="traced-ag1-deep-trace.html">AG1 Deep Trace</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="category-hero">
+  <div class="hero-breadcrumb">
+    <a href="index.html">Traced</a>
+    <span class="sep">/</span>
+    <span class="current">Electrolytes</span>
+  </div>
+  <div class="hero-layout">
+    <div>
+      <div class="hero-eyebrow">Category Report</div>
+      <h1 class="hero-headline">Electro-<br><em>lytes</em></h1>
+      <p class="hero-intro">
+        The most influencer-saturated category in supplements. Brands built on podcast sponsorships, celebrity equity rounds, and proprietary names for science that predates them by decades. <strong>The actual transparency questions are simpler than the marketing</strong> — how much sodium, who owns the company, is the "science" claim backed by independent research or an in-house trademark? We traced seven brands. Here's what the shelf actually looks like.
+      </p>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-stat">
+        <div class="meta-value">8</div>
+        <div class="meta-label">Profiles traced</div>
+      </div>
+      <div class="hero-meta-stat">
+        <div class="meta-value" style="color:var(--green)">1</div>
+        <div class="meta-label">Green-zone profiles</div>
+      </div>
+      <div class="hero-meta-stat">
+        <div class="meta-value" style="color:var(--yellow)">6</div>
+        <div class="meta-label">Yellow-zone profiles</div>
+      </div>
+      <div class="hero-meta-stat">
+        <div class="meta-value" style="color:var(--red)">1</div>
+        <div class="meta-label">Red-zone profiles</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECTRUM RAIL -->
+
+<section class="wtlf-section">
+  <div class="wtlf-header">
+    <span class="wtlf-eyebrow">Before You Buy</span>
+    <div class="wtlf-rule"></div>
+  </div>
+  <h2 class="wtlf-title">What to <em>Look For</em> in Electrolytes</h2>
+  <div class="wtlf-grid">
+
+    <div class="wtlf-card open">
+      <div class="wtlf-card-head">
+        <span class="wtlf-icon">🧂</span>
+        <span class="wtlf-signal-label">Sodium content is the most important number — and most brands hide it</span>
+        <span class="wtlf-flag red">Red flag</span>
+        <span class="wtlf-chevron">▼</span>
+      </div>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li><strong>Sweat losses run 500–1,000mg sodium per hour</strong> of hard exercise</li>
+          <li>Most products contain <strong>50–250mg per serving</strong> — a fraction of replacement need — because high-sodium tastes medicinal</li>
+          <li><strong>LMNT (1,000mg) and DripDrop (330mg)</strong> are exceptions. Check sodium first.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wtlf-card">
+      <div class="wtlf-card-head">
+        <span class="wtlf-icon">🍬</span>
+        <span class="wtlf-signal-label">Sugar vs. sweetener — the tradeoff most brands skip</span>
+        <span class="wtlf-flag amber">Ask this</span>
+        <span class="wtlf-chevron">▼</span>
+      </div>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li>Glucose genuinely aids sodium absorption via the <strong>SGLT1 co-transporter</strong> — real science behind sugar in oral rehydration</li>
+          <li>Most brands use sugar for <strong>taste</strong>, not physiology, at levels (10–14g) that add calories without meaningful absorption benefit</li>
+          <li>Stevia/monk fruit avoids this but tastes different — <strong>neither is universally better</strong>, depends on use case</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wtlf-card">
+      <div class="wtlf-card-head">
+        <span class="wtlf-icon">💊</span>
+        <span class="wtlf-signal-label">"Clinical" and "medical-grade" claims are almost never regulated</span>
+        <span class="wtlf-flag red">Red flag</span>
+        <span class="wtlf-chevron">▼</span>
+      </div>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li><strong>DripDrop holds an FDA ORS Monograph</strong> — a real regulatory designation meeting WHO/UNICEF standards</li>
+          <li>Liquid IV, Pedialyte Sport, and most others use "clinical" language that refers to <strong>general electrolyte research, not their specific formula</strong></li>
+          <li>These are marketing claims, not certifications</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wtlf-card">
+      <div class="wtlf-card-head">
+        <span class="wtlf-icon">💧</span>
+        <span class="wtlf-signal-label">"Hydrates 2–3× more than water" exploits a misunderstanding</span>
+        <span class="wtlf-flag red">Red flag</span>
+        <span class="wtlf-chevron">▼</span>
+      </div>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li>These claims reference <strong>sodium + glucose creating a hypotonic solution</strong> that aids intestinal absorption — real science, misleadingly applied</li>
+          <li>The comparison baseline is <strong>plain water</strong>, not what you drink during exercise</li>
+          <li>For normal daily hydration, water is not inadequate. The claim implies otherwise.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wtlf-card">
+      <div class="wtlf-card-head">
+        <span class="wtlf-icon">🏥</span>
+        <span class="wtlf-signal-label">Wellness positioning vs. rehydration positioning — different products</span>
+        <span class="wtlf-flag amber">Ask this</span>
+        <span class="wtlf-chevron">▼</span>
+      </div>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li><strong>Liquid IV and Pedialyte Sport</strong>: positioned for general wellness hydration</li>
+          <li><strong>LMNT and DripDrop</strong>: formulated for active exercise and clinical rehydration</li>
+          <li>The product that looks better in a lifestyle photo <strong>is not necessarily the product that performs during a hard workout</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wtlf-card">
+      <div class="wtlf-card-head">
+        <span class="wtlf-icon">🏢</span>
+        <span class="wtlf-signal-label">Most "clean" electrolyte brands are owned by the conglomerates they market against</span>
+        <span class="wtlf-flag red">Red flag</span>
+        <span class="wtlf-chevron">▼</span>
+      </div>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li><strong>Liquid IV → Unilever. Nuun → Nestlé (then Edgewell). Pedialyte → Abbott Labs.</strong></li>
+          <li>The "clean sports hydration" positioning exists inside the same conglomerate infrastructure that makes Gatorade</li>
+          <li>Check the parent company before the label</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
   document.querySelectorAll('.wtlf-card-head').forEach(function(head) {
     head.addEventListener('click', function() {
       var card = this.closest('.wtlf-card');
       var isOpen = card.classList.contains('open');
+      // Close all
       document.querySelectorAll('.wtlf-card').forEach(function(c) { c.classList.remove('open'); });
+      // Toggle clicked one
       if (!isOpen) card.classList.add('open');
     });
   });
 </script>
-</body>\n</html>
+
+<section class="spectrum-section">
+  <div class="section-label">Transparency Spectrum</div>
+  <div class="spectrum-track"></div>
+  <div class="spectrum-pins">
+    <!-- LMNT: ~28% — yellow-adjacent green side -->
+    <div class="spectrum-pin" style="left:28%" data-brand="lmnt" onclick="scrollToRow('lmnt')">
+      <div class="pin-line"></div>
+      <div class="pin-label">LMNT</div>
+      <div class="pin-score">0R · 3Y · 4G</div>
+    </div>
+    <!-- DripDrop: ~18% — green-adjacent -->
+    <div class="spectrum-pin" style="left:18%" data-brand="dripdrop" onclick="scrollToRow('dripdrop')">
+      <div class="pin-line"></div>
+      <div class="pin-label">DripDrop</div>
+      <div class="pin-score">0R · 2Y · 5G</div>
+    </div>
+    <!-- Nuun: ~36% — mid-yellow -->
+    <div class="spectrum-pin" style="left:36%" data-brand="nuun" onclick="scrollToRow('nuun')">
+      <div class="pin-line"></div>
+      <div class="pin-label">Nuun</div>
+      <div class="pin-score">0R · 3Y · 4G</div>
+    </div>
+    <!-- Ultima: ~44% — middle yellow -->
+    <div class="spectrum-pin" style="left:44%" data-brand="ultima" onclick="scrollToRow('ultima')">
+      <div class="pin-line"></div>
+      <div class="pin-label">Ultima</div>
+      <div class="pin-score">0R · 4Y · 3G</div>
+    </div>
+    <!-- Pedialyte: ~50% — yellow -->
+    <div class="spectrum-pin" style="left:52%" data-brand="pedialyte" onclick="scrollToRow('pedialyte')">
+      <div class="pin-line"></div>
+      <div class="pin-label">Pedialyte</div>
+      <div class="pin-score">0R · 4Y · 3G</div>
+    </div>
+    <!-- Liquid IV: ~64% — yellow/red side -->
+    <div class="spectrum-pin" style="left:64%" data-brand="liquid-iv" onclick="scrollToRow('liquid-iv')">
+      <div class="pin-line"></div>
+      <div class="pin-label">Liquid IV</div>
+      <div class="pin-score">1R · 4Y · 2G</div>
+    </div>
+    <!-- ROAR Organic: ~56% — clean label, light electrolytes, aesthetic-wellness positioning -->
+    <div class="spectrum-pin" style="left:56%" data-brand="roar" onclick="scrollToRow('roar')">
+      <div class="pin-line"></div>
+      <div class="pin-label">ROAR Organic</div>
+      <div class="pin-score">0R · 5Y · 2G</div>
+    </div>
+  </div>
+  <div class="spectrum-legend">
+    <span class="legend-item green">← Most transparent</span>
+    <span class="legend-item">Methodology: 7-dimension score</span>
+    <span class="legend-item red">Least transparent →</span>
+  </div>
+</section>
+
+<!-- SODIUM CONTEXT BAR — unique to electrolytes -->
+<section class="sodium-context">
+  <div class="section-label">Sodium per Serving — In Context</div>
+  <div class="sodium-bar-wrap">
+    <div class="sodium-bar-header">
+      <span class="sodium-bar-title">Na⁺ mg per serving</span>
+      <span class="sodium-bar-note">FDA daily limit: 2,300mg · AHA recommendation: 1,500mg · Endurance sweat loss: up to 7,000mg/hr</span>
+    </div>
+    <div class="sodium-bars">
+      <div class="sodium-row">
+        <span class="sodium-brand">LMNT</span>
+        <div class="sodium-track"><div class="sodium-fill high" style="width:43.5%"></div></div>
+        <span class="sodium-value" style="color:var(--yellow)">1,000mg</span>
+      </div>
+      <div class="sodium-row">
+        <span class="sodium-brand">Pedialyte Classic</span>
+        <div class="sodium-track"><div class="sodium-fill medium" style="width:16%"></div></div>
+        <span class="sodium-value" style="color:var(--text-muted)">370mg</span>
+      </div>
+      <div class="sodium-row">
+        <span class="sodium-brand">Liquid IV</span>
+        <div class="sodium-track"><div class="sodium-fill medium" style="width:22.2%"></div></div>
+        <span class="sodium-value" style="color:var(--text-muted)">510mg</span>
+      </div>
+      <div class="sodium-row">
+        <span class="sodium-brand">DripDrop</span>
+        <div class="sodium-track"><div class="sodium-fill medium" style="width:14.3%"></div></div>
+        <span class="sodium-value" style="color:var(--text-muted)">330mg</span>
+      </div>
+      <div class="sodium-row">
+        <span class="sodium-brand">Nuun Sport</span>
+        <div class="sodium-track"><div class="sodium-fill medium" style="width:13%"></div></div>
+        <span class="sodium-value" style="color:var(--text-muted)">300mg</span>
+      </div>
+      <div class="sodium-row">
+        <span class="sodium-brand">Ultima</span>
+        <div class="sodium-track"><div class="sodium-fill low" style="width:2.4%"></div></div>
+        <span class="sodium-value" style="color:var(--text-dim)">55mg</span>
+      </div>
+      <div class="sodium-row">
+        <span class="sodium-brand" style="color:var(--text-dim)">ROAR Organic</span>
+        <div class="sodium-track"><div class="sodium-fill low" style="width:3.5%; background:var(--border-light)"></div></div>
+        <span class="sodium-value" style="color:var(--text-dim)">~80mg</span>
+      </div>
+      <div class="sodium-row">
+        <span class="sodium-brand" style="color:var(--text-dim)">Gatorade (ref)</span>
+        <div class="sodium-track"><div class="sodium-fill low" style="width:7.4%; background:var(--border-light)"></div></div>
+        <span class="sodium-value" style="color:var(--text-dim)">170mg</span>
+      </div>
+    </div>
+    <div class="sodium-ref">
+      <span class="sodium-ref-item"><span>High-sodium camp</span> (LMNT): targeted at keto, low-carb, endurance athletes. Contested for general daily use.</span>
+      <span class="sodium-ref-item"><span>Mid-range ORS</span> (Liquid IV, Pedialyte, DripDrop, Nuun): clinically validated range. Sugar required for ORS mechanism in Pedialyte and DripDrop.</span>
+      <span class="sodium-ref-item"><span>Low-sodium</span> (Ultima, ROAR): daily casual hydration. Insufficient for post-exercise replenishment. ROAR markets as "Complete Hydration" despite trace electrolyte levels.</span>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<section class="filter-section">
+  <div class="filter-row">
+    <span class="filter-group-label">Score</span>
+    <button class="filter-chip active" data-filter="all">All</button>
+    <button class="filter-chip" data-filter="green">Green</button>
+    <button class="filter-chip" data-filter="yellow">Yellow</button>
+    <button class="filter-chip" data-filter="red">Red</button>
+
+    <div class="filter-divider"></div>
+    <span class="filter-group-label">Sodium</span>
+    <button class="filter-chip" data-filter="high-sodium">High (≥1000mg)</button>
+    <button class="filter-chip" data-filter="mid-sodium">Mid (200–600mg)</button>
+    <button class="filter-chip" data-filter="low-sodium">Low (&lt;100mg)</button>
+
+    <div class="filter-divider"></div>
+    <span class="filter-group-label">Sugar</span>
+    <button class="filter-chip" data-filter="no-sugar">Sugar-Free</button>
+    <button class="filter-chip" data-filter="has-sugar">Contains Sugar</button>
+
+    <div class="filter-divider"></div>
+    <span class="filter-group-label">Ownership</span>
+    <button class="filter-chip" data-filter="independent">Independent</button>
+    <button class="filter-chip" data-filter="conglomerate">Conglomerate</button>
+
+    <span class="filter-count" id="filter-count">4 of 4</span>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="table-section">
+  <table class="comparison-table" id="comparison-table">
+    <thead class="table-head">
+      <tr>
+        <th class="th-brand">Brand</th>
+        <th class="th-dim">Ownership</th>
+        <th class="th-dim">Sodium<br>/ Serving</th>
+        <th class="th-dim">Added<br>Sugar</th>
+        <th class="th-dim">3rd-Party<br>Certified</th>
+        <th class="th-dim">Batch<br>COAs</th>
+        <th class="th-dim">Influencer<br>Equity</th>
+        <th class="th-dim">Price<br>/ Serving</th>
+        <th class="th-dim">Overall</th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+
+      <!-- LMNT -->
+      <tr class="brand-row" id="row-lmnt"
+          data-zone="yellow" data-high-sodium="true" data-mid-sodium="false" data-low-sodium="false"
+          data-no-sugar="true" data-has-sugar="false" data-independent="true" data-conglomerate="false"
+          data-brand="lmnt" onclick="toggleQuickCheck('lmnt')">
+        <td class="td-brand">
+          <div class="td-brand-name">LMNT</div>
+          <div class="td-brand-sub">Zero-Sugar Electrolyte Drink Mix</div>
+          <div class="td-brand-owner">Drink LMNT, Inc. — Robb Wolf, co-founder (active)</div>
+        </td>
+        <td class="td-cell"><span class="t-pill green">Independent</span></td>
+        <td class="td-cell">
+          <span class="t-sodium" style="color:var(--yellow)">1,000mg</span>
+          <span class="t-sodium-sub">43% FDA daily value</span>
+        </td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">None (stevia)</span></td>
+        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Informed Choice</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span></td>
+        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Undisclosed</span></td>
+        <td class="td-cell">
+          <span class="t-price">~$1.50</span>
+          <span class="t-price-sub">per packet</span>
+        </td>
+        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-lmnt">
+        <td class="expand-cell" colspan="9">
+          <div class="quick-check">
+            <div class="qc-block">
+              <div class="qc-label">Formula</div>
+              <div class="qc-value"><strong>1,000mg Na · 200mg K · 60mg Mg</strong><br>No proprietary blend. All amounts disclosed. Stevia-sweetened, no added sugar, no artificial flavors.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Owner</div>
+              <div class="qc-value"><strong>Drink LMNT, Inc.</strong><br>Co-founded by Robb Wolf (still active). Bootstrapped. No PE or conglomerate parent. No Series A disclosed.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Gaps</div>
+              <div class="qc-highlight">
+                <span class="pos">✓ Full ingredient disclosure</span><br>
+                <span class="pos">✓ Informed Choice certified</span><br>
+                <span class="neg">✗ Batch COAs not published</span><br>
+                <span class="neu">○ Huberman/Attia equity: undisclosed</span><br>
+                <span class="neu">○ Montana class action filed (fillers claim)</span>
+              </div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Finding</div>
+              <div class="qc-value">The sodium dosing is legitimate for its stated use case. The transparency gap is <strong>influencer economics</strong> — podcast sponsorships involving equity create undisclosed conflicts that affect how the science is presented to consumers.</div>
+            </div>
+            <div class="qc-cta">
+              <a href="#" class="qc-link">Full Report →</a>
+              <button class="qc-close" onclick="toggleQuickCheck('lmnt'); event.stopPropagation();">Close ×</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- ULTIMA -->
+      <tr class="brand-row" id="row-ultima"
+          data-zone="yellow" data-high-sodium="false" data-mid-sodium="false" data-low-sodium="true"
+          data-no-sugar="true" data-has-sugar="false" data-independent="false" data-conglomerate="false"
+          data-brand="ultima" onclick="toggleQuickCheck('ultima')">
+        <td class="td-brand">
+          <div class="td-brand-name">Ultima</div>
+          <div class="td-brand-sub">Electrolyte Powder Drink Mix</div>
+          <div class="td-brand-owner">WM Partners (PE) — acquired July 2019</div>
+        </td>
+        <td class="td-cell"><span class="t-pill yellow">PE-Owned</span></td>
+        <td class="td-cell">
+          <span class="t-sodium" style="color:var(--text-dim)">55mg</span>
+          <span class="t-sodium-sub">2% FDA daily value</span>
+        </td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">None (stevia)</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Non-GMO only</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">None apparent</span></td>
+        <td class="td-cell">
+          <span class="t-price">~$0.55</span>
+          <span class="t-price-sub">per serving</span>
+        </td>
+        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-ultima">
+        <td class="expand-cell" colspan="9">
+          <div class="quick-check">
+            <div class="qc-block">
+              <div class="qc-label">Formula</div>
+              <div class="qc-value"><strong>55mg Na · 250mg K · 100mg Mg</strong><br>6 electrolytes + Vitamin C + zinc. Stevia-sweetened. Clean label, plant-based colors. No artificial anything.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Owner</div>
+              <div class="qc-value"><strong>WM Partners (FL-based PE)</strong><br>Acquired July 2019. Firmament Group debt investment Dec 2020. Founded 1996 — long pre-acquisition history. No formulation changes documented post-PE.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Gaps</div>
+              <div class="qc-highlight">
+                <span class="pos">✓ Fully clean label</span><br>
+                <span class="pos">✓ No influencer equity concerns</span><br>
+                <span class="neg">✗ 55mg sodium: insufficient for exercise replenishment</span><br>
+                <span class="neg">✗ No batch COAs published</span><br>
+                <span class="neu">○ "Replenisher" name overstates Na dose for athletes</span>
+              </div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Finding</div>
+              <div class="qc-value">A genuinely clean product positioned in the wrong use case. <strong>55mg sodium cannot replenish meaningful sweat losses</strong> — the "Replenisher" brand name implies function the formula doesn't deliver during exercise. Best read as a daily flavoring supplement, not a sports hydration product.</div>
+            </div>
+            <div class="qc-cta">
+              <a href="#" class="qc-link">Full Report →</a>
+              <button class="qc-close" onclick="toggleQuickCheck('ultima'); event.stopPropagation();">Close ×</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- NUUN -->
+      <tr class="brand-row" id="row-nuun"
+          data-zone="yellow" data-high-sodium="false" data-mid-sodium="true" data-low-sodium="false"
+          data-no-sugar="false" data-has-sugar="false" data-independent="false" data-conglomerate="true"
+          data-brand="nuun" onclick="toggleQuickCheck('nuun')">
+        <td class="td-brand">
+          <div class="td-brand-name">Nuun</div>
+          <div class="td-brand-sub">Sport Electrolyte Tablets</div>
+          <div class="td-brand-owner">Nestlé Health Science — acquired July 2021</div>
+        </td>
+        <td class="td-cell"><span class="t-pill yellow">Conglomerate</span></td>
+        <td class="td-cell">
+          <span class="t-sodium" style="color:var(--text-muted)">300mg</span>
+          <span class="t-sodium-sub">13% FDA daily value</span>
+        </td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">1g sugar (dextrose)</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">No NSF cert</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">B-Corp certified</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span></td>
+        <td class="td-cell">
+          <span class="t-price">~$0.75</span>
+          <span class="t-price-sub">per tablet</span>
+        </td>
+        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-nuun">
+        <td class="expand-cell" colspan="9">
+          <div class="quick-check">
+            <div class="qc-block">
+              <div class="qc-label">Formula</div>
+              <div class="qc-value"><strong>300mg Na · 150mg K · 25mg Mg · 13mg Ca · 40mg Cl</strong><br>5 electrolytes, 1g dextrose, stevia sweetened. All amounts fully disclosed. Effervescent tablet format — distinctive and portable.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Owner</div>
+              <div class="qc-value"><strong>Nestlé Health Science (CHF 100B+ parent)</strong><br>Founded Seattle 2004. TSG Consumer Partners took minority PE stake in 2017. Nestlé Health Science acquired fully July 1, 2021. Now sits alongside Garden of Life, Vital Proteins, Boost in the Nestlé nutrition portfolio.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Gaps</div>
+              <div class="qc-highlight">
+                <span class="neg">✗ Nestlé-owned since 2021</span><br>
+                <span class="neg">✗ No NSF Certified for Sport</span><br>
+                <span class="neg">✗ No publicly available batch COAs</span><br>
+                <span class="pos">✓ Certified B-Corp (pre-acquisition, maintained)</span><br>
+                <span class="pos">✓ Non-GMO Project Verified</span><br>
+                <span class="pos">✓ 100% dose-disclosed formula</span>
+              </div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Finding</div>
+              <div class="qc-value">The formula is genuinely transparent — every electrolyte amount disclosed, clean ingredient list, stevia-sweetened. <strong>The ownership is the watch condition: Nestlé is one of the world's largest food conglomerates.</strong> B-Corp certification maintained post-acquisition, but no independent testing certification (NSF) and no public batch COAs limit verification for athletes subject to drug testing.</div>
+            </div>
+            <div class="qc-cta">
+              <a href="#" class="qc-link">Full Report →</a>
+              <button class="qc-close" onclick="toggleQuickCheck('nuun'); event.stopPropagation();">Close ×</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- DRIPDROP -->
+      <tr class="brand-row" id="row-dripdrop"
+          data-zone="green" data-high-sodium="false" data-mid-sodium="true" data-low-sodium="false"
+          data-no-sugar="false" data-has-sugar="true" data-independent="true" data-conglomerate="false"
+          data-brand="dripdrop" onclick="toggleQuickCheck('dripdrop')">
+        <td class="td-brand">
+          <div class="td-brand-name">DripDrop</div>
+          <div class="td-brand-sub">ORS Electrolyte Powder</div>
+          <div class="td-brand-owner">Public Benefit Corp — founded 2008, independent</div>
+        </td>
+        <td class="td-cell"><span class="t-pill green">Ind. PBC</span></td>
+        <td class="td-cell">
+          <span class="t-sodium" style="color:var(--text-muted)">330mg</span>
+          <span class="t-sodium-sub">14% FDA daily value</span>
+        </td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">7g sugar (ORS-required)</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">NSF Content + Sport (16oz)</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span></td>
+        <td class="td-cell">
+          <span class="t-price">~$1.12</span>
+          <span class="t-price-sub">per packet</span>
+        </td>
+        <td class="td-cell"><span class="t-pill" style="background:rgba(78,155,111,0.12);color:var(--green);border-color:rgba(78,155,111,0.3)">Green</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-dripdrop">
+        <td class="expand-cell" colspan="9">
+          <div class="quick-check">
+            <div class="qc-block">
+              <div class="qc-label">Formula</div>
+              <div class="qc-value"><strong>330mg Na · 185mg K · 39mg Mg · 7g sugar · Zinc + Vitamin C</strong><br>Sugar is <em>structurally required</em> for the sodium-glucose cotransport mechanism — not incidental sweetening. DripDrop's own FAQ explains this explicitly. Patented formula (US #8557301).</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Origin</div>
+              <div class="qc-value"><strong>Dr. Eduardo Dolhun, MD — humanitarian aid physician</strong><br>Founded 2008 after Dolhun witnessed cholera outbreaks in Guatemala in 1993. Structured as a Public Benefit Corporation. Over 10M servings donated to disaster relief globally. Mayo Clinic Humanitarian Award recipient. No conglomerate acquisition.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Certifications</div>
+              <div class="qc-highlight">
+                <span class="pos">✓ NSF Content Certified (16oz sticks)</span><br>
+                <span class="pos">✓ NSF Certified for Sport (16oz sticks)</span><br>
+                <span class="pos">✓ Non-GMO, Gluten-Free, Vegan, Kosher</span><br>
+                <span class="pos">✓ Public Benefit Corporation — mission-locked</span><br>
+                <span class="neu">○ Sugar required for ORS mechanism — transparent about why</span><br>
+                <span class="neg">✗ NSF sport cert limited to 16oz stick format only</span>
+              </div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Finding</div>
+              <div class="qc-value">The most transparent ownership and science story in the category. <strong>Physician-founded, Public Benefit Corporation, NSF Sport certified, formula rationale publicly documented.</strong> The sugar is ORS-mechanism-required and DripDrop explains it clearly — unlike Liquid IV which obscures the same science behind a trademark. Watch condition: NSF sport cert applies to 16oz format only; smaller sticks are NSF Content only.</div>
+            </div>
+            <div class="qc-cta">
+              <a href="#" class="qc-link">Full Report →</a>
+              <button class="qc-close" onclick="toggleQuickCheck('dripdrop'); event.stopPropagation();">Close ×</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- PEDIALYTE -->
+      <tr class="brand-row" id="row-pedialyte"
+          data-zone="yellow" data-high-sodium="false" data-mid-sodium="true" data-low-sodium="false"
+          data-no-sugar="false" data-has-sugar="true" data-independent="false" data-conglomerate="true"
+          data-brand="pedialyte" onclick="toggleQuickCheck('pedialyte')">
+        <td class="td-brand">
+          <div class="td-brand-name">Pedialyte</div>
+          <div class="td-brand-sub">Classic Oral Electrolyte Solution</div>
+          <div class="td-brand-owner">Abbott Laboratories (NYSE: ABT) — since 1966</div>
+        </td>
+        <td class="td-cell"><span class="t-pill red">Conglomerate</span></td>
+        <td class="td-cell">
+          <span class="t-sodium" style="color:var(--text-muted)">370mg</span>
+          <span class="t-sodium-sub">per 12oz serving</span>
+        </td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">5–9g sugar + artificial dyes</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">#1 doctor-recommended</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span></td>
+        <td class="td-cell">
+          <span class="t-price">~$0.50</span>
+          <span class="t-price-sub">per 12oz serving</span>
+        </td>
+        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-pedialyte">
+        <td class="expand-cell" colspan="9">
+          <div class="quick-check">
+            <div class="qc-block">
+              <div class="qc-label">Formula</div>
+              <div class="qc-value"><strong>370mg Na · 280mg K · 440mg Cl · 5–9g sugar · Zinc</strong><br>Flavored versions contain sucralose, acesulfame potassium, and artificial dyes (Red 40, Blue 1, Yellow 6). Classic unflavored avoids synthetic dyes. Formulation unchanged since 1966 — it works, and it's the medical gold standard for pediatric rehydration.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Owner</div>
+              <div class="qc-value"><strong>Abbott Laboratories — $190B+ NYSE-listed pharmaceutical conglomerate</strong><br>Pedialyte invented 1966, hospital distribution began 1966, consumer sales 1969. Abbott has owned it since inception. #1 doctor-recommended ORS in the US. 2015 adult marketing pivot explicitly targeted hangover recovery — "See the Lyte" campaign — without FDA indication change.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Gaps</div>
+              <div class="qc-highlight">
+                <span class="neg">✗ Abbott is a $190B pharmaceutical conglomerate</span><br>
+                <span class="neg">✗ Flavored versions contain Red 40, Blue 1, Yellow 6 artificial dyes</span><br>
+                <span class="neg">✗ Adult hangover marketing campaign (2015+) without clinical evidence hangovers are improved beyond basic rehydration</span><br>
+                <span class="neg">✗ No batch COAs publicly available</span><br>
+                <span class="pos">✓ Most studied ORS formula in the world</span><br>
+                <span class="pos">✓ Formulation transparently disclosed, no proprietary blends</span>
+              </div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Finding</div>
+              <div class="qc-value">The formula is legitimate and well-established — 50+ years of clinical use, backed by WHO ORS science. <strong>The transparency concern is the marketing repositioning: a pediatric clinical formula rebranded for adult hangovers via influencer seeding (#TeamPedialyte), without changing the formulation or obtaining an FDA indication for hangover recovery.</strong> Flavored versions' artificial dyes are a secondary concern for health-conscious consumers. Unflavored Classic is the cleanest option.</div>
+            </div>
+            <div class="qc-cta">
+              <a href="#" class="qc-link">Full Report →</a>
+              <button class="qc-close" onclick="toggleQuickCheck('pedialyte'); event.stopPropagation();">Close ×</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- LIQUID IV -->
+      <tr class="brand-row" id="row-liquid-iv"
+          data-zone="red" data-high-sodium="false" data-mid-sodium="true" data-low-sodium="false"
+          data-no-sugar="false" data-has-sugar="true" data-independent="false" data-conglomerate="true"
+          data-brand="liquid-iv" onclick="toggleQuickCheck('liquid-iv')">
+        <td class="td-brand">
+          <div class="td-brand-name">Liquid IV</div>
+          <div class="td-brand-sub">Hydration Multiplier</div>
+          <div class="td-brand-owner">Unilever — acquired October 2020</div>
+        </td>
+        <td class="td-cell"><span class="t-pill red">Conglomerate</span></td>
+        <td class="td-cell">
+          <span class="t-sodium" style="color:var(--text-muted)">510mg</span>
+          <span class="t-sodium-sub">22% FDA daily value</span>
+        </td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">11g added sugar</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Non-NSF</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Pre-acquisition equity</span></td>
+        <td class="td-cell">
+          <span class="t-price">~$1.56</span>
+          <span class="t-price-sub">per packet</span>
+        </td>
+        <td class="td-cell"><span class="t-pill red">Red</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-liquid-iv">
+        <td class="expand-cell" colspan="9">
+          <div class="quick-check">
+            <div class="qc-block">
+              <div class="qc-label">Formula</div>
+              <div class="qc-value"><strong>510mg Na · 370mg K · 11g sugar</strong><br>Sugar is structurally required for CTT mechanism. Sugar-free version swaps to allulose — but the CTT mechanism no longer functions as described.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Owner</div>
+              <div class="qc-value"><strong>Unilever (Dove, Vaseline, Axe)</strong><br>Acquired Oct 2020 (~$500M reported). Now the largest brand in Unilever's €1.9B Health & Wellbeing division. Quadrupled in size post-acquisition.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Gaps</div>
+              <div class="qc-highlight">
+                <span class="neg">✗ Unilever-owned since 2020</span><br>
+                <span class="neg">✗ CTT is a proprietary name for standard ORS science</span><br>
+                <span class="neg">✗ 11g sugar: marketed as "daily" — problematic for diabetics</span><br>
+                <span class="neg">✗ No NSF cert, no batch COAs</span><br>
+                <span class="neu">○ Sugar-free version undermines the CTT claim it was built on</span>
+              </div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Finding</div>
+              <div class="qc-value">CTT is the WHO oral rehydration solution renamed. The science is real — but it's not proprietary and it's not new. <strong>Unilever now owns a product whose core claim is a trademarked name for 1970s WHO science.</strong> No independent testing transparency.</div>
+            </div>
+            <div class="qc-cta">
+              <a href="#" class="qc-link">Full Report →</a>
+              <button class="qc-close" onclick="toggleQuickCheck('liquid-iv'); event.stopPropagation();">Close ×</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- ROAR ORGANIC -->
+      <tr class="brand-row" id="row-roar"
+          data-zone="yellow" data-high-sodium="false" data-mid-sodium="false" data-low-sodium="true"
+          data-no-sugar="false" data-has-sugar="true" data-independent="true" data-conglomerate="false"
+          data-brand="roar" onclick="toggleQuickCheck('roar')">
+        <td class="td-brand">
+          <div class="td-brand-name">ROAR Organic</div>
+          <div class="td-brand-sub">Complete Hydration™</div>
+          <div class="td-brand-owner">Factory LLC (CPG equity) — stake 2020, $10M add 2024</div>
+        </td>
+        <td class="td-cell"><span class="t-pill yellow">PE-Backed</span></td>
+        <td class="td-cell">
+          <span class="t-sodium" style="color:var(--yellow)">~80mg</span>
+          <span class="t-sodium-sub">3% FDA daily value</span>
+        </td>
+        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">2–3g sugar + erythritol</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">USDA Organic ✓</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Founder-led</span></td>
+        <td class="td-cell">
+          <span class="t-price">~$2.50</span>
+          <span class="t-price-sub">per 18oz bottle</span>
+        </td>
+        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-roar">
+        <td class="expand-cell" colspan="9">
+          <div class="quick-check">
+            <div class="qc-block">
+              <div class="qc-label">Formula</div>
+              <div class="qc-value"><strong>~80mg Na · ~150mg K · 2–3g sugar · B vitamins · coconut water base</strong><br>Magnesium and calcium not quantified on label. "Complete Hydration" claim unsupported by clinical electrolyte thresholds — ~80mg sodium is 12× lower than LMNT and 6× lower than Liquid IV per bottle.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Owner</div>
+              <div class="qc-value"><strong>Factory LLC (CPG equity fund)</strong><br>Took equity stake 2020, deployed $10M add-on March 2024 after record 2023. Founder Roly Nesi still CEO. Factory positions brands for acquisition. Total funding ~$36.3M across 9 rounds.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Gaps</div>
+              <div class="qc-highlight">
+                <span class="neg">✗ "Complete Hydration" — sodium ~80mg total; trace level for athletic rehydration</span><br>
+                <span class="neg">✗ "Proprietary electrolyte blend" = coconut water concentrate + sea salt, not novel science</span><br>
+                <span class="neg">✗ No NSF cert, no batch COAs published</span><br>
+                <span class="neu">○ USDA Organic, Non-GMO, Vegan — certifications are real and verified</span><br>
+                <span class="pos">✓ No artificial colors, flavors, or sweeteners; clean label</span>
+              </div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Finding</div>
+              <div class="qc-value">ROAR is the Bloom of the electrolyte category — aesthetic-lifestyle positioning, strong USDA Organic credentials, but electrolyte payload too light to justify "Complete Hydration" marketing. <strong>Factory LLC backing signals a brand being built for acquisition, not long-term independence.</strong></div>
+            </div>
+            <div class="qc-cta">
+              <a href="#" class="qc-link">Full Report →</a>
+              <button class="qc-close" onclick="toggleQuickCheck('roar'); event.stopPropagation();">Close ×</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</section>
+
+<!-- NARRATIVE PROFILE CARDS -->
+<section class="profiles-section">
+  <div class="section-label">Full Profiles</div>
+  <div class="profiles-grid" id="profiles-grid">
+
+    <!-- LMNT -->
+    <a class="profile-card zone-yellow" href="#"
+       data-zone="yellow" data-high-sodium="true" data-mid-sodium="false" data-low-sodium="false"
+       data-no-sugar="true" data-has-sugar="false" data-independent="true" data-conglomerate="false">
+      <span class="pc-zone-label yellow">Yellow — Watch</span>
+      <div class="pc-name">LMNT</div>
+      <div class="pc-sub">Zero-Sugar Electrolyte Mix</div>
+      <p class="pc-verdict">The formula is transparent: 1,000mg sodium, 200mg potassium, 60mg magnesium, everything disclosed. The structural concern is that the brand's growth was built through podcast sponsorships with Huberman, Attia, and others — and whether those relationships involve equity is not disclosed. The science is real; the communication of it routes through undisclosed financial relationships.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Ultima -->
+    <a class="profile-card zone-yellow" href="#"
+       data-zone="yellow" data-high-sodium="false" data-mid-sodium="false" data-low-sodium="true"
+       data-no-sugar="true" data-has-sugar="false" data-independent="false" data-conglomerate="false">
+      <span class="pc-zone-label yellow">Yellow — Misaligned Claim</span>
+      <div class="pc-name">Ultima</div>
+      <div class="pc-sub">Electrolyte Powder</div>
+      <p class="pc-verdict">The cleanest ingredient label in the category — stevia, plant-based colors, no artificial anything. The transparency gap is a different kind: at 55mg sodium per serving, the product cannot meaningfully replenish electrolytes lost during exercise. The "Replenisher" name overpromises. PE-acquired in 2019 by WM Partners; no formulation changes documented, but a watch condition.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Liquid IV -->
+    <a class="profile-card zone-red" href="#"
+       data-zone="red" data-high-sodium="false" data-mid-sodium="true" data-low-sodium="false"
+       data-no-sugar="false" data-has-sugar="true" data-independent="false" data-conglomerate="true">
+      <span class="pc-zone-label red">Red — Conglomerate + CTT Claim</span>
+      <div class="pc-name">Liquid IV</div>
+      <div class="pc-sub">Hydration Multiplier</div>
+      <p class="pc-verdict">Cellular Transport Technology is a branded name for the WHO oral rehydration solution developed in the 1970s. The science is legitimate — the name is a trademark on public domain knowledge. Unilever acquired the brand in October 2020 and has since quadrupled its size. Now the largest brand in a €1.9B Unilever division, marketed aggressively as a daily supplement with 11g of added sugar per serving and no independent testing certification.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot red"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot green"></div><div class="pc-dot green"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2012</div><div class="acq-label found">Founded</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2020</div><div class="acq-label acq">Acquired — Unilever</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- Nuun -->
+    <a class="profile-card zone-yellow" href="#"
+       data-zone="yellow" data-high-sodium="false" data-mid-sodium="true" data-low-sodium="false"
+       data-no-sugar="false" data-has-sugar="false" data-independent="false" data-conglomerate="true">
+      <span class="pc-zone-label yellow">Yellow — Nestlé Watch</span>
+      <div class="pc-name">Nuun</div>
+      <div class="pc-sub">Sport Electrolyte Tablets</div>
+      <p class="pc-verdict">One of the most transparent formulas in the category — every electrolyte amount disclosed, stevia-only sweetening, B-Corp certified, Non-GMO. The concern is downstream: Nestlé Health Science acquired Nuun in July 2021, adding it to a portfolio that includes Vital Proteins and Garden of Life. No NSF sport certification, no public batch COAs. The formula earns trust; the ownership chain requires watching.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2004</div><div class="acq-label found">Founded</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2020</div><div class="acq-label acq">Acquired — Nestlé Health Science</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2022</div><div class="acq-label acq">Sold — Edgewell Personal Care</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- DripDrop -->
+    <a class="profile-card" href="#" style="border-color:rgba(78,155,111,0.25);background:linear-gradient(135deg,rgba(78,155,111,0.04) 0%,var(--surface) 60%);"
+       data-zone="green" data-high-sodium="false" data-mid-sodium="true" data-low-sodium="false"
+       data-no-sugar="false" data-has-sugar="true" data-independent="true" data-conglomerate="false">
+      <span class="pc-zone-label" style="color:var(--green);border-color:rgba(78,155,111,0.3);">Green — Category Benchmark</span>
+      <div class="pc-name">DripDrop</div>
+      <div class="pc-sub">ORS Electrolyte Powder</div>
+      <p class="pc-verdict">Physician-founded during disaster relief missions in Guatemala. Structured as a Public Benefit Corporation — legally mission-locked. NSF Certified for Sport (16oz sticks). Sugar is structurally required for the ORS sodium-glucose cotransport mechanism, and DripDrop's own FAQ explains this transparently — the opposite of Liquid IV's approach to the same chemistry. No conglomerate acquisition in 17 years of operation.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Pedialyte -->
+    <a class="profile-card zone-yellow" href="#"
+       data-zone="yellow" data-high-sodium="false" data-mid-sodium="true" data-low-sodium="false"
+       data-no-sugar="false" data-has-sugar="true" data-independent="false" data-conglomerate="true">
+      <span class="pc-zone-label yellow">Yellow — Repositioned Medical Product</span>
+      <div class="pc-name">Pedialyte</div>
+      <div class="pc-sub">Classic Oral Electrolyte Solution</div>
+      <p class="pc-verdict">The formula is 60 years old and clinically proven — the gold standard for pediatric ORS, legitimately backed by WHO-aligned science. The transparency issue isn't the science. It's the 2015 adult marketing pivot: Abbott seeded influencers with #TeamPedialyte to promote the product as a hangover cure, without a new FDA indication and without clinical evidence that Pedialyte performs better than water for hangover beyond basic rehydration. Flavored versions contain artificial dyes (Red 40, Blue 1, Yellow 6).</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- ROAR Organic -->
+    <a class="profile-card zone-yellow" href="#"
+       data-zone="yellow" data-high-sodium="false" data-mid-sodium="false" data-low-sodium="true"
+       data-no-sugar="false" data-has-sugar="true" data-independent="true" data-conglomerate="false">
+      <span class="pc-zone-label yellow">Yellow — Aesthetics Over Electrolytes</span>
+      <div class="pc-name">ROAR Organic</div>
+      <div class="pc-sub">Complete Hydration™</div>
+      <p class="pc-verdict">Founded 2013 by Roly Nesi ("Coachella meets Lululemon") as an organic lifestyle beverage. USDA Certified Organic, Non-GMO, Vegan, clean label — those credentials are real and verified. The problem is the "Complete Hydration" claim on a bottle with ~80mg sodium per 18oz. That's trace-level for athletic rehydration. Coconut water concentrate is the primary electrolyte source, not a formulated electrolyte solution. Factory LLC (CPG equity fund) invested in 2020 and doubled down with $10M in 2024 — standard pre-acquisition runway financing. This brand is a lifestyle product positioned as a sports drink.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot green"></div><div class="pc-dot green"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<section class="context-section">
+  <div class="context-block">
+    <div class="context-block-label">What We Found</div>
+    <div class="context-body">
+      <p>The electrolyte category has a problem that protein doesn't: the core science is genuinely simple and genuinely settled, but the marketing infrastructure built around it implies complexity that justifies premium pricing. Sodium, potassium, and magnesium in appropriate ratios replace what sweat removes. That's been known since at least the 1970s WHO cholera research. What the category sells is a branded version of that knowledge — and the brands differ mainly in which aspect of the science they emphasize and whether their financial relationships with the people presenting it to you are disclosed.</p>
+      <p>The sodium dosing debate is the clearest example. LMNT's 1,000mg sodium is legitimate for its stated use case — endurance athletes, heavy sweaters, people on ketogenic diets that increase sodium excretion. The problem is that this specific use case was communicated to a mass audience through podcast sponsorships where the economic relationships between brand and host were either undisclosed or incompletely disclosed. <strong>That changes how the "evidence" reads.</strong></p>
+      <p>Liquid IV's CTT is the most flagrant example of trademarking public domain science. Oral rehydration therapy using a sodium-glucose cotransport mechanism is how every pediatric rehydration packet works — including Pedialyte since 1966 and DripDrop since 2010. Liquid IV did not invent it. They named it, branded it, and sold it to Unilever for a reported $500M. DripDrop uses the same mechanism and <em>explains it plainly on their FAQ page</em>. The science is identical; the transparency is not.</p>
+      <p>Pedialyte is the category's most interesting case study in use-case drift. A clinical formula that's been working for 60 years — unchanged, validated, legitimate — repositioned for adult hangovers through influencer seeding (#TeamPedialyte, beer koozies, festival sampling) without a new FDA indication and without clinical evidence of superiority to water for hangover beyond basic rehydration. The product didn't change. The marketing premise did.</p>
+    </div>
+  </div>
+  <div class="context-block">
+    <div class="context-block-label">How to Read This Category</div>
+    <ul class="context-list">
+      <li><strong>Sodium dose matters and is use-case specific.</strong> 55mg (Ultima) is appropriate for people already getting sodium from food who want casual hydration. 300–370mg (Nuun, DripDrop, Pedialyte) aligns with moderate exercise. 1,000mg (LMNT) is appropriate for endurance exercise or keto. Neither is the "correct" daily dose for everyone.</li>
+      <li><strong>CTT, Cellular Transport Technology, Hydration Multiplier</strong> — these are marketing names for the sodium-glucose cotransport mechanism described in WHO oral rehydration guidelines since the 1970s. The mechanism is real. The trademark is not science. DripDrop uses the same mechanism and calls it ORS science. Pedialyte has used it since 1966 and calls it what it is.</li>
+      <li><strong>Sugar in ORS-based products is functional, not incidental.</strong> A sugar-free version of Liquid IV cannot deliver the same absorption speed the CTT claim implies — their own science acknowledges this. DripDrop's zero-sugar version uses a different transport mechanism (sodium-amino acid co-transport) and is transparent about the difference.</li>
+      <li><strong>Influencer economics in this category are systematically underreported.</strong> The FTC requires disclosure of material connections — but enforcement is weak and compliance is inconsistent. Pedialyte's #TeamPedialyte program sent free merchandise in exchange for posts. Treat undisclosed sponsorships involving nutrition claims as a transparency flag regardless of which direction the relationship runs.</li>
+      <li><strong>Conglomerate ownership creates cost-pressure incentives.</strong> Nestlé owns Nuun, Unilever owns Liquid IV, Abbott has owned Pedialyte since 1966. DripDrop is the only top-tier brand in this category that has never been acquired. That's unusual. It doesn't make the others untrustworthy — but watch for reformulations and certifications that lapse post-acquisition.</li>
+      <li><strong>NSF Certified for Sport ≠ formula quality.</strong> NSF sport cert confirms that what's listed on the label is present and no banned substances are included. It does not evaluate sodium adequacy, ingredient quality, or whether the science claims are accurate. DripDrop (16oz sticks) has it. Nuun, Pedialyte, Liquid IV, Ultima, and LMNT do not.</li>
+      <li><strong>ROAR Organic introduced a new pattern: lifestyle brand with trace electrolytes.</strong> ~80mg sodium per 18oz bottle is not an electrolyte product by any clinical threshold. It's a flavored organic water with B vitamins. "Complete Hydration" on the label is marketing for everyday casual consumption — but the branding reads like athletic recovery. USDA Organic is real. The functional claim is not.</li><li><a href="traced-deep-dives.html">Deep Dives</a></li></ul>
+  </div>
+</section>
+
+<footer class="page-footer">
+  <span class="footer-logo">Traced</span>
+  <span class="footer-note">Electrolyte category — 8 profiles across 7 dimensions. Last reviewed February 2026. More profiles added as research is completed.</span>
+</footer>
+
+<script>
+/* ── QUICK CHECK TOGGLE ── */
+let openBrand = null;
+function toggleQuickCheck(brand) {
+  const row = document.getElementById('expand-' + brand);
+  if (!row) return;
+  if (openBrand && openBrand !== brand) {
+    const prev = document.getElementById('expand-' + openBrand);
+    if (prev) prev.classList.remove('open');
+  }
+  if (openBrand === brand) {
+    row.classList.remove('open');
+    openBrand = null;
+  } else {
+    row.classList.add('open');
+    openBrand = brand;
+  }
+}
+function scrollToRow(brand) {
+  const row = document.getElementById('row-' + brand);
+  if (row) {
+    row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    row.style.background = 'var(--surface-2)';
+    setTimeout(() => { row.style.background = ''; }, 800);
+    toggleQuickCheck(brand);
+  }
+}
+
+/* ── FILTER LOGIC ── */
+const filterChips = document.querySelectorAll('.filter-chip');
+let activeFilters = new Set(['all']);
+
+filterChips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    const f = chip.dataset.filter;
+    if (f === 'all') {
+      activeFilters.clear();
+      activeFilters.add('all');
+      filterChips.forEach(c => {
+        c.className = 'filter-chip';
+        if (c.dataset.filter === 'all') c.classList.add('active');
+      });
+    } else {
+      activeFilters.delete('all');
+      document.querySelector('[data-filter="all"]').className = 'filter-chip';
+      if (activeFilters.has(f)) {
+        activeFilters.delete(f);
+        chip.className = 'filter-chip';
+        if (activeFilters.size === 0) {
+          activeFilters.add('all');
+          document.querySelector('[data-filter="all"]').classList.add('active');
+        }
+      } else {
+        activeFilters.add(f);
+        if (['green','yellow','red'].includes(f)) chip.className = 'filter-chip active-' + f;
+        else chip.className = 'filter-chip active';
+      }
+    }
+    applyFilters();
+  });
+});
+
+function applyFilters() {
+  const tableRows = document.querySelectorAll('.brand-row');
+  const profileCards = document.querySelectorAll('.profile-card');
+  let visibleCount = 0;
+
+  tableRows.forEach(row => {
+    const show = matchesFilters(row);
+    row.classList.toggle('hidden', !show);
+    const expandRow = document.getElementById('expand-' + row.dataset.brand);
+    if (expandRow && !show) expandRow.classList.remove('open');
+    if (show) visibleCount++;
+  });
+
+  profileCards.forEach(card => {
+    card.classList.toggle('hidden', !matchesFilters(card));
+  });
+
+  document.getElementById('filter-count').textContent = visibleCount + ' of 7';
+}
+
+function matchesFilters(el) {
+  if (activeFilters.has('all')) return true;
+  for (const f of activeFilters) {
+    switch (f) {
+      case 'yellow': if (el.dataset.zone !== 'yellow') return false; break;
+      case 'green': if (el.dataset.zone !== 'green') return false; break;
+      case 'red': if (el.dataset.zone !== 'red') return false; break;
+      case 'high-sodium': if (el.dataset.highSodium !== 'true') return false; break;
+      case 'mid-sodium': if (el.dataset.midSodium !== 'true') return false; break;
+      case 'low-sodium': if (el.dataset.lowSodium !== 'true') return false; break;
+      case 'no-sugar': if (el.dataset.noSugar !== 'true') return false; break;
+      case 'has-sugar': if (el.dataset.hasSugar !== 'true') return false; break;
+      case 'independent': if (el.dataset.independent !== 'true') return false; break;
+      case 'conglomerate': if (el.dataset.conglomerate !== 'true') return false; break;
+    }
+  }
+  return true;
+}
+</script>
+</body>
+</html>
