@@ -235,128 +235,57 @@ html { background: var(--bg); color: var(--text); font-family: var(--font-body);
 }
 
 /* ─────────────────────────────────────────────
-   BEFORE YOU BUY — REDESIGNED
+   BEFORE YOU BUY — ACCORDION
 ───────────────────────────────────────────── */
-.wtlf-section {
-  padding: 64px 48px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.wtlf-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 12px;
-}
-.wtlf-eyebrow {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--amber);
-  white-space: nowrap;
-}
-.wtlf-rule {
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
-.wtlf-title {
-  font-family: var(--display);
-  font-size: clamp(26px, 3vw, 38px);
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.02em;
-  margin-bottom: 32px;
-}
+.wtlf-section { padding: 64px 48px; max-width: 1200px; margin: 0 auto; }
+.wtlf-header { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+.wtlf-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); white-space: nowrap; }
+.wtlf-rule { flex: 1; height: 1px; background: var(--border); }
+.wtlf-title { font-family: var(--display); font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 24px; }
 .wtlf-title em { color: var(--amber); font-style: italic; }
-.wtlf-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-.wtlf-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 20px 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+.wtlf-grid { display: flex; flex-direction: column; gap: 2px; }
+
+/* Each card is a full-width row */
+.wtlf-card { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+
+/* Clickable header row — always visible */
 .wtlf-card-head {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
 }
-.wtlf-icon {
-  font-size: 18px;
-  line-height: 1;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-.wtlf-signal-label {
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--text);
-  line-height: 1.35;
-}
-.wtlf-bullets {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.wtlf-bullets li {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  font-size: 12.5px;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.5;
-}
-.wtlf-bullets li::before {
-  content: '—';
-  color: var(--border-strong, #3a3630);
-  flex-shrink: 0;
-  margin-top: 0px;
-  font-size: 11px;
-  line-height: 1.7;
-}
-.wtlf-bullets li strong {
-  color: var(--text);
-  font-weight: 500;
-}
+.wtlf-card-head:hover { background: rgba(255,255,255,0.02); }
+.wtlf-icon { font-size: 16px; flex-shrink: 0; }
+.wtlf-signal-label { font-size: 17px; font-weight: 600; color: var(--text); line-height: 1.3; flex: 1; }
 .wtlf-flag {
-  display: inline-block;
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: 0.08em;
-  padding: 4px 10px;
-  border-radius: 2px;
-  align-self: flex-start;
-  margin-top: auto;
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em;
+  padding: 3px 8px; border-radius: 2px; white-space: nowrap; flex-shrink: 0;
 }
-.wtlf-flag.red {
-  color: var(--red, #c94d3c);
-  background: rgba(201,77,60,0.08);
-  border: 1px solid rgba(201,77,60,0.2);
+.wtlf-flag.red   { color: var(--red, #c94d3c); background: rgba(201,77,60,0.08); border: 1px solid rgba(201,77,60,0.2); }
+.wtlf-flag.amber { color: var(--amber); background: rgba(200,148,58,0.08); border: 1px solid rgba(200,148,58,0.2); }
+.wtlf-flag.green { color: var(--green,#4e9b6f); background: rgba(78,155,111,0.08); border: 1px solid rgba(78,155,111,0.2); }
+.wtlf-chevron { font-size: 10px; color: var(--muted, #9a9284); flex-shrink: 0; transition: transform 0.2s; }
+.wtlf-card.open .wtlf-chevron { transform: rotate(180deg); }
+
+/* Expandable body */
+.wtlf-body {
+  display: none;
+  padding: 0 18px 14px 46px;
+  border-top: 1px solid var(--border);
 }
-.wtlf-flag.amber {
-  color: var(--amber);
-  background: rgba(200,148,58,0.08);
-  border: 1px solid rgba(200,148,58,0.2);
+.wtlf-card.open .wtlf-body { display: block; }
+.wtlf-bullets { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.wtlf-bullets li {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 12px; font-weight: 300; color: var(--muted, #9a9284); line-height: 1.5;
 }
-.wtlf-flag.green {
-  color: var(--green, #4e9b6f);
-  background: rgba(78,155,111,0.08);
-  border: 1px solid rgba(78,155,111,0.2);
-}
+.wtlf-bullets li::before { content: '—'; color: var(--border-strong, #3a3630); flex-shrink: 0; font-size: 11px; line-height: 1.7; }
+.wtlf-bullets li strong { color: var(--text); font-weight: 500; }
+
 @media (max-width: 900px) {
-  .wtlf-grid { grid-template-columns: 1fr; }
+  .wtlf-section { padding: 48px 24px; }
   .wtlf-section { padding: 48px 24px; }
 }
 
@@ -423,80 +352,112 @@ html { background: var(--bg); color: var(--text); font-family: var(--font-body);
   </div>
   <h2 class="wtlf-title">What to <em>Look For</em> in Greens Powders</h2>
   <div class="wtlf-grid">
-    <div class="wtlf-card">
+
+    <div class="wtlf-card open">
       <div class="wtlf-card-head">
         <span class="wtlf-icon">🌿</span>
         <span class="wtlf-signal-label">Proprietary blends hide the doses that determine whether anything works</span>
+        <span class="wtlf-flag red">Red flag</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <ul class="wtlf-bullets">
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
           <li>AG1's formula hides <strong>49 herbal extracts and adaptogens inside proprietary blend totals</strong> — individual doses undisclosed</li>
           <li>A physician can't assess whether ashwagandha is at a <strong>clinically studied dose (300–600mg) or a trace amount</strong> added for label presence</li>
-          <li>If the blend weight is disclosed but individual ingredients aren't, <strong>you cannot evaluate efficacy</strong></li>
-      </ul>
-      <span class="wtlf-flag red">Red flag — Proprietary blend totals without individual doses</span>
+          <li>If blend weight is disclosed but individual ingredients aren't, <strong>you cannot evaluate efficacy</strong></li>
+        </ul>
+      </div>
     </div>
     <div class="wtlf-card">
       <div class="wtlf-card-head">
         <span class="wtlf-icon">🔬</span>
         <span class="wtlf-signal-label">Greens powders cannot replace vegetables — this claim has no scientific basis</span>
+        <span class="wtlf-flag red">Red flag</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <ul class="wtlf-bullets">
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
           <li>Whole vegetables provide <strong>fiber, phytonutrients, water content, and synergistic compounds</strong> that dehydration and powder processing can't replicate</li>
-          <li>Studies on greens powders use the <strong>complete product</strong> — impossible to identify which components drive effects</li>
+          <li>Studies use the <strong>complete product</strong> — impossible to identify which components drive effects</li>
           <li>No clinical evidence supports the <strong>"replaces X servings of vegetables"</strong> claim</li>
-      </ul>
-      <span class="wtlf-flag red">Red flag — "Replaces X servings of vegetables" claim</span>
+        </ul>
+      </div>
     </div>
     <div class="wtlf-card">
       <div class="wtlf-card-head">
         <span class="wtlf-icon">📣</span>
         <span class="wtlf-signal-label">The influencer-endorser conflict is most concentrated in this category</span>
+        <span class="wtlf-flag red">Red flag</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <ul class="wtlf-bullets">
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
           <li>AG1's model: give <strong>equity stakes to health communicators</strong> (Attia, Huberman, Ferriss), then deploy them as paid sponsors simultaneously</li>
           <li>The audience <strong>can't distinguish scientific recommendation from commercial transaction</strong> when the endorser holds both roles</li>
           <li>Greens powders sell on trust — which is exactly why the trust channel is where conflicts are most consequential</li>
-      </ul>
-      <span class="wtlf-flag red">Red flag — Physician/scientist endorser with no disclosed financial relationship</span>
+        </ul>
+      </div>
     </div>
     <div class="wtlf-card">
       <div class="wtlf-card-head">
         <span class="wtlf-icon">🧫</span>
         <span class="wtlf-signal-label">Probiotic CFU counts are meaningless without strain specifics</span>
+        <span class="wtlf-flag amber">Ask this</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <ul class="wtlf-bullets">
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
           <li>What matters is <strong>strain identity</strong> (L. acidophilus NCFM behaves differently from generic L. acidophilus) and survival through the gut</li>
           <li>A CFU count without <strong>strain identity and third-party viability data</strong> is not a clinically meaningful number</li>
           <li>AG1's 7.2 billion CFU claim tells you almost nothing useful</li>
-      </ul>
-      <span class="wtlf-flag amber">Ask — which specific strain, and what's the survival rate through digestion?</span>
+        </ul>
+      </div>
     </div>
     <div class="wtlf-card">
       <div class="wtlf-card-head">
         <span class="wtlf-icon">💰</span>
         <span class="wtlf-signal-label">Price per serving reflects marketing spend, not ingredient quality</span>
+        <span class="wtlf-flag amber">Ask this</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <ul class="wtlf-bullets">
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
           <li>AG1 costs <strong>$2.63/serving</strong> and spends an estimated 40–50% of revenue on marketing and endorser relationships</li>
-          <li>Ritual Essential Protein costs <strong>$1.25/serving</strong> and competes primarily on formula transparency and third-party testing</li>
+          <li>Ritual Essential Protein costs <strong>$1.25/serving</strong> and competes primarily on formula transparency</li>
           <li>The correlation between price and product quality is <strong>low</strong>. Between price and marketing spend: <strong>high</strong>.</li>
-      </ul>
-      <span class="wtlf-flag amber">Ask — what does the price per serving actually buy?</span>
+        </ul>
+      </div>
     </div>
     <div class="wtlf-card">
       <div class="wtlf-card-head">
         <span class="wtlf-icon">📋</span>
         <span class="wtlf-signal-label">NSF certification covers purity — not whether anything works</span>
+        <span class="wtlf-flag amber">Ask this</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <ul class="wtlf-bullets">
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
           <li>NSF Certified for Sport certifies: <strong>label accuracy, no contaminants, no banned substances</strong></li>
           <li>It does <strong>not</strong> validate health claims, clinical efficacy, or whether ingredient doses are meaningful</li>
           <li>AG1 holds NSF cert — this is a floor, not an endorsement of the product's claimed benefits</li>
-      </ul>
-      <span class="wtlf-flag amber">Ask — certified for purity, or certified for efficacy? (Only purity is certifiable)</span>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('.wtlf-card-head').forEach(function(head) {
+    head.addEventListener('click', function() {
+      var card = this.closest('.wtlf-card');
+      var isOpen = card.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.wtlf-card').forEach(function(c) { c.classList.remove('open'); });
+      // Toggle clicked one
+      if (!isOpen) card.classList.add('open');
+    });
+  });
+</script>
 
 <section class="spectrum-section">
   <div class="section-label">Transparency Spectrum</div>

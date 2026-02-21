@@ -847,15 +847,71 @@ html {
   .quick-check { grid-template-columns: 1fr 1fr; }
   .comparison-table { font-size: 13px; }
 }
+
+/* ─────────────────────────────────────────────
+   BEFORE YOU BUY — ACCORDION
+───────────────────────────────────────────── */
+.wtlf-section { padding: 64px 48px; max-width: 1200px; margin: 0 auto; }
+.wtlf-header { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+.wtlf-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); white-space: nowrap; }
+.wtlf-rule { flex: 1; height: 1px; background: var(--border); }
+.wtlf-title { font-family: var(--display); font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 24px; }
+.wtlf-title em { color: var(--amber); font-style: italic; }
+.wtlf-grid { display: flex; flex-direction: column; gap: 2px; }
+
+/* Each card is a full-width row */
+.wtlf-card { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+
+/* Clickable header row — always visible */
+.wtlf-card-head {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.wtlf-card-head:hover { background: rgba(255,255,255,0.02); }
+.wtlf-icon { font-size: 16px; flex-shrink: 0; }
+.wtlf-signal-label { font-size: 17px; font-weight: 600; color: var(--text); line-height: 1.3; flex: 1; }
+.wtlf-flag {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em;
+  padding: 3px 8px; border-radius: 2px; white-space: nowrap; flex-shrink: 0;
+}
+.wtlf-flag.red   { color: var(--red, #c94d3c); background: rgba(201,77,60,0.08); border: 1px solid rgba(201,77,60,0.2); }
+.wtlf-flag.amber { color: var(--amber); background: rgba(200,148,58,0.08); border: 1px solid rgba(200,148,58,0.2); }
+.wtlf-flag.green { color: var(--green,#4e9b6f); background: rgba(78,155,111,0.08); border: 1px solid rgba(78,155,111,0.2); }
+.wtlf-chevron { font-size: 10px; color: var(--muted, #9a9284); flex-shrink: 0; transition: transform 0.2s; }
+.wtlf-card.open .wtlf-chevron { transform: rotate(180deg); }
+
+/* Expandable body */
+.wtlf-body {
+  display: none;
+  padding: 0 18px 14px 46px;
+  border-top: 1px solid var(--border);
+}
+.wtlf-card.open .wtlf-body { display: block; }
+.wtlf-bullets { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.wtlf-bullets li {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 12px; font-weight: 300; color: var(--muted, #9a9284); line-height: 1.5;
+}
+.wtlf-bullets li::before { content: '—'; color: var(--border-strong, #3a3630); flex-shrink: 0; font-size: 11px; line-height: 1.7; }
+.wtlf-bullets li strong { color: var(--text); font-weight: 500; }
+
+@media (max-width: 900px) {
+  .wtlf-section { padding: 48px 24px; }
+  .wtlf-flag { display: none; }
+}
+
 </style>
 </head>
 <body>
 
 <!-- ─── HEADER ─── -->
 <header class="site-header">
-  <a href="traced-homepage.html" class="site-logo">Traced <span>/ by origin</span></a>
+  <a href="index.html" class="site-logo">Traced <span>/ by origin</span></a>
   <nav class="site-nav">
-    <a href="traced-homepage.html">Home</a>
+    <a href="index.html">Home</a>
     <a href="traced-protein-supplements.html">Proteins</a>
     <a href="traced-electrolytes.html">Electrolytes</a>
     <a href="traced-greens-powders.html">Greens</a>
@@ -868,7 +924,7 @@ html {
 <!-- ─── HERO ─── -->
 <section class="category-hero">
   <div class="hero-breadcrumb">
-    <a href="traced-homepage.html">Traced</a>
+    <a href="index.html">Traced</a>
     <span class="sep">/</span>
     <span class="current">Protein Supplements</span>
   </div>
@@ -912,62 +968,117 @@ html {
   <h2 class="wtlf-title">What to <em>Look For</em> in Protein Powders</h2>
   <div class="wtlf-grid">
 
-    <div class="wtlf-card">
-      <div class="wtlf-signal">
+    <div class="wtlf-card open">
+      <div class="wtlf-card-head">
         <span class="wtlf-icon">⚗️</span>
         <span class="wtlf-signal-label">Protein source hierarchy matters more than the gram count</span>
+        <span class="wtlf-flag red">Red flag</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-signal-body">Whey isolate (&gt;90% protein by weight, low lactose) is cleaner than concentrate (70–80%, higher fat/lactose). A "blend" usually means mostly cheap concentrate with isolate added for label prestige. Collagen is not a complete protein — it scores PDCAAS 0 and should not be compared to whey on a gram-for-gram basis.</div>
-      <span class="wtlf-flag red">Red flag — "Protein Blend" without disclosed ratios</span>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li><strong>Whey isolate</strong> (&gt;90% protein by weight, low lactose) is cleaner than concentrate (70–80%, more fat/lactose)</li>
+          <li>A <strong>"protein blend"</strong> usually means mostly cheap concentrate with isolate added for label prestige</li>
+          <li><strong>Collagen is not a complete protein</strong> — PDCAAS score of 0. Can't be compared to whey gram-for-gram</li>
+        </ul>
+      </div>
     </div>
 
     <div class="wtlf-card">
-      <div class="wtlf-signal">
+      <div class="wtlf-card-head">
         <span class="wtlf-icon">🧪</span>
         <span class="wtlf-signal-label">Batch COAs are the minimum transparency floor</span>
+        <span class="wtlf-flag red">Red flag</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-signal-body">A Certificate of Analysis by lot number means an independent lab tested that specific batch — not the formula in general. If you can't enter your lot number and pull a real COA, "lab tested" is a marketing claim, not a verified fact. Most brands on this list don't publish them.</div>
-      <span class="wtlf-flag red">Red flag — No batch COA lookup available</span>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li>A <strong>Certificate of Analysis (COA) by lot number</strong> means an independent lab tested that specific batch — not the formula in general</li>
+          <li>If you can't enter your lot number and pull a real COA, <strong>"lab tested" is a marketing claim</strong>, not a verified fact</li>
+          <li>Most brands on this list don't publish them</li>
+        </ul>
+      </div>
     </div>
 
     <div class="wtlf-card">
-      <div class="wtlf-signal">
+      <div class="wtlf-card-head">
         <span class="wtlf-icon">🏅</span>
-        <span class="wtlf-signal-label">NSF vs. Informed Choice — they test different things</span>
+        <span class="wtlf-signal-label">NSF and Informed Choice test different things</span>
+        <span class="wtlf-flag amber">Ask this</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-signal-body">NSF Certified for Sport covers heavy metals, contaminants, and banned athletic substances. Informed Choice covers banned substances (WADA list) but has a lighter contaminant scope. Neither certifies that the product works or that doses are adequate — only that the label is accurate and the product is clean.</div>
-      <span class="wtlf-flag amber">Ask — which specific cert does the brand hold?</span>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li><strong>NSF Certified for Sport</strong>: covers heavy metals, contaminants, and banned athletic substances</li>
+          <li><strong>Informed Choice</strong>: covers banned substances (WADA list) but lighter contaminant scope</li>
+          <li>Neither certifies the product works — only that the label is accurate and it's clean</li>
+        </ul>
+      </div>
     </div>
 
     <div class="wtlf-card">
-      <div class="wtlf-signal">
+      <div class="wtlf-card-head">
         <span class="wtlf-icon">🔬</span>
-        <span class="wtlf-signal-label">Protein spiking: inflating the gram count with non-protein nitrogen</span>
+        <span class="wtlf-signal-label">Protein spiking — inflating the gram count cheaply</span>
+        <span class="wtlf-flag red">Red flag</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-signal-body">Standard protein tests measure nitrogen, then calculate protein. Free amino acids (taurine, glycine, creatine) also register as nitrogen — so a brand can inflate its "protein" reading by adding cheap amino acids that aren't complete protein. Labdoor tests for this. Look for brands that specifically pass amino acid spiking tests.</div>
-      <span class="wtlf-flag red">Red flag — No amino acid spiking test published</span>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li>Standard tests measure <strong>nitrogen</strong>, then estimate protein — free amino acids (taurine, glycine) also register as nitrogen</li>
+          <li>Brands can inflate the reading by adding <strong>cheap amino acids that aren't complete protein</strong></li>
+          <li>Labdoor tests for this — look for brands that specifically pass amino acid spiking tests</li>
+        </ul>
+      </div>
     </div>
 
     <div class="wtlf-card">
-      <div class="wtlf-signal">
+      <div class="wtlf-card-head">
         <span class="wtlf-icon">📣</span>
         <span class="wtlf-signal-label">Heavy influencer spend is a margin signal, not a quality signal</span>
+        <span class="wtlf-flag amber">Ask this</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-signal-body">Brands buying saturation-level social ad inventory — you see them everywhere in your feed — are spending heavily to acquire customers. That cost lives somewhere: in margin compression, VC subsidy of growth, or product underinvestment. It also raises the question of whether endorsers have undisclosed equity stakes (see AG1, Vital Proteins). Ad volume and product quality are unrelated.</div>
-      <span class="wtlf-flag amber">Ask — is the endorser a paid sponsor, equity investor, or both?</span>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li>Saturation-level social ads mean <strong>high customer acquisition cost</strong> — that lives somewhere (margins, VC subsidy, or formula underinvestment)</li>
+          <li>Raises the question of whether endorsers have <strong>undisclosed equity stakes</strong> (see AG1, Vital Proteins, David)</li>
+          <li>Ad volume and product quality are unrelated</li>
+        </ul>
+      </div>
     </div>
 
     <div class="wtlf-card">
-      <div class="wtlf-signal">
+      <div class="wtlf-card-head">
         <span class="wtlf-icon">🏢</span>
         <span class="wtlf-signal-label">Check who actually owns the brand — not who founded it</span>
+        <span class="wtlf-flag red">Red flag</span>
+        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-signal-body">Five entities control ten of the top twenty brands in this category. A consumer switching between Optimum Nutrition and BSN for variety is switching between two Glanbia brands. Orgain, Garden of Life, and Vital Proteins all built their identities on independence — all three are now Nestlé. The story on the website and the ownership structure are regularly disconnected.</div>
-      <span class="wtlf-flag red">Red flag — "Founded by" ≠ "currently owned by"</span>
+      <div class="wtlf-body">
+        <ul class="wtlf-bullets">
+          <li><strong>Five entities control 10+ of the top 20 brands</strong> in this category</li>
+          <li>Switching between Optimum Nutrition and BSN for "variety" = switching between <strong>two Glanbia brands</strong></li>
+          <li>Orgain, Garden of Life, Vital Proteins — built on independence, <strong>all three now Nestlé</strong></li>
+        </ul>
+      </div>
     </div>
 
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('.wtlf-card-head').forEach(function(head) {
+    head.addEventListener('click', function() {
+      var card = this.closest('.wtlf-card');
+      var isOpen = card.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.wtlf-card').forEach(function(c) { c.classList.remove('open'); });
+      // Toggle clicked one
+      if (!isOpen) card.classList.add('open');
+    });
+  });
+</script>
 
 <section class="spectrum-section">
   <div class="section-label">Transparency Spectrum</div>
@@ -2387,8 +2498,7 @@ html {
       <li><strong>Protein spiking</strong>: adding free-form amino acids (taurine, glycine, creatine) to inflate nitrogen readings without providing complete protein. Look for brands that test for amino acid spiking specifically.</li>
       <li><strong>Collagen in protein products</strong> inflates the gram count with PDCAAS-0 protein. A product with undisclosed collagen proportion is not delivering the protein its label implies.</li>
       <li><strong>Founder stories don't survive acquisition.</strong> Check who owns the company now. The story on the website and the ownership structure are often entirely disconnected.</li>
-      <li><strong>PE ownership introduces a time horizon.</strong> Private equity exits in 5-7 years. That clock starts ticking from acquisition date — and reformulation risk rises each year as margin pressure builds toward exit.</li>
-    </ul>
+      <li><strong>PE ownership introduces a time horizon.</strong> Private equity exits in 5-7 years. That clock starts ticking from acquisition date — and reformulation risk rises each year as margin pressure builds toward exit.</li><li><a href="traced-deep-dives.html">Deep Dives</a></li></ul>
   </div>
   <div class="context-block">
     <div class="context-block-label">Ownership Map</div>
