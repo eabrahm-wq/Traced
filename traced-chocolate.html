@@ -760,7 +760,90 @@
     }
 
     /* ── WHAT TO LOOK FOR ── */
+    .wtlf-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 64px 40px 0;
+    }
+    .wtlf-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .wtlf-eyebrow {
+      font-family: var(--font-mono, 'DM Mono', monospace);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber, #c8943a);
+      flex-shrink: 0;
+    }
+    .wtlf-rule { flex: 1; height: 1px; background: var(--border, #232018); }
+    .wtlf-title {
+      font-family: var(--font-display, 'Playfair Display', serif);
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--text, #ede9e0);
+      margin-bottom: 36px;
+    }
+    .wtlf-title em { font-style: italic; color: var(--amber, #c8943a); }
+    .wtlf-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border, #232018);
+      border: 1px solid var(--border, #232018);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .wtlf-card {
+      background: var(--bg-card, #111009);
+      padding: 22px 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: background 0.15s;
+    }
+    .wtlf-card:hover { background: var(--bg-hover, #161410); }
+    .wtlf-signal {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .wtlf-icon {
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      width: 18px;
+      text-align: center;
+    }
+    .wtlf-signal-label { font-size: 17px; font-weight: 600; color: var(--text, #ede9e0); line-height: 1.3; flex: 1; }
+    .wtlf-signal-body {
+      font-size: 12.5px;
+      font-weight: 300;
+      color: var(--text-muted, #9a9284);
+      line-height: 1.65;
+    }
+    .wtlf-flag {
+      display: inline-block;
+      margin-top: 6px;
+      font-family: var(--font-mono, 'DM Mono', monospace);
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 2px;
+    }
+    .wtlf-flag.red   { color: var(--red, #c94d3c);    background: rgba(201,77,60,0.08);   border: 1px solid rgba(201,77,60,0.2); }
+    .wtlf-flag.yellow{ color: var(--yellow, #d4a84b);  background: rgba(212,168,75,0.08);  border: 1px solid rgba(212,168,75,0.2); }
+    .wtlf-flag.amber { color: var(--amber, #c8943a);   background: rgba(200,148,58,0.08);  border: 1px solid rgba(200,148,58,0.2); }
+    .wtlf-flag.green { color: var(--green, #4e9b6f);   background: rgba(78,155,111,0.08);  border: 1px solid rgba(78,155,111,0.2); }
     @media (max-width: 900px) {
+      .wtlf-section { padding: 40px 20px 0; }
+      .wtlf-grid { grid-template-columns: 1fr; }
     }
 
     /* ── ACQUISITION TIMELINE ── */
@@ -825,43 +908,6 @@
     .acq-label.warn { color: var(--yellow); opacity: 0.85; }
     .acq-label.event { color: var(--accent); opacity: 0.85; }
     .acq-label.found { color: rgba(232,228,220,0.5); }
-  
-    /* ── ACCORDION STYLES ── */
-    .wtlf-grid { display: flex; flex-direction: column; gap: 2px; }
-    .wtlf-card { background: var(--bg-card, #111009); border: 1px solid var(--border, #232018); border-radius: 3px; overflow: hidden; padding: 0; }
-    .wtlf-card-head {
-      display: flex; align-items: center; gap: 12px;
-      padding: 14px 18px;
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.15s;
-    }
-    .wtlf-card-head:hover { background: rgba(255,255,255,0.02); }
-    .wtlf-icon { font-size: 16px; flex-shrink: 0; }
-    .wtlf-signal-label { font-size: 17px; font-weight: 600; color: var(--text, #ede9e0); line-height: 1.3; flex: 1; }
-    .wtlf-flag {
-      font-family: var(--font-mono, 'DM Mono', monospace); font-size: 9px; letter-spacing: 0.08em;
-      padding: 3px 8px; border-radius: 2px; white-space: nowrap; flex-shrink: 0;
-    }
-    .wtlf-flag.red   { color: var(--red, #c94d3c); background: rgba(201,77,60,0.08); border: 1px solid rgba(201,77,60,0.2); }
-    .wtlf-flag.amber { color: var(--amber, #c8943a); background: rgba(200,148,58,0.08); border: 1px solid rgba(200,148,58,0.2); }
-    .wtlf-flag.yellow{ color: var(--yellow, #d4a84b); background: rgba(212,168,75,0.08); border: 1px solid rgba(212,168,75,0.2); }
-    .wtlf-flag.green { color: var(--green, #4e9b6f); background: rgba(78,155,111,0.08); border: 1px solid rgba(78,155,111,0.2); }
-    .wtlf-chevron { font-size: 10px; color: var(--text-muted, #9a9284); flex-shrink: 0; transition: transform 0.2s; }
-    .wtlf-card.open .wtlf-chevron { transform: rotate(180deg); }
-    .wtlf-body {
-      display: none;
-      padding: 0 18px 14px 46px;
-      border-top: 1px solid var(--border, #232018);
-    }
-    .wtlf-card.open .wtlf-body { display: block; }
-    .wtlf-bullets { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
-    .wtlf-bullets li {
-      display: flex; align-items: flex-start; gap: 8px;
-      font-size: 12px; font-weight: 300; color: var(--text-muted, #9a9284); line-height: 1.5;
-    }
-    .wtlf-bullets li::before { content: '—'; color: var(--border-strong, #3a3630); flex-shrink: 0; font-size: 11px; line-height: 1.7; }
-    .wtlf-bullets li strong { color: var(--text, #ede9e0); font-weight: 500; }
   </style>
 </head>
 <body>
@@ -1055,8 +1101,10 @@
     head.addEventListener('click', function() {
       var card = this.closest('.wtlf-card');
       var isOpen = card.classList.contains('open');
+      // Close all
       document.querySelectorAll('.wtlf-card').forEach(function(c) { c.classList.remove('open'); });
-      if (!isOpen) { card.classList.add('open'); }
+      // Toggle clicked one
+      if (!isOpen) card.classList.add('open');
     });
   });
 </script>
@@ -1065,24 +1113,583 @@
   <div class="section-label">Transparency Spectrum</div>
   <div class="spectrum-track"></div>
   <div class="spectrum-pins">
-
     <!-- Tony's: ~10% — green zone, category benchmark -->
     <div class="spectrum-pin" style="left:10%" onclick="scrollToRow('tonys')">
       <div class="pin-line"></div>
-
+      <div class="pin-label">Tony's Chocolonely</div>
+      <div class="pin-score">0R · 1Y · 6G</div>
+    </div>
     <!-- Hu: ~42% — yellow zone, Mondelēz-owned but formula held -->
     <div class="spectrum-pin" style="left:42%" onclick="scrollToRow('hu')">
       <div class="pin-line"></div>
-
+      <div class="pin-label">Hu</div>
+      <div class="pin-score">0R · 5Y · 2G</div>
+    </div>
     <!-- Lily's: ~68% — red zone, labeling lawsuit -->
     <div class="spectrum-pin" style="left:68%" onclick="scrollToRow('lilys')">
       <div class="pin-line"></div>
-
+      <div class="pin-label">Lily's</div>
+      <div class="pin-score">3R · 3Y · 1G</div>
+    </div>
     <!-- Hershey's: ~80% — red zone -->
     <div class="spectrum-pin" style="left:80%" onclick="scrollToRow('hersheys')">
       <div class="pin-line"></div>
-
+      <div class="pin-label">Hershey's</div>
+      <div class="pin-score">5R · 2Y · 0G</div>
+    </div>
     <!-- Nestlé: ~88% — red zone -->
     <div class="spectrum-pin" style="left:88%" onclick="scrollToRow('nestle')">
       <div class="pin-line"></div>
+      <div class="pin-label">Nestlé / KitKat</div>
+      <div class="pin-score">5R · 2Y · 0G</div>
     </div>
+  </div>
+  <div class="spectrum-legend">
+    <span class="legend-item green">← Most transparent</span>
+    <span class="legend-item red">Least transparent →</span>
+  </div>
+</section>
+
+<!-- COCOA SOURCING BAR -->
+<section class="cocoa-section">
+  <div class="section-label">Cocoa Sourcing Transparency</div>
+  <div class="cocoa-bar-grid">
+    <div class="cocoa-row">
+      <span class="cocoa-brand">Tony's Chocolonely</span>
+      <div class="cocoa-track"><div class="cocoa-fill green" style="width:98%"></div></div>
+      <span class="cocoa-status" style="color:var(--green)">100% traceable + CLMRS</span>
+    </div>
+    <div class="cocoa-row">
+      <span class="cocoa-brand">Hu</span>
+      <div class="cocoa-track"><div class="cocoa-fill yellow" style="width:60%"></div></div>
+      <span class="cocoa-status" style="color:var(--yellow)">Fairtrade, mass balance</span>
+    </div>
+    <div class="cocoa-row">
+      <span class="cocoa-brand">Lily's</span>
+      <div class="cocoa-track"><div class="cocoa-fill yellow" style="width:40%"></div></div>
+      <span class="cocoa-status" style="color:var(--yellow)">Fair Trade USA certified</span>
+    </div>
+    <div class="cocoa-row">
+      <span class="cocoa-brand">Hershey's</span>
+      <div class="cocoa-track"><div class="cocoa-fill red" style="width:18%"></div></div>
+      <span class="cocoa-status" style="color:var(--red)">~80% "certified" (mass balance)</span>
+    </div>
+    <div class="cocoa-row">
+      <span class="cocoa-brand">Nestlé / KitKat</span>
+      <div class="cocoa-track"><div class="cocoa-fill red" style="width:20%"></div></div>
+      <span class="cocoa-status" style="color:var(--red)">Rainforest Alliance mass balance</span>
+    </div>
+  </div>
+  <div class="cocoa-ref">
+    <div class="cocoa-ref-item"><span>100% traceable</span> — every bean tracked to a specific farm or cooperative. Tony's is the only major consumer chocolate brand at this level.</div>
+    <div class="cocoa-ref-item"><span>Mass balance certified</span> — company purchases a volume of certified cocoa equal to what it uses, but the actual beans in the product may not be certified. Legal, common, and not the same as traceability.</div>
+    <div class="cocoa-ref-item"><span>CLMRS</span> — Child Labor Monitoring and Remediation System. Developed by ILO/ICI; Tony's publishes full data annually including cases found, cases remediated, and child labor rate in its monitored supply chain.</div>
+  </div>
+</section>
+
+<!-- FILTER -->
+<section class="filter-section">
+  <span class="filter-label">Filter</span>
+  <button class="filter-chip active" data-filter="all">All</button>
+  <button class="filter-chip" data-filter="green">Green</button>
+  <button class="filter-chip" data-filter="yellow">Yellow</button>
+  <button class="filter-chip" data-filter="red">Red</button>
+  <button class="filter-chip" data-filter="independent">Independent</button>
+  <button class="filter-chip" data-filter="conglomerate">Conglomerate</button>
+  <button class="filter-chip" data-filter="traceable">Traceable Cocoa</button>
+  <span class="filter-count" id="filter-count">5 of 5</span>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="table-section">
+  <table>
+    <thead>
+      <tr class="th-row">
+        <th>Brand</th>
+        <th>Ownership</th>
+        <th>Cocoa Sourcing</th>
+        <th>Ingredients</th>
+        <th>Certifications</th>
+        <th>Labeling</th>
+        <th>Labor Record</th>
+        <th>Price</th>
+        <th>Zone</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- TONY'S CHOCOLONELY -->
+      <tr class="brand-row" id="row-tonys"
+          data-zone="green" data-independent="true" data-conglomerate="false" data-traceable="true"
+          data-brand="tonys" onclick="toggleQuickCheck('tonys')">
+        <td class="td-brand">
+          <div class="td-brand-name">Tony's Chocolonely</div>
+          <div class="td-brand-sub">Dark, Milk, White Chocolate</div>
+          <div class="td-brand-owner">Independent — Verlinvest, Jam Jar investors; Mission Lock 2023</div>
+        </td>
+        <td class="td-cell"><span class="t-pill green">Mission-Locked</span></td>
+        <td class="td-cell">
+          <span style="font-family:var(--font-mono);font-size:11px;color:var(--green)">100% traceable</span>
+          <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);display:block;margin-top:2px">Bean-to-bar, farm-level</span>
+        </td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Simple, disclosed</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">B Corp · Fairtrade</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">No misleading claims</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--green);margin-top:2px;display:block;">10.5% vs 46.7% avg</span></td>
+        <td class="td-cell">
+          <span class="t-price">~$5–6</span>
+          <span class="t-price-sub">per 180–240g bar</span>
+        </td>
+        <td class="td-cell"><span class="t-pill green">Green</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-tonys">
+        <td class="expand-cell" colspan="9">
+          <div class="quick-check">
+            <div class="qc-block">
+              <div class="qc-label">Formula</div>
+              <div class="qc-value"><strong>Cocoa mass, cocoa butter, sugar, whole milk powder (milk chocolate variants).</strong> Short, clean ingredient lists. No lecithin (unlike most chocolate which uses soy or sunflower lecithin as emulsifier). Dark chocolate: just 3 ingredients.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Owner</div>
+              <div class="qc-value"><strong>Independent — investors include Verlinvest and Jam Jar.</strong> In June 2023, Tony's created the Mission Lock: an independent legal structure with a golden share that can prevent any changes to the company's mission, five sourcing principles, or senior leadership obligations — regardless of future shareholder changes. The first structure of its kind in the industry.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Strengths</div>
+              <div class="qc-highlight">
+                <span class="pos">✓ 100% bean-to-bar traceable cocoa, farm-level</span><br>
+                <span class="pos">✓ CLMRS active in supply chain — publishes exact child labor rates</span><br>
+                <span class="pos">✓ Pays above Fairtrade price + 5-year minimum contracts with farmers</span><br>
+                <span class="pos">✓ B Corp score 125/100 (median company: 50.9)</span><br>
+                <span class="neu">○ Revenue ~€150M — still a fraction of Hershey/Nestlé scale</span>
+              </div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Finding</div>
+              <div class="qc-value">Tony's is the category benchmark for the same reason DripDrop is the electrolyte benchmark: it built a transparent supply chain infrastructure instead of buying credentials. The Mission Lock is structurally unprecedented — it makes the mission legally irrevocable regardless of who owns the company in the future. <strong>This is what supply chain accountability looks like.</strong></div>
+            </div>
+            <div class="qc-cta">
+              <a href="#" class="qc-link">Full Report →</a>
+              <button class="qc-close" onclick="toggleQuickCheck('tonys'); event.stopPropagation();">Close ×</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- HU -->
+      <tr class="brand-row" id="row-hu"
+          data-zone="yellow" data-independent="false" data-conglomerate="true" data-traceable="true"
+          data-brand="hu" onclick="toggleQuickCheck('hu')">
+        <td class="td-brand">
+          <div class="td-brand-name">Hu</div>
+          <div class="td-brand-sub">"Get Back to Human" Chocolate</div>
+          <div class="td-brand-owner">Mondelēz International — acquired January 2021 (~$340M)</div>
+        </td>
+        <td class="td-cell"><span class="t-pill yellow">Mondelēz</span></td>
+        <td class="td-cell">
+          <span style="font-family:var(--font-mono);font-size:11px;color:var(--yellow)">Fairtrade (mass balance)</span>
+          <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);display:block;margin-top:2px">Organic + Fair Trade certified</span>
+        </td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">3 ingredients, Ultrasimple™</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">USDA Organic · Fairtrade</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Honest label</span></td>
+        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--yellow);margin-top:2px;display:block;">Mondelēz Cocoa Life</span></td>
+        <td class="td-cell">
+          <span class="t-price">~$4–5</span>
+          <span class="t-price-sub">per 2.1oz bar</span>
+        </td>
+        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-hu">
+        <td class="expand-cell" colspan="9">
+          <div class="quick-check">
+            <div class="qc-block">
+              <div class="qc-label">Formula</div>
+              <div class="qc-value"><strong>Organic cacao, unrefined coconut sugar, organic cocoa butter.</strong> Three ingredients. No lecithin, no refined sugar, no palm oil, no emulsifiers. No PGPR (compare to Hershey's classic bars). "Ultrasimple™" guardrails have remained intact post-Mondelēz acquisition through 2025.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Owner</div>
+              <div class="qc-value"><strong>Mondelēz International (NASDAQ: MDLZ)</strong> — maker of Oreo, Cadbury, Toblerone, Ritz. Took minority stake 2019 via SnackFutures venture hub. Full acquisition closed Jan 4, 2021 at ~$340M. This is the same company whose Cocoa Life program covers only ~45% of its cocoa. Hu operates as a separate business within Mondelēz North America Ventures.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Watch Conditions</div>
+              <div class="qc-highlight">
+                <span class="pos">✓ Formula held clean post-acquisition (2021–2025)</span><br>
+                <span class="pos">✓ USDA Organic, Fairtrade — certifications real</span><br>
+                <span class="neg">✗ Mondelēz owns Oreo, Cadbury — conflict of interest is structural</span><br>
+                <span class="neg">✗ Mondelēz Cocoa Life covers only ~45% of their total cocoa</span><br>
+                <span class="neu">○ Fairtrade certification is mass balance, not traceable to specific farms</span>
+              </div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Finding</div>
+              <div class="qc-value">Hu's ingredient story is genuinely excellent — 3 ingredients, organic, no emulsifiers, no refined sugar. The conflict is structural: Mondelēz acquired a premium clean-label brand while continuing to operate Cadbury and Oreo with entirely different sourcing standards. <strong>The formula integrity watch condition is real: Mondelēz has incentive to quietly reduce coconut sugar and add lecithin as cocoa prices rise.</strong></div>
+            </div>
+            <div class="qc-cta">
+              <a href="#" class="qc-link">Full Report →</a>
+              <button class="qc-close" onclick="toggleQuickCheck('hu'); event.stopPropagation();">Close ×</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- LILY'S -->
+      <tr class="brand-row" id="row-lilys"
+          data-zone="red" data-independent="false" data-conglomerate="true" data-traceable="false"
+          data-brand="lilys" onclick="toggleQuickCheck('lilys')">
+        <td class="td-brand">
+          <div class="td-brand-name">Lily's</div>
+          <div class="td-brand-sub">"Stevia Sweetened" Chocolate</div>
+          <div class="td-brand-owner">The Hershey Company — acquired June 2021 ($425M)</div>
+        </td>
+        <td class="td-cell"><span class="t-pill red">Hershey</span></td>
+        <td class="td-cell">
+          <span style="font-family:var(--font-mono);font-size:11px;color:var(--yellow)">Fair Trade USA</span>
+          <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);display:block;margin-top:2px">Certified, not traceable</span>
+        </td>
+        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--yellow);margin-top:2px;display:block;">Short list, erythritol</span></td>
+        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--yellow);margin-top:2px;display:block;">Fair Trade · Non-GMO</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--red);margin-top:2px;display:block;">Active class action</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Hershey supply chain</span></td>
+        <td class="td-cell">
+          <span class="t-price">~$4–5</span>
+          <span class="t-price-sub">per 2.8–3oz bar</span>
+        </td>
+        <td class="td-cell"><span class="t-pill red">Red</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-lilys">
+        <td class="expand-cell" colspan="9">
+          <div class="quick-check">
+            <div class="qc-block">
+              <div class="qc-label">The Lawsuit</div>
+              <div class="qc-value"><strong>Active class action (2024): Loza, Hall & Rivera v. The Hershey Company.</strong> Front labels read "Stevia Sweetened" and "No Sugar Added." Complaint alleges the primary, predominant sweetener is actually erythritol — a sugar alcohol — not stevia. Stevia appears near the end of the ingredient list. Erythritol appears second, by weight. Consumers paid a price premium believing they were getting a stevia-sweetened product.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Ingredients</div>
+              <div class="qc-value"><strong>Unsweetened chocolate, erythritol, inulin, stevia extract, sunflower lecithin, vanilla.</strong> Erythritol is listed before stevia — meaning it's present in higher quantity. Erythritol is a fermented sugar alcohol (typically from corn); stevia is a plant extract. Erythritol has been linked in 2023 Cleveland Clinic research to elevated cardiovascular risk markers at the doses found in processed foods.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Watch Conditions</div>
+              <div class="qc-highlight">
+                <span class="neg">✗ "Stevia Sweetened" front label when primary sweetener is erythritol by weight</span><br>
+                <span class="neg">✗ Active class action — consumer harm claim, not just technical labeling dispute</span><br>
+                <span class="neg">✗ Owned by Hershey — same company reformulating Reese's (Brad Reese controversy, Feb 2026)</span><br>
+                <span class="neu">○ Fair Trade USA certified — real but not fully traceable</span><br>
+                <span class="pos">✓ Short ingredient list; no artificial colors; original formula from 2012 founder still intact</span>
+              </div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Finding</div>
+              <div class="qc-value">Lily's is the Reese's story on a smaller scale: a health-halo brand acquired by Hershey, with label claims that appear to misrepresent the primary sweetener to consumers willing to pay a premium for stevia. <strong>The "Stevia Sweetened" claim is front-of-pack, prominent, and — according to the active lawsuit — factually misleading.</strong> Same ownership pattern, same transparency gap.</div>
+            </div>
+            <div class="qc-cta">
+              <a href="#" class="qc-link">Full Report →</a>
+              <button class="qc-close" onclick="toggleQuickCheck('lilys'); event.stopPropagation();">Close ×</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- HERSHEY'S -->
+      <tr class="brand-row" id="row-hersheys"
+          data-zone="red" data-independent="false" data-conglomerate="true" data-traceable="false"
+          data-brand="hersheys" onclick="toggleQuickCheck('hersheys')">
+        <td class="td-brand">
+          <div class="td-brand-name">Hershey's</div>
+          <div class="td-brand-sub">Milk Chocolate / Special Dark</div>
+          <div class="td-brand-owner">The Hershey Company (Hershey Trust voting control) · $11.7B revenue</div>
+        </td>
+        <td class="td-cell"><span class="t-pill red">Hershey Trust</span></td>
+        <td class="td-cell">
+          <span style="font-family:var(--font-mono);font-size:11px;color:var(--red)">~80% "certified"</span>
+          <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);display:block;margin-top:2px">Mass balance, not traceable</span>
+        </td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--red);margin-top:2px;display:block;">PGPR, TBHQ added</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">No B Corp, no NSF</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--red);margin-top:2px;display:block;">Compound coating issue</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">2001 pledges unmet</span></td>
+        <td class="td-cell">
+          <span class="t-price">~$2–3</span>
+          <span class="t-price-sub">per 1.55oz bar</span>
+        </td>
+        <td class="td-cell"><span class="t-pill red">Red</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-hersheys">
+        <td class="expand-cell" colspan="9">
+          <div class="quick-check">
+            <div class="qc-block">
+              <div class="qc-label">Formula Concerns</div>
+              <div class="qc-value"><strong>Classic Milk Chocolate (1.55oz): Sugar, Milk, Chocolate, Cocoa Butter, Milkfat, Lecithin (Soy), PGPR, Vanillin.</strong> PGPR (polyglycerol polyricinoleate) is a castor oil emulsifier added to replace cocoa butter — reduces cost. TBHQ (tert-butylhydroquinone) is a synthetic preservative. Both absent from H.B. Reese's original 1928 formula. CFO confirmed "recipe adjustments" to investors during 2024 cocoa price crisis. Brad Reese went public Feb 2026 alleging compound coating substitution in line extensions.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Ownership</div>
+              <div class="qc-value"><strong>Hershey Trust Company holds majority voting power</strong> — a philanthropic trust funding Milton Hershey School. Unusual structure: blocks market accountability (blocked Mondelēz $23B acquisition in 2016) but also blocks conventional shareholder pressure. Gross margins collapsed from 47.3% to 33.5% in 2024 due to cocoa price spike. Now explicitly treating reformulation as a margin-recovery strategy.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Gaps</div>
+              <div class="qc-highlight">
+                <span class="neg">✗ PGPR reduces cocoa butter requirement — cost optimization in formula since 2006</span><br>
+                <span class="neg">✗ TBHQ synthetic preservative, banned at Whole Foods</span><br>
+                <span class="neg">✗ "Milk chocolate" vs "chocolate candy" split across Reese's line — legal but deceptive</span><br>
+                <span class="neg">✗ 2001 child labor pledges broken through 4 deadline extensions</span><br>
+                <span class="neg">✗ ~80% "certified" cocoa = mass balance credits, not traceable supply chain</span>
+              </div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Finding</div>
+              <div class="qc-value">Hershey is navigating a margin crisis and a legacy formula crisis simultaneously — and handling both poorly from a transparency perspective. Reformulation is being communicated to investors and concealed from consumers. Child labor commitments have been extended four times in 24 years. <strong>The gap between what Hershey tells Wall Street and what it tells Main Street is the product.</strong> See full Reese's/Hershey Deep Trace for complete analysis.</div>
+            </div>
+            <div class="qc-cta">
+              <a href="#" class="qc-link">Deep Trace: Reese's / Hershey →</a>
+              <button class="qc-close" onclick="toggleQuickCheck('hersheys'); event.stopPropagation();">Close ×</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- NESTLÉ -->
+      <tr class="brand-row" id="row-nestle"
+          data-zone="red" data-independent="false" data-conglomerate="true" data-traceable="false"
+          data-brand="nestle" onclick="toggleQuickCheck('nestle')">
+        <td class="td-brand">
+          <div class="td-brand-name">Nestlé</div>
+          <div class="td-brand-sub">KitKat, Toll House, Crunch, Butterfinger</div>
+          <div class="td-brand-owner">Nestlé S.A. (SIX: NESN) — CHF 92B revenue (2024) · largest food company by revenue</div>
+        </td>
+        <td class="td-cell"><span class="t-pill red">Mega-Corp</span></td>
+        <td class="td-cell">
+          <span style="font-family:var(--font-mono);font-size:11px;color:var(--red)">Rainforest Alliance</span>
+          <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);display:block;margin-top:2px">Mass balance, not traceable</span>
+        </td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Additive-heavy</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Rainforest Alliance (mass balance)</span></td>
+        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--yellow);margin-top:2px;display:block;">Cocoa Plan disclosed</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Pledges broken since 2001</span></td>
+        <td class="td-cell">
+          <span class="t-price">~$1–2</span>
+          <span class="t-price-sub">per standard bar</span>
+        </td>
+        <td class="td-cell"><span class="t-pill red">Red</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-nestle">
+        <td class="expand-cell" colspan="9">
+          <div class="quick-check">
+            <div class="qc-block">
+              <div class="qc-label">The Pledge Record</div>
+              <div class="qc-value"><strong>2001:</strong> Nestlé, Hershey, Mars and other companies signed the Harkin-Engel Protocol — a voluntary pledge to eliminate child labor in West African cocoa by 2005. It was not met. <strong>2008:</strong> Extended to 2010. Not met. <strong>2010:</strong> Reduced ambition + extended to 2020. Not met. <strong>2018:</strong> Extended to 2025. Appears unlikely to be met. <strong>Current pledge:</strong> 2030. An estimated 1.56 million children still working in West African cocoa fields as of 2022.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">The "Mass Balance" Problem</div>
+              <div class="qc-value"><strong>Rainforest Alliance "mass balance" certification</strong> allows Nestlé to claim its chocolate uses certified cocoa while the actual beans in a given product may not be certified. The company purchases a volume of certified cocoa equivalent to what it uses — but the beans are fungible in the supply chain. Nestlé Cocoa Plan covers 298,000+ tons and 180,000+ farmers, but supply chain traceability to the farm level is not yet universal.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Gaps</div>
+              <div class="qc-highlight">
+                <span class="neg">✗ 24 years of broken child labor pledges</span><br>
+                <span class="neg">✗ Rainforest Alliance mass balance ≠ traceable cocoa</span><br>
+                <span class="neg">✗ 1.56M children still in cocoa supply chains industry-wide</span><br>
+                <span class="neg">✗ Dropped "chocolate" labeling from UK products (Toffee Crisp, Blue Riband) Dec 2025 after reformulation below minimum cocoa threshold</span><br>
+                <span class="neu">○ Nestlé Cocoa Plan is the most transparent of the Big Three — at least they publish data</span>
+              </div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Finding</div>
+              <div class="qc-value">Nestlé is the most documented example of the industry's structural failure: large-scale investment in supply chain improvement programs that do not keep pace with the scale of the problem. The Cocoa Plan is real and better than nothing. The gap between Nestlé's narrative ("we're committed to change") and the documented reality (1.56M children still in supply chains, 24 years of broken pledges) is the finding. <strong>Mass balance certification is the industry's mechanism for claiming accountability without delivering traceability.</strong></div>
+            </div>
+            <div class="qc-cta">
+              <a href="#" class="qc-link">Full Report →</a>
+              <button class="qc-close" onclick="toggleQuickCheck('nestle'); event.stopPropagation();">Close ×</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</section>
+
+<!-- NARRATIVE PROFILE CARDS -->
+<section class="profiles-section">
+  <div class="section-label">Full Profiles</div>
+  <div class="profiles-grid" id="profiles-grid">
+
+    <!-- Tony's -->
+    <a class="profile-card zone-green" href="#"
+       data-zone="green" data-independent="true" data-traceable="true">
+      <span class="pc-zone-label green">Green — Category Benchmark</span>
+      <div class="pc-name">Tony's Chocolonely</div>
+      <div class="pc-sub">Mission-Locked Impact Company</div>
+      <p class="pc-verdict">Founded 2005 by Dutch journalists who discovered chocolate companies buying cocoa from child-labor farms. Built a 100% traceable supply chain from scratch — farm-level CLMRS monitoring, five-year farmer contracts, above-Fairtrade pricing. Child labor rate in their supply chain: 10.5%, versus a 46.7% industry average. In 2023, created the Mission Lock: a legally irrevocable governance structure that protects the mission regardless of future ownership. The first of its kind in the industry.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Hu -->
+    <a class="profile-card zone-yellow" href="#"
+       data-zone="yellow" data-independent="false" data-traceable="true">
+      <span class="pc-zone-label yellow">Yellow — Acquisition Watch</span>
+      <div class="pc-name">Hu</div>
+      <div class="pc-sub">"Get Back to Human"</div>
+      <p class="pc-verdict">The cleanest ingredient story in mainstream premium chocolate: three ingredients, organic cacao, unrefined coconut sugar, organic cocoa butter — no lecithin, no palm oil, no refined sugar. Bootstrapped for nine years before taking any outside money. Formula has held clean post-Mondelēz acquisition (2021–2025). But Mondelēz also makes Oreo, Cadbury, and Toblerone — and its own Cocoa Life program covers only ~45% of its total cocoa. The conflict of interest is structural. Watch the formula.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot green"></div><div class="pc-dot green"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2012</div><div class="acq-label found">Founded — "Get Back to Human"</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2021</div><div class="acq-label acq">Acquired — Mondelēz International</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- Lily's -->
+    <a class="profile-card zone-red" href="#"
+       data-zone="red" data-independent="false" data-traceable="false">
+      <span class="pc-zone-label red">Red — Active Labeling Lawsuit</span>
+      <div class="pc-name">Lily's</div>
+      <div class="pc-sub">"Stevia Sweetened" Chocolate</div>
+      <p class="pc-verdict">Founded 2012 by Cynthia Tice as a genuinely sugar-free alternative for diabetics and keto eaters. Acquired by Hershey for $425M in 2021. An active 2024 class action alleges that despite the "Stevia Sweetened" front-of-pack claim, the primary sweetener by weight is erythritol — a corn-fermented sugar alcohol with no stevia health halo. Erythritol appears second in the ingredient list; stevia appears near the end. Consumers paying a premium for stevia may be getting something fundamentally different.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot green"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2012</div><div class="acq-label found">Founded — sugar-free for diabetics/keto</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2021</div><div class="acq-label acq">Acquired — Hershey Company ($425M)</div></div>
+<div class="acq-node"><div class="acq-dot warn"></div><div class="acq-year">2024</div><div class="acq-label warn">Class action — undisclosed erythritol claims</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- Hershey's -->
+    <a class="profile-card zone-red" href="#"
+       data-zone="red" data-independent="false" data-traceable="false">
+      <span class="pc-zone-label red">Red — Reformulation + Labor Gap</span>
+      <div class="pc-name">Hershey's</div>
+      <div class="pc-sub">Classic Milk Chocolate</div>
+      <p class="pc-verdict">PGPR (castor oil emulsifier replacing cocoa butter) added in 2006 — 18 years before the cocoa price crisis. TBHQ (synthetic preservative, banned at Whole Foods) in the formula. CFO confirmed "recipe adjustments" to investors in 2024; consumers got no disclosure. Brad Reese (grandson of H.B. Reese) publicly accused the company in February 2026 of replacing milk chocolate with compound coating across Reese's line extensions. Hershey Trust governance structure insulates the company from conventional market accountability. Four child labor pledge extensions since 2001.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">1894</div><div class="acq-label found">Founded</div></div>
+<div class="acq-node"><div class="acq-dot warn"></div><div class="acq-year">2006</div><div class="acq-label warn">PGPR added — cocoa butter partially replaced</div></div>
+<div class="acq-node"><div class="acq-dot warn"></div><div class="acq-year">2024</div><div class="acq-label warn">CFO sold $2.5M stock ahead of earnings miss</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- Nestlé -->
+    <a class="profile-card zone-red" href="#"
+       data-zone="red" data-independent="false" data-traceable="false">
+      <span class="pc-zone-label red">Red — 24 Years of Broken Pledges</span>
+      <div class="pc-name">Nestlé</div>
+      <div class="pc-sub">KitKat · Toll House · Crunch · Butterfinger</div>
+      <p class="pc-verdict">The largest food company by revenue. The Nestlé Cocoa Plan is the industry's most documented supply chain improvement effort — and it still hasn't solved the problem. An estimated 1.56 million children remain in West African cocoa supply chains. Rainforest Alliance "mass balance" certification means Nestlé buys equivalent volumes of certified cocoa, not that the beans in a given bar are certified. In December 2025, Nestlé dropped "chocolate" labeling from UK products including Toffee Crisp after reformulation reduced cocoa content below the legal 20% minimum.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- EDITORIAL CONTEXT -->
+<section class="context-section">
+  <div class="context-block">
+    <div class="context-block-label">What We Found</div>
+    <div class="context-body">
+      <p>The chocolate category has a transparency problem that is older, more documented, and more structural than any supplement category Traced has reviewed. Hershey, Nestlé, and Mars jointly signed the Harkin-Engel Protocol in 2001 — a voluntary pledge to eliminate the worst forms of child labor in West African cocoa by 2005. That deadline passed. It was extended to 2010. Then 2020. Now 2025. Now 2030. An estimated 1.56 million children remain in cocoa-growing supply chains. The industry has spent 24 years extending promises instead of meeting them.</p>
+      <p>The mechanism that allows this to continue is "mass balance" certification. Rainforest Alliance and Fair Trade allow companies to purchase a volume of certified cocoa equivalent to what they use, without requiring that the actual beans in a given product come from certified farms. This is legally compliant. It is not what most consumers understand when they see a Rainforest Alliance leaf on a chocolate bar. Tony's Chocolonely has been making this distinction loudly since 2005 — and publishing the receipts.</p>
+      <p>The ingredients story runs parallel. <strong>PGPR was added to Hershey's formulas in 2006</strong> — 18 years before the cocoa crisis that would make cost-reduction rational — as routine margin management. The same castor oil emulsifier that reduces cocoa butter requirement is in the bar you buy today. The same bar that costs twice what it did before the cocoa price spike. Reformulation as a strategy predates every external justification being offered for it now.</p>
+      <p>Hu represents the most interesting case in the category: a brand that built its entire identity around ingredient simplicity, held independent for nine years specifically to protect that identity, and then sold to Mondelēz — the maker of Oreo and Cadbury — for $340M. The formula has held clean through 2025. The structural conflict has not resolved. Watching what happens to Hu's ingredients over the next five years may be the most legible real-time test of whether conglomerate acquisition destroys clean-label brands.</p>
+    </div>
+  </div>
+  <div class="context-block">
+    <div class="context-block-label">How to Read This Category</div>
+    <ul class="context-list">
+      <li><strong>"Rainforest Alliance Certified" ≠ traceable cocoa.</strong> Mass balance certification means the company buys certified cocoa by volume equivalent, not that specific beans in your bar are certified. Tony's is the only major consumer brand with full farm-level traceability. This distinction is not disclosed on packaging.</li>
+      <li><strong>"Stevia Sweetened" is a label claim worth reading through.</strong> Ingredient lists are by weight, descending. On Lily's products, erythritol appears second; stevia appears near the end. An active class action filed in 2024 argues consumers paid a stevia premium for an erythritol-dominant product.</li>
+      <li><strong>Cocoa content minimum thresholds are jurisdiction-specific.</strong> In the EU and UK, "chocolate" requires minimum 20% cocoa solids. In the US, FDA standards are slightly different. Hershey's "chocolate candy" language on some Reese's products, and Nestlé dropping "chocolate" from UK Toffee Crisp in December 2025 — these are both symptoms of formula pressure reaching labeling thresholds.</li>
+      <li><strong>PGPR is the emulsifier tell.</strong> Lecithin (soy or sunflower) is a benign emulsifier used in most quality chocolate. PGPR (polyglycerol polyricinoleate) is a cheaper alternative that specifically reduces cocoa butter requirement. Its presence in a formula is a direct cost-reduction signal, not a functional improvement.</li>
+      <li><strong>Mission Lock is a new structural model worth understanding.</strong> Tony's created a legally irrevocable governance mechanism in 2023: an independent entity with a golden share that can block any changes to the company's mission or sourcing principles, regardless of who owns the shares. Patagonia used a similar concept. If this model spreads, it becomes the clearest way to distinguish mission-led from mission-washed.</li>
+      <li><strong>The conglomerate acquisition pattern is consistent.</strong> Hu (Mondelēz), Lily's (Hershey), Nuun (Nestlé), Liquid IV (Unilever), Bloom (Nutrabolt/Keurig Dr Pepper) — premium health-positioned brands acquired by companies with fundamentally different supply chain and ingredient standards. Formula integrity post-acquisition is the watch condition for all of them.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  <span class="footer-logo">Traced</span>
+  <span class="footer-note">Chocolate category — 5 profiles across 7 dimensions. Last reviewed February 2026. More profiles added as research is completed.</span>
+</footer>
+
+<script>
+/* ── QUICK CHECK TOGGLE ── */
+function toggleQuickCheck(brand) {
+  const expandRow = document.getElementById('expand-' + brand);
+  const isOpen = expandRow.classList.contains('open');
+  document.querySelectorAll('.expand-row.open').forEach(r => r.classList.remove('open'));
+  if (!isOpen) expandRow.classList.add('open');
+}
+
+function scrollToRow(brand) {
+  const row = document.getElementById('row-' + brand);
+  if (row) {
+    row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => toggleQuickCheck(brand), 400);
+  }
+}
+
+/* ── FILTER CHIPS ── */
+const chips = document.querySelectorAll('.filter-chip');
+const rows = document.querySelectorAll('.brand-row');
+
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    const filter = chip.dataset.filter;
+    let visible = 0;
+    rows.forEach(row => {
+      document.querySelectorAll('.expand-row').forEach(r => r.classList.remove('open'));
+      let show = false;
+      if (filter === 'all') show = true;
+      else if (filter === 'green') show = row.dataset.zone === 'green';
+      else if (filter === 'yellow') show = row.dataset.zone === 'yellow';
+      else if (filter === 'red') show = row.dataset.zone === 'red';
+      else if (filter === 'independent') show = row.dataset.independent === 'true';
+      else if (filter === 'conglomerate') show = row.dataset.conglomerate === 'true';
+      else if (filter === 'traceable') show = row.dataset.traceable === 'true';
+      row.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    document.getElementById('filter-count').textContent = visible + ' of 5';
+  });
+});
+</script>
+</body>
+</html>

@@ -728,45 +728,91 @@
     }
 
     /* ── WHAT TO LOOK FOR ── */
-    @media (max-width: 900px) {
+    .wtlf-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 64px 40px 0;
     }
-  
-    /* ── ACCORDION STYLES ── */
-    .wtlf-grid { display: flex; flex-direction: column; gap: 2px; }
-    .wtlf-card { background: var(--bg-card, #111009); border: 1px solid var(--border, #232018); border-radius: 3px; overflow: hidden; padding: 0; }
-    .wtlf-card-head {
-      display: flex; align-items: center; gap: 12px;
-      padding: 14px 18px;
-      cursor: pointer;
-      user-select: none;
+    .wtlf-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .wtlf-eyebrow {
+      font-family: var(--font-mono, 'DM Mono', monospace);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber, #c8943a);
+      flex-shrink: 0;
+    }
+    .wtlf-rule { flex: 1; height: 1px; background: var(--border, #232018); }
+    .wtlf-title {
+      font-family: var(--font-display, 'Playfair Display', serif);
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--text, #ede9e0);
+      margin-bottom: 36px;
+    }
+    .wtlf-title em { font-style: italic; color: var(--amber, #c8943a); }
+    .wtlf-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border, #232018);
+      border: 1px solid var(--border, #232018);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .wtlf-card {
+      background: var(--bg-card, #111009);
+      padding: 22px 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
       transition: background 0.15s;
     }
-    .wtlf-card-head:hover { background: rgba(255,255,255,0.02); }
-    .wtlf-icon { font-size: 16px; flex-shrink: 0; }
+    .wtlf-card:hover { background: var(--bg-hover, #161410); }
+    .wtlf-signal {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .wtlf-icon {
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      width: 18px;
+      text-align: center;
+    }
     .wtlf-signal-label { font-size: 17px; font-weight: 600; color: var(--text, #ede9e0); line-height: 1.3; flex: 1; }
+    .wtlf-signal-body {
+      font-size: 12.5px;
+      font-weight: 300;
+      color: var(--text-muted, #9a9284);
+      line-height: 1.65;
+    }
     .wtlf-flag {
-      font-family: var(--font-mono, 'DM Mono', monospace); font-size: 9px; letter-spacing: 0.08em;
-      padding: 3px 8px; border-radius: 2px; white-space: nowrap; flex-shrink: 0;
+      display: inline-block;
+      margin-top: 6px;
+      font-family: var(--font-mono, 'DM Mono', monospace);
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 2px;
     }
-    .wtlf-flag.red   { color: var(--red, #c94d3c); background: rgba(201,77,60,0.08); border: 1px solid rgba(201,77,60,0.2); }
-    .wtlf-flag.amber { color: var(--amber, #c8943a); background: rgba(200,148,58,0.08); border: 1px solid rgba(200,148,58,0.2); }
-    .wtlf-flag.yellow{ color: var(--yellow, #d4a84b); background: rgba(212,168,75,0.08); border: 1px solid rgba(212,168,75,0.2); }
-    .wtlf-flag.green { color: var(--green, #4e9b6f); background: rgba(78,155,111,0.08); border: 1px solid rgba(78,155,111,0.2); }
-    .wtlf-chevron { font-size: 10px; color: var(--text-muted, #9a9284); flex-shrink: 0; transition: transform 0.2s; }
-    .wtlf-card.open .wtlf-chevron { transform: rotate(180deg); }
-    .wtlf-body {
-      display: none;
-      padding: 0 18px 14px 46px;
-      border-top: 1px solid var(--border, #232018);
+    .wtlf-flag.red   { color: var(--red, #c94d3c);    background: rgba(201,77,60,0.08);   border: 1px solid rgba(201,77,60,0.2); }
+    .wtlf-flag.yellow{ color: var(--yellow, #d4a84b);  background: rgba(212,168,75,0.08);  border: 1px solid rgba(212,168,75,0.2); }
+    .wtlf-flag.amber { color: var(--amber, #c8943a);   background: rgba(200,148,58,0.08);  border: 1px solid rgba(200,148,58,0.2); }
+    .wtlf-flag.green { color: var(--green, #4e9b6f);   background: rgba(78,155,111,0.08);  border: 1px solid rgba(78,155,111,0.2); }
+    @media (max-width: 900px) {
+      .wtlf-section { padding: 40px 20px 0; }
+      .wtlf-grid { grid-template-columns: 1fr; }
     }
-    .wtlf-card.open .wtlf-body { display: block; }
-    .wtlf-bullets { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
-    .wtlf-bullets li {
-      display: flex; align-items: flex-start; gap: 8px;
-      font-size: 12px; font-weight: 300; color: var(--text-muted, #9a9284); line-height: 1.5;
-    }
-    .wtlf-bullets li::before { content: '—'; color: var(--border-strong, #3a3630); flex-shrink: 0; font-size: 11px; line-height: 1.7; }
-    .wtlf-bullets li strong { color: var(--text, #ede9e0); font-weight: 500; }
   </style>
 </head>
 <body>
@@ -987,8 +1033,10 @@
     head.addEventListener('click', function() {
       var card = this.closest('.wtlf-card');
       var isOpen = card.classList.contains('open');
+      // Close all
       document.querySelectorAll('.wtlf-card').forEach(function(c) { c.classList.remove('open'); });
-      if (!isOpen) { card.classList.add('open'); }
+      // Toggle clicked one
+      if (!isOpen) card.classList.add('open');
     });
   });
 </script>
@@ -1029,31 +1077,219 @@
 <section class="profiles-section">
   <div class="section-label">Brand Profiles — 5 Brands Scored</div>
 
-  <!-- QUEST -->
-  <div class="profile-card">
-    <div class="profile-header" onclick="toggleProfile(this)">
-      <div>
-        <div class="acquisition-badge spac">Simply Good Foods (SMPL) · $1B · 2019</div>
-  <!-- KIND -->
-  <div class="profile-card">
-    <div class="profile-header" onclick="toggleProfile(this)">
-      <div>
-        <div class="acquisition-badge conglomerate">Mars, Inc. · ~$5B · 2020</div>
-  <!-- RXBAR -->
-  <div class="profile-card">
-    <div class="profile-header" onclick="toggleProfile(this)">
-      <div>
-        <div class="acquisition-badge conglomerate">Kellogg's · $600M · 2017</div>
-  <!-- CLIF BAR -->
-  <div class="profile-card">
-    <div class="profile-header" onclick="toggleProfile(this)">
-      <div>
-        <div class="acquisition-badge conglomerate">Mondelēz · $2.9B · 2022</div>
   <!-- DAVID -->
   <div class="profile-card">
     <div class="profile-header" onclick="toggleProfile(this)">
       <div>
         <div class="acquisition-badge vc">VC-backed · $75M Series A</div>
+        <div class="profile-name">David</div>
+        <div class="profile-sub">Founded 2024 · Peter Rahal (ex-RXBar founder)</div>
+        <p class="profile-verdict">
+          David is <strong>the investor-endorser conflict in concentrated form.</strong> Peter Attia served as Chief Science Officer and equity investor while endorsing the product to his 2M+ longevity-focused podcast audience — until stepping down in February 2026 without public explanation. Andrew Huberman remains both investor and public endorser. The product's <strong>28g protein claim is technically accurate but structurally misleading</strong>: a meaningful portion derives from collagen, an incomplete protein that cannot substitute for whey, casein, or egg white in muscle protein synthesis. The bar also contains EPG — a novel modified fat with no long-term safety data in humans — and acesulfame potassium, despite early marketing claiming "no artificial sweeteners."
+        </p>
+      </div>
+      <div>
+        <div class="profile-scores">
+          <div class="score-row"><span class="score-dim">Ownership</span><span class="score-pill red">Red</span></div>
+          <div class="score-row"><span class="score-dim">Marketing Alignment</span><span class="score-pill red">Red</span></div>
+          <div class="score-row"><span class="score-dim">Revenue Model</span><span class="score-pill red">Red</span></div>
+          <div class="score-row"><span class="score-dim">Ingredient Integrity</span><span class="score-pill red">Red</span></div>
+          <div class="score-row"><span class="score-dim">Scientific Backing</span><span class="score-pill red">Red</span></div>
+          <div class="score-row"><span class="score-dim">Label Claims</span><span class="score-pill red">Red</span></div>
+          <div class="score-row"><span class="score-dim">Safety Transparency</span><span class="score-pill yellow">Yellow</span></div>
+        </div>
+        <div class="profile-expand" style="margin-top:16px">
+          <span>Full analysis</span><span class="expand-arrow">↓</span>
+        </div>
+      </div>
+    </div>
+    <div class="profile-body">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <div class="detail-label">Ownership & Funding</div>
+          <div class="detail-text">Founded by Peter Rahal (RXBar) and Zach Ranen in 2024. <strong>$10M seed round</strong> led by Rahal with participation from Valor Siren Ventures, Dr. Peter Attia (also Chief Science Officer), and Dr. Andrew Huberman. <strong>$75M Series A</strong> closed May 2025 led by Greenoaks Capital (also an investor in Stripe, Canva, Discord). Company is on track for $100M+ first-year revenue. Attia listed as CSO in December 2025 archived pages; removed from website by February 2026 with no public explanation from the company.</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">The Conflict Structure</div>
+          <div class="detail-text">Both Attia and Huberman held equity in David while serving as primary public voices recommending the product. <strong>Attia's entire brand is built on evidence-based longevity medicine</strong> and dispassionate scientific evaluation. His CSO title and equity stake made independent evaluation of David's claims structurally impossible — and his audience could not distinguish between scientific endorsement and financial self-interest. Huberman's equity relationship follows the same playbook as his AG1 arrangement.</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">The Collagen Protein Problem</div>
+          <div class="detail-text">David's 28g protein comes from a four-protein blend: milk protein isolate, <em>collagen</em>, whey concentrate, and egg white. Collagen is an incomplete protein — it lacks tryptophan, an essential amino acid, and has a lower PDCAAS/DIAAS score for muscle protein synthesis than complete proteins. <strong>The company claims a perfect 1.0 PDCAAS for the blend</strong>, which is technically achievable by combining collagen with complete proteins — but the label does not disclose individual protein ratios, making independent verification impossible.</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">EPG & "No Artificial" Claim</div>
+          <div class="detail-text">David uses <strong>EPG (Epoxidized Propoxylated Glycerol)</strong> — a modified plant fat derived from rapeseed oil that provides 92% fewer calories per gram than conventional fat. EPG is FDA-approved but has minimal long-term human safety data. The bar also contains <em>acesulfame potassium</em> (Ace-K), a synthetic artificial sweetener, despite early marketing claiming the product had no artificial sweeteners. This claim was updated after launch without explicit consumer notification.</div>
+        </div>
+      </div>
+      <div class="callout-box red">
+        <div class="callout-label">Attia Departure — February 2026</div>
+        <div class="callout-text">An archived version of David's website from December 2025 listed Peter Attia as Chief Science Officer. By February 2026, Attia's name, title, and photograph had been removed from the site. Rahal confirmed the departure but offered no explanation. A CSO equity holder who builds a brand on science-backed nutrition, then quietly exits a science-officer role, is a signal worth watching — particularly given the unresolved questions about collagen protein claims and EPG safety data.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RXBAR -->
+  <div class="profile-card">
+    <div class="profile-header" onclick="toggleProfile(this)">
+      <div>
+        <div class="acquisition-badge conglomerate">Kellogg's · $600M · 2017</div>
+        <div class="profile-name">RXBar</div>
+        <div class="profile-sub">Founded 2012 · Acquired by Kellogg's 2017</div>
+        <p class="profile-verdict">
+          RXBar built its brand on a single promise: <strong>radical ingredient transparency</strong>. The front of the package lists the ingredients — "3 Egg Whites, 6 Almonds, 4 Cashews, 2 Dates" — before anything else. In 2017, that brand was acquired by Kellogg's for $600 million. <strong>Kellogg's is the maker of Froot Loops, Pop-Tarts, Frosted Flakes, and Eggo waffles.</strong> The formula has held. The mission has not — it now serves the growth objectives of a company whose core business is the antithesis of what RXBar was built to represent.
+        </p>
+      </div>
+      <div>
+        <div class="profile-scores">
+          <div class="score-row"><span class="score-dim">Ownership</span><span class="score-pill red">Red</span></div>
+          <div class="score-row"><span class="score-dim">Marketing Alignment</span><span class="score-pill red">Red</span></div>
+          <div class="score-row"><span class="score-dim">Revenue Model</span><span class="score-pill yellow">Yellow</span></div>
+          <div class="score-row"><span class="score-dim">Ingredient Integrity</span><span class="score-pill green">Green</span></div>
+          <div class="score-row"><span class="score-dim">Scientific Backing</span><span class="score-pill yellow">Yellow</span></div>
+          <div class="score-row"><span class="score-dim">Label Claims</span><span class="score-pill green">Green</span></div>
+          <div class="score-row"><span class="score-dim">Safety Transparency</span><span class="score-pill yellow">Yellow</span></div>
+        </div>
+        <div class="profile-expand" style="margin-top:16px">
+          <span>Full analysis</span><span class="expand-arrow">↓</span>
+        </div>
+      </div>
+    </div>
+    <div class="profile-body">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <div class="detail-label">Origin & Acquisition</div>
+          <div class="detail-text">Founded in Chicago in 2012 by Peter Rahal and Jared Smith, initially for the CrossFit community. <strong>Whole-food ingredients listed prominently on the front</strong> of the package — a genuinely differentiated transparency move in a category dominated by ingredient-hiding. Kellogg's acquired Chicago Bar Co. (RXBar's parent) for $600M in October 2017. At acquisition, RXBar was on track for ~$120M in annual sales. Founders said publicly: "Nothing is changing."</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">The Mission Contradiction</div>
+          <div class="detail-text">RXBar's founding premise was <em>no BS</em> — no B.S. ingredients, no B.S. labeling, no hiding behind marketing. <strong>Kellogg's business model is built on precisely what RXBar defined itself against</strong>: highly processed products with long ingredient lists, marketed to children, carrying health halos their formulas don't support. RXBar's "No BS" front-of-package claim now exists inside a corporation that has never applied that standard to its core brands. The brand promise is structurally impossible to keep under current ownership.</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">Formula Watch</div>
+          <div class="detail-text">The original formula has been largely maintained post-acquisition. RXBar's ingredient list remains short, whole-food-based, and front-facing. <strong>This is the category's best ingredient integrity score</strong> — and the reason for the yellow revenue model score rather than red. The formula is the only thing holding the brand together. Any change to the ingredient sourcing or processing would complete the acquisition arc. Eight years in, the formula holds. Watch conditions: date sourcing, egg white quality standards, and cost-reduction pressure as Kellogg's (now Kellanova, acquired by Mars in 2024) integrates further.</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">Kellanova — One More Layer</div>
+          <div class="detail-text">In 2024, Kellogg's spun off its cereal business (WK Kellogg) and renamed its snacking division Kellanova. <strong>Mars then acquired Kellanova for $36B in 2024</strong> — making Mars the owner of both KIND and RXBar simultaneously, through different corporate structures. The two brands that defined the "clean bar" category now share the same ultimate parent: the maker of Snickers, M&Ms, and Twix.</div>
+        </div>
+      </div>
+      <div class="callout-box">
+        <div class="callout-label">Mars Owns Both Kind and RXBar</div>
+        <div class="callout-text">The two brands most associated with clean-label protein bar transparency — KIND (acquired by Mars directly in 2020 for $5B) and RXBar (acquired by Kellogg's in 2017, then rolled into Kellanova, then into Mars in 2024 for $36B) — are now both subsidiaries of the same privately held candy conglomerate. Neither brand's packaging reflects this. This is the category's structural condition in a single fact.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIF BAR -->
+  <div class="profile-card">
+    <div class="profile-header" onclick="toggleProfile(this)">
+      <div>
+        <div class="acquisition-badge conglomerate">Mondelēz · $2.9B · 2022</div>
+        <div class="profile-name">Clif Bar</div>
+        <div class="profile-sub">Founded 1992 · Acquired by Mondelēz 2022</div>
+        <p class="profile-verdict">
+          For 30 years, Clif Bar was the category's best argument that independence was possible at scale. Gary Erickson walked away from a $120M buyout offer in 2000, took the company into debt to stay independent, and built a business that reached $1B in revenue without selling. <strong>In 2022, he sold to Mondelēz for $2.9B.</strong> Mondelēz owns Oreo, Cadbury, Ritz, and — through simultaneous acquisitions — Hu chocolate and Grenade performance bars. Clif Bar, the company that once defined itself against everything Mondelēz represents, is now a Mondelēz brand.
+        </p>
+      </div>
+      <div>
+        <div class="profile-scores">
+          <div class="score-row"><span class="score-dim">Ownership</span><span class="score-pill red">Red</span></div>
+          <div class="score-row"><span class="score-dim">Marketing Alignment</span><span class="score-pill red">Red</span></div>
+          <div class="score-row"><span class="score-dim">Revenue Model</span><span class="score-pill yellow">Yellow</span></div>
+          <div class="score-row"><span class="score-dim">Ingredient Integrity</span><span class="score-pill yellow">Yellow</span></div>
+          <div class="score-row"><span class="score-dim">Scientific Backing</span><span class="score-pill yellow">Yellow</span></div>
+          <div class="score-row"><span class="score-dim">Label Claims</span><span class="score-pill red">Red</span></div>
+          <div class="score-row"><span class="score-dim">Safety Transparency</span><span class="score-pill red">Red</span></div>
+        </div>
+        <div class="profile-expand" style="margin-top:16px">
+          <span>Full analysis</span><span class="expand-arrow">↓</span>
+        </div>
+      </div>
+    </div>
+    <div class="profile-body">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <div class="detail-label">The 30-Year Independence Story</div>
+          <div class="detail-text">Erickson literally went into personal debt to avoid selling in 2000, buying out co-founder Lisa Thomas's 50% stake for $60M when she wanted to accept the Quaker Oats offer. He called it "the gamble of the century." He built a mission-first company — <strong>Five Aspirations model</strong> covering people, community, planet, brands, and business — and turned down acquisition offers for three decades. The company reached $1.5B in revenue and launched an employee stock ownership plan in 2010 giving employees 20% equity. When Mondelēz paid $2.9B in 2022, approximately $580M went to employees.</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">Why He Finally Sold</div>
+          <div class="detail-text">The pandemic disrupted impulse-channel sales (gyms, convenience stores). The company laid off 125 people in 2021 — a shock to a culture known for exceptional employee treatment. Erickson clashed with professional management. <strong>Revenue growth had stalled at ~1% CAGR over three years</strong> heading into the sale. The independence story ended not with an ideological surrender but a practical one: the business had stopped growing and the founder was exhausted.</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">Mondelēz Conflict Portfolio</div>
+          <div class="detail-text">Mondelēz acquired Clif Bar (organic energy bars), <strong>Hu chocolate</strong> (clean-label chocolate, 2021), and <strong>Grenade</strong> (UK performance nutrition, 2021) — all simultaneously with continuing to operate Oreo, Cadbury, Chips Ahoy, and Ritz. The company's stated strategy is "reshaping its portfolio toward well-being snacking." Owning both the clean-label brand and the processed-food brand creates the same structural conflict documented in the Hu chocolate profile: two competing standard-sets, one owner, zero incentive to hold the premium standard when margin pressure arrives.</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">Label Claims Under Watch</div>
+          <div class="detail-text">Clif Bar's energy bar formula uses <strong>organic rolled oats and organic brown rice syrup</strong> — a legitimately whole-food base. But the "organic" claim is most prominent on the traditional Clif Bar line. Extended product lines (Clif Kid, Clif Builders, Luna) carry varying ingredient integrity. Brown rice syrup — Clif's primary sweetener — has been flagged in independent research for elevated inorganic arsenic content. No formula changes have been documented post-Mondelēz, but <em>cost-reduction pressure is the watch condition</em>, not current ingredient quality.</div>
+        </div>
+      </div>
+      <div class="callout-box red">
+        <div class="callout-label">The Mondelēz Protein Bar Empire</div>
+        <div class="callout-text">Through its 2021–2022 acquisition spree, Mondelēz assembled a "well-being snacking" portfolio that includes <strong>Clif Bar, Hu chocolate, Grenade, and Perfect Snacks</strong> — while simultaneously owning Oreo, Cadbury, Chips Ahoy, Ritz, Triscuit, and Sour Patch Kids. No consumer looking at a Clif Bar wrapper knows that the same company made the Oreo they ate for dessert. This is the conglomerate acquisition pattern at full scale.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KIND -->
+  <div class="profile-card">
+    <div class="profile-header" onclick="toggleProfile(this)">
+      <div>
+        <div class="acquisition-badge conglomerate">Mars, Inc. · ~$5B · 2020</div>
+        <div class="profile-name">KIND</div>
+        <div class="profile-sub">Founded 2004 · Acquired by Mars 2020</div>
+        <p class="profile-verdict">
+          KIND's origin story is one of the most compelling in American snacking: Daniel Lubetzky, the son of a Holocaust survivor, built a company around the belief that business could be a force for human good. The <strong>KIND Promise</strong> — that the first and predominant ingredient in every product would be a nutrient-dense food — is a genuine, auditable commitment. Mars acquired 40% in 2017, then the remainder for ~$5B in 2020. <strong>Mars also owns Snickers, M&Ms, Twix, Milky Way, and — since 2024 — RXBar</strong>. KIND operates as a distinct subsidiary. The KIND Promise remains in effect. The ownership conflict is structural, not yet operational.
+        </p>
+      </div>
+      <div>
+        <div class="profile-scores">
+          <div class="score-row"><span class="score-dim">Ownership</span><span class="score-pill red">Red</span></div>
+          <div class="score-row"><span class="score-dim">Marketing Alignment</span><span class="score-pill yellow">Yellow</span></div>
+          <div class="score-row"><span class="score-dim">Revenue Model</span><span class="score-pill yellow">Yellow</span></div>
+          <div class="score-row"><span class="score-dim">Ingredient Integrity</span><span class="score-pill yellow">Yellow</span></div>
+          <div class="score-row"><span class="score-dim">Scientific Backing</span><span class="score-pill red">Red</span></div>
+          <div class="score-row"><span class="score-dim">Label Claims</span><span class="score-pill red">Red</span></div>
+          <div class="score-row"><span class="score-dim">Safety Transparency</span><span class="score-pill yellow">Yellow</span></div>
+        </div>
+        <div class="profile-expand" style="margin-top:16px">
+          <span>Full analysis</span><span class="expand-arrow">↓</span>
+        </div>
+      </div>
+    </div>
+    <div class="profile-body">
+      <div class="detail-grid">
+        <div class="detail-block">
+          <div class="detail-label">The KIND Promise — What It Actually Says</div>
+          <div class="detail-text">The KIND Promise specifies that <strong>the first and predominant ingredient in every product must be a nutrient-dense food</strong> — whole nuts, whole grains, or whole fruit. This is a real, auditable commitment and it has held post-acquisition. The original KIND bar's ingredient list leads with almonds, dates, or other whole foods, not refined sugar or isolates. This is the basis for the yellow ingredient integrity score rather than red — the promise is documented, public, and so far maintained.</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">FDA "Healthy" Warning — 2015</div>
+          <div class="detail-text">In 2015 the FDA sent KIND a warning letter requiring removal of the word "healthy" from four bar varieties. The issue: FDA regulations at the time required a "healthy" food to contain 1g or less of saturated fat, but KIND bars — built on whole nuts — have naturally higher saturated fat from the nuts themselves. <strong>KIND challenged the FDA's definition</strong> and the FDA ultimately acknowledged its definition needed updating. KIND was in the right scientifically; the regulatory framing was outdated. But the label claims dimension scores red because FDA scrutiny on claims is a documented risk.</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">Why Lubetzky Sold</div>
+          <div class="detail-text">Lubetzky told the New York Times he needed an international partner to prevent competitors from taking KIND's brand into new markets first. The Mars minority stake in 2017 was framed as a partnership, not a sale. <strong>The full acquisition in 2020 was always structurally likely</strong> — Mars had been granted a right of first acquisition in the original 2017 deal. Lubetzky retains a financial stake and advisory role. He has donated a majority of his proceeds to The KIND Foundation.</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">The Mars Portfolio Conflict</div>
+          <div class="detail-text">Mars operates KIND under a separate business unit with its own leadership. <strong>The candy business and the health business have not visibly contaminated each other's formulas</strong>. But Mars is a privately held company with no public disclosure obligations and no external accountability structure. KIND's formula integrity depends entirely on Mars's internal decision not to apply margin pressure. No Mission Lock, no golden share, no legal protection equivalent to what Tony's Chocolonely built.</div>
+        </div>
+      </div>
+      <div class="callout-box">
+        <div class="callout-label">The Best Acquisition Story — Still Not Enough for Green</div>
+        <div class="callout-text">KIND has the most defensible post-acquisition story in the protein bar category. The KIND Promise is real. Lubetzky remains involved. The formula holds. The FDA dispute was one KIND mostly won. It scores yellow across multiple dimensions — the best outcome in this category — but cannot score green under current ownership. Mars is the world's largest candy company, privately held, with no accountability mechanism to enforce KIND's stated values if financial incentives ever shift.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUEST -->
+  <div class="profile-card">
+    <div class="profile-header" onclick="toggleProfile(this)">
+      <div>
+        <div class="acquisition-badge spac">Simply Good Foods (SMPL) · $1B · 2019</div>
         <div class="profile-name">Quest</div>
         <div class="profile-sub">Founded 2010 · Acquired by Simply Good Foods 2019</div>
         <p class="profile-verdict">
