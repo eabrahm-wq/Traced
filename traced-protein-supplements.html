@@ -231,7 +231,7 @@ html {
 /* brand pins */
 .spectrum-pins {
   position: relative;
-  height: 180px;
+  height: 120px;
 }
 
 .spectrum-pin {
@@ -244,14 +244,7 @@ html {
   cursor: pointer;
   transition: opacity 0.2s;
 }
-.spectrum-pin { opacity: 1; }
 .spectrum-pin:hover { opacity: 1 !important; }
-.pin-label { opacity: 0.2; font-size: 8px; transition: opacity 0.15s, font-size 0.15s; }
-.pin-score { opacity: 0; transition: opacity 0.15s; }
-.spectrum-pin:hover .pin-label { opacity: 1; font-size: 9.5px; }
-.spectrum-pin:hover .pin-score { opacity: 1; }
-.pin-line { opacity: 0.5; transition: opacity 0.15s; }
-.spectrum-pin:hover .pin-line { opacity: 1; background: var(--text-dim); }
 
 .pin-line {
   width: 1px;
@@ -856,58 +849,129 @@ html {
 }
 
 /* ─────────────────────────────────────────────
-   BEFORE YOU BUY — ACCORDION
+   BEFORE YOU BUY — REDESIGNED
 ───────────────────────────────────────────── */
-.wtlf-section { padding: 64px 48px; max-width: 1200px; margin: 0 auto; }
-.wtlf-header { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
-.wtlf-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); white-space: nowrap; }
-.wtlf-rule { flex: 1; height: 1px; background: var(--border); }
-.wtlf-title { font-family: var(--display); font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 24px; }
+.wtlf-section {
+  padding: 64px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.wtlf-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.wtlf-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  white-space: nowrap;
+}
+.wtlf-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.wtlf-title {
+  font-family: var(--display);
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
 .wtlf-title em { color: var(--amber); font-style: italic; }
-.wtlf-grid { display: flex; flex-direction: column; gap: 2px; }
-
-/* Each card is a full-width row */
-.wtlf-card { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
-
-/* Clickable header row — always visible */
+.wtlf-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.wtlf-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 .wtlf-card-head {
-  display: flex; align-items: center; gap: 12px;
-  padding: 14px 18px;
-  cursor: pointer;
-  user-select: none;
-  transition: background 0.15s;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
 }
-.wtlf-card-head:hover { background: rgba(255,255,255,0.02); }
-.wtlf-icon { font-size: 16px; flex-shrink: 0; }
-.wtlf-signal-label { font-size: 17px; font-weight: 600; color: var(--text); line-height: 1.3; flex: 1; }
-.wtlf-flag {
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em;
-  padding: 3px 8px; border-radius: 2px; white-space: nowrap; flex-shrink: 0;
+.wtlf-icon {
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 1px;
 }
-.wtlf-flag.red   { color: var(--red, #c94d3c); background: rgba(201,77,60,0.08); border: 1px solid rgba(201,77,60,0.2); }
-.wtlf-flag.amber { color: var(--amber); background: rgba(200,148,58,0.08); border: 1px solid rgba(200,148,58,0.2); }
-.wtlf-flag.green { color: var(--green,#4e9b6f); background: rgba(78,155,111,0.08); border: 1px solid rgba(78,155,111,0.2); }
-.wtlf-chevron { font-size: 10px; color: var(--muted, #9a9284); flex-shrink: 0; transition: transform 0.2s; }
-.wtlf-card.open .wtlf-chevron { transform: rotate(180deg); }
-
-/* Expandable body */
-.wtlf-body {
-  display: none;
-  padding: 0 18px 14px 46px;
-  border-top: 1px solid var(--border);
+.wtlf-signal-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
 }
-.wtlf-card.open .wtlf-body { display: block; }
-.wtlf-bullets { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.wtlf-bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 .wtlf-bullets li {
-  display: flex; align-items: flex-start; gap: 8px;
-  font-size: 12px; font-weight: 300; color: var(--muted, #9a9284); line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.5;
 }
-.wtlf-bullets li::before { content: '—'; color: var(--border-strong, #3a3630); flex-shrink: 0; font-size: 11px; line-height: 1.7; }
-.wtlf-bullets li strong { color: var(--text); font-weight: 500; }
-
+.wtlf-bullets li::before {
+  content: '—';
+  color: var(--border-strong, #3a3630);
+  flex-shrink: 0;
+  margin-top: 0px;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.wtlf-bullets li strong {
+  color: var(--text);
+  font-weight: 500;
+}
+.wtlf-flag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 2px;
+  align-self: flex-start;
+  margin-top: auto;
+}
+.wtlf-flag.red {
+  color: var(--red, #c94d3c);
+  background: rgba(201,77,60,0.08);
+  border: 1px solid rgba(201,77,60,0.2);
+}
+.wtlf-flag.amber {
+  color: var(--amber);
+  background: rgba(200,148,58,0.08);
+  border: 1px solid rgba(200,148,58,0.2);
+}
+.wtlf-flag.green {
+  color: var(--green, #4e9b6f);
+  background: rgba(78,155,111,0.08);
+  border: 1px solid rgba(78,155,111,0.2);
+}
 @media (max-width: 900px) {
+  .wtlf-grid { grid-template-columns: 1fr; }
   .wtlf-section { padding: 48px 24px; }
-  .wtlf-flag { display: none; }
 }
 
 </style>
@@ -974,118 +1038,80 @@ html {
   </div>
   <h2 class="wtlf-title">What to <em>Look For</em> in Protein Powders</h2>
   <div class="wtlf-grid">
-
-    <div class="wtlf-card open">
+    <div class="wtlf-card">
       <div class="wtlf-card-head">
         <span class="wtlf-icon">⚗️</span>
         <span class="wtlf-signal-label">Protein source hierarchy matters more than the gram count</span>
-        <span class="wtlf-flag red">Red flag</span>
-        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-body">
-        <ul class="wtlf-bullets">
+      <ul class="wtlf-bullets">
           <li><strong>Whey isolate</strong> (&gt;90% protein by weight, low lactose) is cleaner than concentrate (70–80%, more fat/lactose)</li>
           <li>A <strong>"protein blend"</strong> usually means mostly cheap concentrate with isolate added for label prestige</li>
           <li><strong>Collagen is not a complete protein</strong> — PDCAAS score of 0. Can't be compared to whey gram-for-gram</li>
-        </ul>
-      </div>
+      </ul>
+      <span class="wtlf-flag red">Red flag — "Protein Blend" without disclosed ratios</span>
     </div>
-
     <div class="wtlf-card">
       <div class="wtlf-card-head">
         <span class="wtlf-icon">🧪</span>
         <span class="wtlf-signal-label">Batch COAs are the minimum transparency floor</span>
-        <span class="wtlf-flag red">Red flag</span>
-        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-body">
-        <ul class="wtlf-bullets">
+      <ul class="wtlf-bullets">
           <li>A <strong>Certificate of Analysis (COA) by lot number</strong> means an independent lab tested that specific batch — not the formula in general</li>
           <li>If you can't enter your lot number and pull a real COA, <strong>"lab tested" is a marketing claim</strong>, not a verified fact</li>
           <li>Most brands on this list don't publish them</li>
-        </ul>
-      </div>
+      </ul>
+      <span class="wtlf-flag red">Red flag — No batch COA lookup available</span>
     </div>
-
     <div class="wtlf-card">
       <div class="wtlf-card-head">
         <span class="wtlf-icon">🏅</span>
         <span class="wtlf-signal-label">NSF and Informed Choice test different things</span>
-        <span class="wtlf-flag amber">Ask this</span>
-        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-body">
-        <ul class="wtlf-bullets">
+      <ul class="wtlf-bullets">
           <li><strong>NSF Certified for Sport</strong>: covers heavy metals, contaminants, and banned athletic substances</li>
           <li><strong>Informed Choice</strong>: covers banned substances (WADA list) but lighter contaminant scope</li>
-          <li>Neither certifies the product works — only that the label is accurate and it's clean</li>
-        </ul>
-      </div>
+          <li>Neither certifies the product works or that doses are adequate — only that the label is accurate and it's clean</li>
+      </ul>
+      <span class="wtlf-flag amber">Ask — which specific cert does the brand hold?</span>
     </div>
-
     <div class="wtlf-card">
       <div class="wtlf-card-head">
         <span class="wtlf-icon">🔬</span>
-        <span class="wtlf-signal-label">Protein spiking — inflating the gram count cheaply</span>
-        <span class="wtlf-flag red">Red flag</span>
-        <span class="wtlf-chevron">▼</span>
+        <span class="wtlf-signal-label">Protein spiking — inflating the gram count</span>
       </div>
-      <div class="wtlf-body">
-        <ul class="wtlf-bullets">
-          <li>Standard tests measure <strong>nitrogen</strong>, then estimate protein — free amino acids (taurine, glycine) also register as nitrogen</li>
-          <li>Brands can inflate the reading by adding <strong>cheap amino acids that aren't complete protein</strong></li>
+      <ul class="wtlf-bullets">
+          <li>Standard tests measure <strong>nitrogen</strong>, then estimate protein. Free amino acids (taurine, glycine) also register as nitrogen</li>
+          <li>Brands can inflate the protein reading by adding <strong>cheap amino acids that aren't complete protein</strong></li>
           <li>Labdoor tests for this — look for brands that specifically pass amino acid spiking tests</li>
-        </ul>
-      </div>
+      </ul>
+      <span class="wtlf-flag red">Red flag — No amino acid spiking test published</span>
     </div>
-
     <div class="wtlf-card">
       <div class="wtlf-card-head">
         <span class="wtlf-icon">📣</span>
         <span class="wtlf-signal-label">Heavy influencer spend is a margin signal, not a quality signal</span>
-        <span class="wtlf-flag amber">Ask this</span>
-        <span class="wtlf-chevron">▼</span>
       </div>
-      <div class="wtlf-body">
-        <ul class="wtlf-bullets">
-          <li>Saturation-level social ads mean <strong>high customer acquisition cost</strong> — that lives somewhere (margins, VC subsidy, or formula underinvestment)</li>
+      <ul class="wtlf-bullets">
+          <li>Saturation-level social ads mean <strong>high customer acquisition cost</strong> — that cost lives somewhere (margins, VC subsidy, or product underinvestment)</li>
           <li>Raises the question of whether endorsers have <strong>undisclosed equity stakes</strong> (see AG1, Vital Proteins, David)</li>
           <li>Ad volume and product quality are unrelated</li>
-        </ul>
-      </div>
+      </ul>
+      <span class="wtlf-flag amber">Ask — is the endorser a paid sponsor, equity investor, or both?</span>
     </div>
-
     <div class="wtlf-card">
       <div class="wtlf-card-head">
         <span class="wtlf-icon">🏢</span>
-        <span class="wtlf-signal-label">Check who actually owns the brand — not who founded it</span>
-        <span class="wtlf-flag red">Red flag</span>
-        <span class="wtlf-chevron">▼</span>
+        <span class="wtlf-signal-label">Check who actually owns the brand</span>
       </div>
-      <div class="wtlf-body">
-        <ul class="wtlf-bullets">
+      <ul class="wtlf-bullets">
           <li><strong>Five entities control 10+ of the top 20 brands</strong> in this category</li>
-          <li>Switching between Optimum Nutrition and BSN for "variety" = switching between <strong>two Glanbia brands</strong></li>
-          <li>Orgain, Garden of Life, Vital Proteins — built on independence, <strong>all three now Nestlé</strong></li>
-        </ul>
-      </div>
+          <li>Switching between Optimum Nutrition and BSN for "variety" is switching between <strong>two Glanbia brands</strong></li>
+          <li>Orgain, Garden of Life, and Vital Proteins all built on independence — <strong>all three are now Nestlé</strong></li>
+      </ul>
+      <span class="wtlf-flag red">Red flag — "Founded by" ≠ "currently owned by"</span>
     </div>
-
   </div>
 </section>
-
-<script>
-  document.querySelectorAll('.wtlf-card-head').forEach(function(head) {
-    head.addEventListener('click', function() {
-      var card = this.closest('.wtlf-card');
-      var isOpen = card.classList.contains('open');
-      // Close all
-      document.querySelectorAll('.wtlf-card').forEach(function(c) { c.classList.remove('open'); });
-      // Toggle clicked one
-      if (!isOpen) card.classList.add('open');
-    });
-  });
-</script>
 
 <section class="spectrum-section">
   <div class="section-label">Transparency Spectrum</div>
@@ -1093,118 +1119,136 @@ html {
   <div class="spectrum-rail">
     <div class="spectrum-track"></div>
     <div class="spectrum-pins">
-      <div class="spectrum-pin" style="left:10.6%;top:0px" data-brand="momentous" onclick="scrollToRow('momentous')">
-        <div class="pin-line" style="height:32px"></div>
+      <!-- positions are % along the track: green=0-30, yellow=40-60, red=70-100 -->
+      <!-- Momentous: ~8% -->
+      <div class="spectrum-pin" style="left:8%" data-brand="momentous" onclick="scrollToRow('momentous')">
+        <div class="pin-line"></div>
         <div class="pin-label">Momentous</div>
         <div class="pin-score">0R · 1Y · 6G</div>
       </div>
-      <div class="spectrum-pin" style="left:16.9%;top:52px" data-brand="transparent-labs" onclick="scrollToRow('transparent-labs')">
-        <div class="pin-line" style="height:20px"></div>
+      <!-- Transparent Labs: ~18% -->
+      <div class="spectrum-pin" style="left:20%" data-brand="transparent-labs" onclick="scrollToRow('transparent-labs')">
+        <div class="pin-line"></div>
         <div class="pin-label">Transparent Labs</div>
         <div class="pin-score">0R · 2Y · 5G</div>
       </div>
-      <div class="spectrum-pin" style="left:20.3%;top:104px" data-brand="legion" onclick="scrollToRow('legion')">
-        <div class="pin-line" style="height:8px"></div>
-        <div class="pin-label">Legion</div>
-        <div class="pin-score">0R · 2Y · 5G</div>
-      </div>
-      <div class="spectrum-pin" style="left:23.7%;top:0px" data-brand="naked-nutrition" onclick="scrollToRow('naked-nutrition')">
-        <div class="pin-line" style="height:32px"></div>
-        <div class="pin-label">Naked Nutrition</div>
-        <div class="pin-score">0R · 2Y · 5G</div>
-      </div>
-      <div class="spectrum-pin" style="left:27.1%;top:52px" data-brand="now-sports" onclick="scrollToRow('now-sports')">
-        <div class="pin-line" style="height:20px"></div>
-        <div class="pin-label">NOW Sports</div>
-        <div class="pin-score">0R · 3Y · 4G</div>
-      </div>
-      <div class="spectrum-pin" style="left:36.0%;top:104px" data-brand="optimum-nutrition" onclick="scrollToRow('optimum-nutrition')">
-        <div class="pin-line" style="height:8px"></div>
+      <!-- Optimum Nutrition: ~50% -->
+      <div class="spectrum-pin" style="left:52%" data-brand="optimum-nutrition" onclick="scrollToRow('optimum-nutrition')">
+        <div class="pin-line"></div>
         <div class="pin-label">Optimum Nutrition</div>
         <div class="pin-score">1R · 3Y · 3G</div>
       </div>
-      <div class="spectrum-pin" style="left:42.7%;top:0px" data-brand="kaged" onclick="scrollToRow('kaged')">
-        <div class="pin-line" style="height:32px"></div>
-        <div class="pin-label">Kaged</div>
-        <div class="pin-score">1R · 4Y · 2G</div>
-      </div>
-      <div class="spectrum-pin" style="left:39.3%;top:52px" data-brand="paleovalley" onclick="scrollToRow('paleovalley')">
-        <div class="pin-line" style="height:20px"></div>
-        <div class="pin-label">Paleovalley</div>
-        <div class="pin-score">1R · 3Y · 3G</div>
-      </div>
-      <div class="spectrum-pin" style="left:48.7%;top:104px" data-brand="ascent" onclick="scrollToRow('ascent')">
-        <div class="pin-line" style="height:8px"></div>
-        <div class="pin-label">Ascent</div>
-        <div class="pin-score">2R · 3Y · 2G</div>
-      </div>
-      <div class="spectrum-pin" style="left:52.0%;top:0px" data-brand="dymatize" onclick="scrollToRow('dymatize')">
-        <div class="pin-line" style="height:32px"></div>
-        <div class="pin-label">Dymatize</div>
-        <div class="pin-score">2R · 3Y · 2G</div>
-      </div>
-      <div class="spectrum-pin" style="left:55.4%;top:52px" data-brand="vega" onclick="scrollToRow('vega')">
-        <div class="pin-line" style="height:20px"></div>
-        <div class="pin-label">Vega</div>
-        <div class="pin-score">2R · 3Y · 2G</div>
-      </div>
-      <div class="spectrum-pin" style="left:58.8%;top:104px" data-brand="bsn" onclick="scrollToRow('bsn')">
-        <div class="pin-line" style="height:8px"></div>
-        <div class="pin-label">BSN</div>
-        <div class="pin-score">2R · 4Y · 1G</div>
-      </div>
-      <div class="spectrum-pin" style="left:62.2%;top:0px" data-brand="garden-of-life" onclick="scrollToRow('garden-of-life')">
-        <div class="pin-line" style="height:32px"></div>
-        <div class="pin-label">Garden of Life</div>
-        <div class="pin-score">2R · 4Y · 1G</div>
-      </div>
-      <div class="spectrum-pin" style="left:65.6%;top:52px" data-brand="orgain" onclick="scrollToRow('orgain')">
-        <div class="pin-line" style="height:20px"></div>
-        <div class="pin-label">Orgain</div>
-        <div class="pin-score">3R · 3Y · 1G</div>
-      </div>
-      <div class="spectrum-pin" style="left:68.9%;top:104px" data-brand="premier-protein" onclick="scrollToRow('premier-protein')">
-        <div class="pin-line" style="height:8px"></div>
-        <div class="pin-label">Premier Protein</div>
-        <div class="pin-score">3R · 3Y · 1G</div>
-      </div>
-      <div class="spectrum-pin" style="left:72.3%;top:0px" data-brand="ghost" onclick="scrollToRow('ghost')">
-        <div class="pin-line" style="height:32px"></div>
-        <div class="pin-label">Ghost</div>
-        <div class="pin-score">3R · 3Y · 1G</div>
-      </div>
-      <div class="spectrum-pin" style="left:75.7%;top:52px" data-brand="muscletech" onclick="scrollToRow('muscletech')">
-        <div class="pin-line" style="height:20px"></div>
-        <div class="pin-label">MuscleTech</div>
-        <div class="pin-score">3R · 3Y · 1G</div>
-      </div>
-      <div class="spectrum-pin" style="left:79.1%;top:104px" data-brand="body-fortress" onclick="scrollToRow('body-fortress')">
-        <div class="pin-line" style="height:8px"></div>
-        <div class="pin-label">Body Fortress</div>
-        <div class="pin-score">3R · 3Y · 1G</div>
-      </div>
-      <div class="spectrum-pin" style="left:82.5%;top:0px" data-brand="david" onclick="scrollToRow('david')">
-        <div class="pin-line" style="height:32px"></div>
-        <div class="pin-label">David</div>
-        <div class="pin-score">4R · 2Y · 1G</div>
-      </div>
-      <div class="spectrum-pin" style="left:85.9%;top:52px" data-brand="vital-proteins" onclick="scrollToRow('vital-proteins')">
-        <div class="pin-line" style="height:20px"></div>
-        <div class="pin-label">Vital Proteins</div>
-        <div class="pin-score">4R · 2Y · 1G</div>
-      </div>
-      <div class="spectrum-pin" style="left:89.2%;top:104px" data-brand="muscle-milk" onclick="scrollToRow('muscle-milk')">
-        <div class="pin-line" style="height:8px"></div>
+      <!-- Muscle Milk: ~76% -->
+      <div class="spectrum-pin" style="left:76%" data-brand="muscle-milk" onclick="scrollToRow('muscle-milk')">
+        <div class="pin-line"></div>
         <div class="pin-label">Muscle Milk</div>
         <div class="pin-score">4R · 3Y · 0G</div>
       </div>
-      <div class="spectrum-pin" style="left:92.6%;top:0px" data-brand="musclepharm" onclick="scrollToRow('musclepharm')">
-        <div class="pin-line" style="height:32px"></div>
+      <!-- David Protein: ~90% -->
+      <div class="spectrum-pin" style="left:90%" data-brand="david" onclick="scrollToRow('david')">
+        <div class="pin-line"></div>
+        <div class="pin-label">David</div>
+        <div class="pin-score">4R · 2Y · 1G</div>
+      </div>
+      <!-- Legion: ~13% -->
+      <div class="spectrum-pin" style="left:13%" data-brand="legion" onclick="scrollToRow('legion')">
+        <div class="pin-line"></div>
+        <div class="pin-label">Legion</div>
+        <div class="pin-score">0R · 2Y · 5G</div>
+      </div>
+      <!-- Naked Nutrition: ~25% -->
+      <div class="spectrum-pin" style="left:25%" data-brand="naked-nutrition" onclick="scrollToRow('naked-nutrition')">
+        <div class="pin-line"></div>
+        <div class="pin-label">Naked Nutrition</div>
+        <div class="pin-score">0R · 2Y · 5G</div>
+      </div>
+      <!-- NOW Sports: ~30% -->
+      <div class="spectrum-pin" style="left:30%" data-brand="now-sports" onclick="scrollToRow('now-sports')">
+        <div class="pin-line"></div>
+        <div class="pin-label">NOW Sports</div>
+        <div class="pin-score">0R · 3Y · 4G</div>
+      </div>
+      <!-- Kaged: ~40% -->
+      <div class="spectrum-pin" style="left:40%" data-brand="kaged" onclick="scrollToRow('kaged')">
+        <div class="pin-line"></div>
+        <div class="pin-label">Kaged</div>
+        <div class="pin-score">1R · 4Y · 2G</div>
+      </div>
+      <!-- Ascent: ~44% -->
+      <div class="spectrum-pin" style="left:44%" data-brand="ascent" onclick="scrollToRow('ascent')">
+        <div class="pin-line"></div>
+        <div class="pin-label">Ascent</div>
+        <div class="pin-score">2R · 3Y · 2G</div>
+      </div>
+      <!-- BSN: ~58% -->
+      <div class="spectrum-pin" style="left:58%" data-brand="bsn" onclick="scrollToRow('bsn')">
+        <div class="pin-line"></div>
+        <div class="pin-label">BSN</div>
+        <div class="pin-score">2R · 4Y · 1G</div>
+      </div>
+      <!-- Dymatize: ~62% -->
+      <div class="spectrum-pin" style="left:62%" data-brand="dymatize" onclick="scrollToRow('dymatize')">
+        <div class="pin-line"></div>
+        <div class="pin-label">Dymatize</div>
+        <div class="pin-score">2R · 3Y · 2G</div>
+      </div>
+      <!-- Vega: ~65% -->
+      <div class="spectrum-pin" style="left:65%" data-brand="vega" onclick="scrollToRow('vega')">
+        <div class="pin-line"></div>
+        <div class="pin-label">Vega</div>
+        <div class="pin-score">2R · 3Y · 2G</div>
+      </div>
+      <!-- Orgain: ~68% -->
+      <div class="spectrum-pin" style="left:68%" data-brand="orgain" onclick="scrollToRow('orgain')">
+        <div class="pin-line"></div>
+        <div class="pin-label">Orgain</div>
+        <div class="pin-score">3R · 3Y · 1G</div>
+      </div>
+      <!-- Garden of Life: ~70% -->
+      <div class="spectrum-pin" style="left:70%" data-brand="garden-of-life" onclick="scrollToRow('garden-of-life')">
+        <div class="pin-line"></div>
+        <div class="pin-label">Garden of Life</div>
+        <div class="pin-score">2R · 4Y · 1G</div>
+      </div>
+      <!-- Premier Protein: ~74% -->
+      <div class="spectrum-pin" style="left:74%" data-brand="premier-protein" onclick="scrollToRow('premier-protein')">
+        <div class="pin-line"></div>
+        <div class="pin-label">Premier Protein</div>
+        <div class="pin-score">3R · 3Y · 1G</div>
+      </div>
+      <!-- Ghost: ~80% -->
+      <div class="spectrum-pin" style="left:80%" data-brand="ghost" onclick="scrollToRow('ghost')">
+        <div class="pin-line"></div>
+        <div class="pin-label">Ghost</div>
+        <div class="pin-score">3R · 3Y · 1G</div>
+      </div>
+      <!-- MuscleTech: ~83% -->
+      <div class="spectrum-pin" style="left:83%" data-brand="muscletech" onclick="scrollToRow('muscletech')">
+        <div class="pin-line"></div>
+        <div class="pin-label">MuscleTech</div>
+        <div class="pin-score">3R · 3Y · 1G</div>
+      </div>
+      <!-- Body Fortress: ~86% -->
+      <div class="spectrum-pin" style="left:86%" data-brand="body-fortress" onclick="scrollToRow('body-fortress')">
+        <div class="pin-line"></div>
+        <div class="pin-label">Body Fortress</div>
+        <div class="pin-score">3R · 3Y · 1G</div>
+      </div>
+      <!-- Vital Proteins: ~88% -->
+      <div class="spectrum-pin" style="left:88%" data-brand="vital-proteins" onclick="scrollToRow('vital-proteins')">
+        <div class="pin-line"></div>
+        <div class="pin-label">Vital Proteins</div>
+        <div class="pin-score">4R · 2Y · 1G</div>
+      </div>
+      <!-- MusclePharm: ~93% -->
+      <div class="spectrum-pin" style="left:93%" data-brand="musclepharm" onclick="scrollToRow('musclepharm')">
+        <div class="pin-line"></div>
         <div class="pin-label">MusclePharm</div>
         <div class="pin-score">5R · 2Y · 0G</div>
       </div>
-      <div class="spectrum-pin" style="left:96.0%;top:52px" data-brand="herbalife" onclick="scrollToRow('herbalife')">
-        <div class="pin-line" style="height:20px"></div>
+      <!-- Herbalife: ~97% -->
+      <div class="spectrum-pin" style="left:97%" data-brand="herbalife" onclick="scrollToRow('herbalife')">
+        <div class="pin-line"></div>
         <div class="pin-label">Herbalife</div>
         <div class="pin-score">6R · 1Y · 0G</div>
       </div>
@@ -1373,7 +1417,182 @@ html {
         </td>
       </tr>
 
-      <!-- LEGION -->
+      <!-- OPTIMUM NUTRITION -->
+      <tr class="brand-row"
+          id="row-optimum-nutrition"
+          data-zone="yellow"
+          data-nsf="false"
+          data-coa="false"
+          data-independent="false"
+          data-conglomerate="true"
+          data-brand="optimum-nutrition"
+          onclick="toggleQuickCheck('optimum-nutrition')">
+        <td class="td-brand">
+          <div class="td-brand-name">Optimum Nutrition</div>
+          <div class="td-brand-sub">Gold Standard 100% Whey</div>
+          <div class="td-brand-owner">Glanbia plc (Ireland) — since 2008</div>
+        </td>
+        <td class="td-cell"><span class="t-pill red">Conglomerate</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span></td>
+        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Ace-K, Sucralose</span></td>
+        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Blend ratios hidden</span></td>
+        <td class="td-cell">
+          <span class="t-price">~$0.85</span>
+          <span class="t-price-sub">per serving</span>
+        </td>
+        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-optimum-nutrition">
+        <td class="expand-cell" colspan="8">
+          <div class="quick-check">
+            <div class="qc-block">
+              <div class="qc-label">Protein Source</div>
+              <div class="qc-value"><strong>WPI + WPC + Peptides blend</strong><br>Isolate listed first, but blend ratios not disclosed. Not pure isolate despite "100% Whey" branding.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Owner</div>
+              <div class="qc-value"><strong>Glanbia plc</strong><br>Irish dairy conglomerate. Also supplies ON's own whey — no independent supplier layer. Acquired 2008 for $315M.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Testing</div>
+              <div class="qc-highlight">
+                <span class="pos">✓ Informed Choice certified</span><br>
+                <span class="neg">✗ No batch COAs published</span><br>
+                <span class="neg">✗ Not NSF Certified for Sport</span><br>
+                <span class="pos">✓ CR 2025: lead below detection</span>
+              </div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Finding</div>
+              <div class="qc-value">Product is <strong>genuinely good</strong> — passes external testing. Concern is structural: Glanbia certifies its own whey supply. No independent audit layer.</div>
+            </div>
+            <div class="qc-cta">
+              <a href="traced-optimum-nutrition.html" class="qc-link">Full Report →</a>
+              <button class="qc-close" onclick="toggleQuickCheck('optimum-nutrition'); event.stopPropagation();">Close ×</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- MUSCLE MILK -->
+      <tr class="brand-row"
+          id="row-muscle-milk"
+          data-zone="red"
+          data-nsf="false"
+          data-coa="false"
+          data-independent="false"
+          data-conglomerate="true"
+          data-brand="muscle-milk"
+          onclick="toggleQuickCheck('muscle-milk')">
+        <td class="td-brand">
+          <div class="td-brand-name">Muscle Milk</div>
+          <div class="td-brand-sub">Protein Shake / Powder</div>
+          <div class="td-brand-owner">PepsiCo / Gatorade — since 2019</div>
+        </td>
+        <td class="td-cell"><span class="t-pill red">Conglomerate</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Sucralose (legacy)</span></td>
+        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Casein blend history</span></td>
+        <td class="td-cell">
+          <span class="t-price">~$1.10</span>
+          <span class="t-price-sub">per serving</span>
+        </td>
+        <td class="td-cell"><span class="t-pill red">Red</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-muscle-milk">
+        <td class="expand-cell" colspan="8">
+          <div class="quick-check">
+            <div class="qc-block">
+              <div class="qc-label">Protein Source</div>
+              <div class="qc-value"><strong>Milk Protein Blend (legacy)</strong><br>Calcium & sodium caseinate + MPC historically. 2025 reformulation moves to ultra-filtered milk base.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Owner</div>
+              <div class="qc-value"><strong>PepsiCo / Gatorade</strong><br>Acquired by Hormel (2014), then PepsiCo (2019, $465M). Operates as Gatorade division portfolio slot.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Regulatory History</div>
+              <div class="qc-highlight">
+                <span class="neg">✗ 2011 FDA warning letter (name)</span><br>
+                <span class="neg">✗ 2010 FTC review (advertising)</span><br>
+                <span class="neg">✗ CR 2010: Pb, Cd, As, Hg found</span><br>
+                <span class="neu">○ 2025 reformulation: improved</span>
+              </div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Finding</div>
+              <div class="qc-value">Most <strong>documented regulatory history</strong> in the category. FDA said the name is misleading. FTC reviewed ad claims. Heavy metals episode never definitively resolved.</div>
+            </div>
+            <div class="qc-cta">
+              <a href="traced-muscle-milk.html" class="qc-link">Full Report →</a>
+              <button class="qc-close" onclick="toggleQuickCheck('muscle-milk'); event.stopPropagation();">Close ×</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- DAVID PROTEIN -->
+      <tr class="brand-row"
+          id="row-david"
+          data-zone="red"
+          data-nsf="false"
+          data-coa="false"
+          data-independent="false"
+          data-conglomerate="false"
+          data-brand="david"
+          onclick="toggleQuickCheck('david')">
+        <td class="td-brand">
+          <div class="td-brand-name">David</div>
+          <div class="td-brand-sub">Protein Bar (high-protein)</div>
+          <div class="td-brand-owner">Backed by Peter Attia (resigned CSO Feb 2026)</div>
+        </td>
+        <td class="td-cell"><span class="t-pill yellow">VC-backed</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span></td>
+        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Maltitol, sucralose</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Collagen % hidden</span></td>
+        <td class="td-cell">
+          <span class="t-price">~$3.20</span>
+          <span class="t-price-sub">per bar</span>
+        </td>
+        <td class="td-cell"><span class="t-pill red">Red</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-david">
+        <td class="expand-cell" colspan="8">
+          <div class="quick-check">
+            <div class="qc-block">
+              <div class="qc-label">Protein Source</div>
+              <div class="qc-value"><strong>Whey + Collagen blend</strong><br>Proportion of collagen (PDCAAS 0) vs. whey (PDCAAS 1.0) is undisclosed. Collagen inflates protein count without full amino acid value.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Backing</div>
+              <div class="qc-value"><strong>Peter Attia resigned as CSO</strong><br>February 2026. Was Scientific Advisor + sponsor. Equity status never confirmed. Departure removes primary credibility anchor.</div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Testing</div>
+              <div class="qc-highlight">
+                <span class="neg">✗ No NSF certification</span><br>
+                <span class="neg">✗ No batch COAs published</span><br>
+                <span class="neg">✗ Collagen proportion undisclosed</span><br>
+                <span class="neg">✗ Influencer equity unconfirmed</span>
+              </div>
+            </div>
+            <div class="qc-block">
+              <div class="qc-label">Key Finding</div>
+              <div class="qc-value"><strong>"Protein bar" with undisclosed collagen</strong> proportion. Priced at a scientific rigor premium. Attia departure strips the scientific credibility claim.</div>
+            </div>
+            <div class="qc-cta">
+              <a href="traced-david.html" class="qc-link">Full Report →</a>
+              <button class="qc-close" onclick="toggleQuickCheck('david'); event.stopPropagation();">Close ×</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+
+      <!-- LEGION WHEY+ -->
       <tr class="brand-row" id="row-legion" data-zone="green" data-nsf="false" data-coa="true" data-independent="true" data-conglomerate="false" data-brand="legion" onclick="toggleQuickCheck('legion')">
         <td class="td-brand">
           <div class="td-brand-name">Legion Whey+</div>
@@ -1442,64 +1661,6 @@ html {
         <div class="qc-cta"><button class="qc-close" onclick="toggleQuickCheck('now-sports'); event.stopPropagation();">Close ×</button></div>
       </div></td></tr>
 
-      <!-- OPTIMUM NUTRITION -->
-      <tr class="brand-row"
-          id="row-optimum-nutrition"
-          data-zone="yellow"
-          data-nsf="false"
-          data-coa="false"
-          data-independent="false"
-          data-conglomerate="true"
-          data-brand="optimum-nutrition"
-          onclick="toggleQuickCheck('optimum-nutrition')">
-        <td class="td-brand">
-          <div class="td-brand-name">Optimum Nutrition</div>
-          <div class="td-brand-sub">Gold Standard 100% Whey</div>
-          <div class="td-brand-owner">Glanbia plc (Ireland) — since 2008</div>
-        </td>
-        <td class="td-cell"><span class="t-pill red">Conglomerate</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span></td>
-        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Ace-K, Sucralose</span></td>
-        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Blend ratios hidden</span></td>
-        <td class="td-cell">
-          <span class="t-price">~$0.85</span>
-          <span class="t-price-sub">per serving</span>
-        </td>
-        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
-      </tr>
-      <tr class="expand-row" id="expand-optimum-nutrition">
-        <td class="expand-cell" colspan="8">
-          <div class="quick-check">
-            <div class="qc-block">
-              <div class="qc-label">Protein Source</div>
-              <div class="qc-value"><strong>WPI + WPC + Peptides blend</strong><br>Isolate listed first, but blend ratios not disclosed. Not pure isolate despite "100% Whey" branding.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Owner</div>
-              <div class="qc-value"><strong>Glanbia plc</strong><br>Irish dairy conglomerate. Also supplies ON's own whey — no independent supplier layer. Acquired 2008 for $315M.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Testing</div>
-              <div class="qc-highlight">
-                <span class="pos">✓ Informed Choice certified</span><br>
-                <span class="neg">✗ No batch COAs published</span><br>
-                <span class="neg">✗ Not NSF Certified for Sport</span><br>
-                <span class="pos">✓ CR 2025: lead below detection</span>
-              </div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Key Finding</div>
-              <div class="qc-value">Product is <strong>genuinely good</strong> — passes external testing. Concern is structural: Glanbia certifies its own whey supply. No independent audit layer.</div>
-            </div>
-            <div class="qc-cta">
-              <a href="traced-optimum-nutrition.html" class="qc-link">Full Report →</a>
-              <button class="qc-close" onclick="toggleQuickCheck('optimum-nutrition'); event.stopPropagation();">Close ×</button>
-            </div>
-          </div>
-        </td>
-      </tr>
-
       <!-- KAGED -->
       <tr class="brand-row" id="row-kaged" data-zone="yellow" data-nsf="false" data-coa="true" data-independent="false" data-conglomerate="false" data-brand="kaged" onclick="toggleQuickCheck('kaged')">
         <td class="td-brand">
@@ -1522,31 +1683,6 @@ html {
         <div class="qc-block"><div class="qc-label">Key Finding</div><div class="qc-value">Product integrity <strong>currently strong</strong>. PE ownership introduces a structural watch condition. No reformulation detected yet — but the exit clock is running.</div></div>
         <div class="qc-cta"><button class="qc-close" onclick="toggleQuickCheck('kaged'); event.stopPropagation();">Close ×</button></div>
       </div></td></tr>
-
-      <!-- PALEOVALLEY -->
-      <tr class="brand-row" id="row-paleovalley" data-zone="yellow" data-nsf="false" data-coa="false" data-independent="true" data-conglomerate="false" data-brand="paleovalley" onclick="toggleQuickCheck('paleovalley')">
-        <td class="td-brand">
-          <div class="td-brand-name">Paleovalley</div>
-          <div class="td-brand-sub">Whey + Colostrum / Bone Broth Protein</div>
-          <div class="td-brand-owner">Paleovalley LLC — Founder-owned (Autumn &amp; Chas Smith)</div>
-        </td>
-        <td class="td-cell"><span class="t-pill green">Independent</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span></td>
-        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim)">No artificial; monk fruit</span></td>
-        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim)">Blend ratio undisclosed</span></td>
-        <td class="td-cell"><span class="t-price">~$2.33</span><span class="t-price-sub">per serving</span></td>
-        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
-      </tr>
-      <tr class="expand-row" id="expand-paleovalley"><td class="expand-cell" colspan="8"><div class="quick-check">
-        <div class="qc-block"><div class="qc-label">Protein Source</div><div class="qc-value"><strong>Whey Concentrate + Colostrum Blend (undisclosed ratio)</strong><br>The flagship whey product lists "Bovine Whey and Colostrum Blend" as a single ingredient — no ratio between the two components is published. Whey concentrate (not isolate) by design; brand argues minimal processing preserves native bioactives. Colostrum is immunoglobulins and growth factors, not protein in the conventional sense. Bone Broth line is collagen — PDCAAS = 0, same issue as Vital Proteins.</div></div>
-        <div class="qc-block"><div class="qc-label">Owner</div><div class="qc-value"><strong>Paleovalley LLC — Founder-operated</strong><br>Co-founded 2013 by Autumn and Chas Smith, Erie, Colorado. No PE investment, no conglomerate acquisition, no outside funding rounds on record (Crunchbase). Genuinely independent — one of the few in a category where independence is nearly extinct. Also operates Wild Pastures (regenerative meat delivery). No exit announced.</div></div>
-        <div class="qc-block"><div class="qc-label">Testing</div><div class="qc-highlight"><span class="neg">✗ Not NSF Certified for Sport</span><br><span class="neg">✗ No batch COAs published by lot number</span><br><span class="neu">○ Claims third-party pesticide testing (40+ pesticides) — not independently verifiable</span><br><span class="neu">○ No Informed Choice or Informed Sport certification</span><br><span class="neg">✗ No regulatory actions (clean record — but verification stack is thin)</span></div></div>
-        <div class="qc-block"><div class="qc-label">Credential Watch</div><div class="qc-value"><strong>"Dr. Autumn Smith" — Doctor of Holistic Nutrition (2024)</strong><br>Holistic Nutrition doctorate is a private-institution credential — not a medical degree, not a registered dietitian (RD), not a research PhD. Brand marketing implies clinical authority that the credential does not confer. She holds a Masters in Holistic Nutrition from Hawthorn University and Certified FDN Practitioner and Certified Eating Psychology Coach certifications. The "Doctor" title amplifies health claims beyond the credential's scope.</div></div>
-        <div class="qc-cta"><button class="qc-close" onclick="toggleQuickCheck('paleovalley'); event.stopPropagation();">Close ×</button></div>
-      </div></td></tr>
-
-    </tbody>
 
       <!-- ASCENT -->
       <tr class="brand-row" id="row-ascent" data-zone="yellow" data-nsf="true" data-coa="false" data-independent="false" data-conglomerate="false" data-brand="ascent" onclick="toggleQuickCheck('ascent')">
@@ -1640,29 +1776,6 @@ html {
         <div class="qc-cta"><button class="qc-close" onclick="toggleQuickCheck('vega'); event.stopPropagation();">Close ×</button></div>
       </div></td></tr>
 
-      <!-- GARDEN OF LIFE -->
-      <tr class="brand-row" id="row-garden-of-life" data-zone="yellow" data-nsf="true" data-coa="false" data-independent="false" data-conglomerate="true" data-brand="garden-of-life" onclick="toggleQuickCheck('garden-of-life')">
-        <td class="td-brand">
-          <div class="td-brand-name">Garden of Life</div>
-          <div class="td-brand-sub">Sport Organic Plant-Based Protein</div>
-          <div class="td-brand-owner">Nestlé Health Science — acquired 2017</div>
-        </td>
-        <td class="td-cell"><span class="t-pill red">Conglomerate</span></td>
-        <td class="td-cell"><span class="t-check yes">✓</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span></td>
-        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim)">Organic only</span></td>
-        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim)">Blend ratios partial</span></td>
-        <td class="td-cell"><span class="t-price">~$1.40</span><span class="t-price-sub">per serving</span></td>
-        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
-      </tr>
-      <tr class="expand-row" id="expand-garden-of-life"><td class="expand-cell" colspan="8"><div class="quick-check">
-        <div class="qc-block"><div class="qc-label">Protein Source</div><div class="qc-value"><strong>Organic plant blend</strong><br>Pea, navy bean, lentil, garbanzo, cranberry, buckwheat, quinoa, amaranth, millet, chia, rice, oat. NSF Certified for Sport — one of the few plant-based protein brands to hold this. Formula integrity has held post-acquisition.</div></div>
-        <div class="qc-block"><div class="qc-label">Owner</div><div class="qc-value"><strong>Nestlé Health Science (2017)</strong><br>Acquired for an undisclosed price. Nestlé's third protein brand alongside Orgain and Vital Proteins. The "garden" brand ethos sits oddly inside a $94B Swiss food conglomerate's health sciences division.</div></div>
-        <div class="qc-block"><div class="qc-label">Testing</div><div class="qc-highlight"><span class="pos">✓ NSF Certified for Sport</span><br><span class="pos">✓ USDA Organic, Non-GMO</span><br><span class="pos">✓ Certified B Corp (retained post-acquisition)</span><br><span class="neg">✗ No batch COAs published</span></div></div>
-        <div class="qc-block"><div class="qc-label">Key Finding</div><div class="qc-value">Retained B Corp certification post-acquisition — unusual. NSF certified — better than most plant-based brands. <strong>Nestlé ownership remains the structural concern</strong>: formula integrity today doesn't guarantee it in 5 years.</div></div>
-        <div class="qc-cta"><button class="qc-close" onclick="toggleQuickCheck('garden-of-life'); event.stopPropagation();">Close ×</button></div>
-      </div></td></tr>
-
       <!-- ORGAIN -->
       <tr class="brand-row" id="row-orgain" data-zone="yellow" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="true" data-brand="orgain" onclick="toggleQuickCheck('orgain')">
         <td class="td-brand">
@@ -1684,6 +1797,29 @@ html {
         <div class="qc-block"><div class="qc-label">Testing</div><div class="qc-highlight"><span class="pos">✓ USDA Organic certified</span><br><span class="pos">✓ Non-GMO Project verified</span><br><span class="neg">✗ Not NSF Certified for Sport</span><br><span class="neg">✗ No batch COAs published</span></div></div>
         <div class="qc-block"><div class="qc-label">Key Finding</div><div class="qc-value">The <strong>Nestlé organic portfolio concentration finding</strong>. Orgain, Garden of Life, and Vital Proteins are three separate brands that appear to compete with each other. They are all owned by the same Swiss conglomerate.</div></div>
         <div class="qc-cta"><button class="qc-close" onclick="toggleQuickCheck('orgain'); event.stopPropagation();">Close ×</button></div>
+      </div></td></tr>
+
+      <!-- GARDEN OF LIFE -->
+      <tr class="brand-row" id="row-garden-of-life" data-zone="yellow" data-nsf="true" data-coa="false" data-independent="false" data-conglomerate="true" data-brand="garden-of-life" onclick="toggleQuickCheck('garden-of-life')">
+        <td class="td-brand">
+          <div class="td-brand-name">Garden of Life</div>
+          <div class="td-brand-sub">Sport Organic Plant-Based Protein</div>
+          <div class="td-brand-owner">Nestlé Health Science — acquired 2017</div>
+        </td>
+        <td class="td-cell"><span class="t-pill red">Conglomerate</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim)">Organic only</span></td>
+        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim)">Blend ratios partial</span></td>
+        <td class="td-cell"><span class="t-price">~$1.40</span><span class="t-price-sub">per serving</span></td>
+        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-garden-of-life"><td class="expand-cell" colspan="8"><div class="quick-check">
+        <div class="qc-block"><div class="qc-label">Protein Source</div><div class="qc-value"><strong>Organic plant blend</strong><br>Pea, navy bean, lentil, garbanzo, cranberry, buckwheat, quinoa, amaranth, millet, chia, rice, oat. NSF Certified for Sport — one of the few plant-based protein brands to hold this. Formula integrity has held post-acquisition.</div></div>
+        <div class="qc-block"><div class="qc-label">Owner</div><div class="qc-value"><strong>Nestlé Health Science (2017)</strong><br>Acquired for an undisclosed price. Nestlé's third protein brand alongside Orgain and Vital Proteins. The "garden" brand ethos sits oddly inside a $94B Swiss food conglomerate's health sciences division.</div></div>
+        <div class="qc-block"><div class="qc-label">Testing</div><div class="qc-highlight"><span class="pos">✓ NSF Certified for Sport</span><br><span class="pos">✓ USDA Organic, Non-GMO</span><br><span class="pos">✓ Certified B Corp (retained post-acquisition)</span><br><span class="neg">✗ No batch COAs published</span></div></div>
+        <div class="qc-block"><div class="qc-label">Key Finding</div><div class="qc-value">Retained B Corp certification post-acquisition — unusual. NSF certified — better than most plant-based brands. <strong>Nestlé ownership remains the structural concern</strong>: formula integrity today doesn't guarantee it in 5 years.</div></div>
+        <div class="qc-cta"><button class="qc-close" onclick="toggleQuickCheck('garden-of-life'); event.stopPropagation();">Close ×</button></div>
       </div></td></tr>
 
       <!-- PREMIER PROTEIN -->
@@ -1778,64 +1914,6 @@ html {
         <div class="qc-cta"><button class="qc-close" onclick="toggleQuickCheck('body-fortress'); event.stopPropagation();">Close ×</button></div>
       </div></td></tr>
 
-      <!-- DAVID PROTEIN -->
-      <tr class="brand-row"
-          id="row-david"
-          data-zone="red"
-          data-nsf="false"
-          data-coa="false"
-          data-independent="false"
-          data-conglomerate="false"
-          data-brand="david"
-          onclick="toggleQuickCheck('david')">
-        <td class="td-brand">
-          <div class="td-brand-name">David</div>
-          <div class="td-brand-sub">Protein Bar (high-protein)</div>
-          <div class="td-brand-owner">Backed by Peter Attia (resigned CSO Feb 2026)</div>
-        </td>
-        <td class="td-cell"><span class="t-pill yellow">VC-backed</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span></td>
-        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Maltitol, sucralose</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Collagen % hidden</span></td>
-        <td class="td-cell">
-          <span class="t-price">~$3.20</span>
-          <span class="t-price-sub">per bar</span>
-        </td>
-        <td class="td-cell"><span class="t-pill red">Red</span></td>
-      </tr>
-      <tr class="expand-row" id="expand-david">
-        <td class="expand-cell" colspan="8">
-          <div class="quick-check">
-            <div class="qc-block">
-              <div class="qc-label">Protein Source</div>
-              <div class="qc-value"><strong>Whey + Collagen blend</strong><br>Proportion of collagen (PDCAAS 0) vs. whey (PDCAAS 1.0) is undisclosed. Collagen inflates protein count without full amino acid value.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Backing</div>
-              <div class="qc-value"><strong>Peter Attia resigned as CSO</strong><br>February 2026. Was Scientific Advisor + sponsor. Equity status never confirmed. Departure removes primary credibility anchor.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Testing</div>
-              <div class="qc-highlight">
-                <span class="neg">✗ No NSF certification</span><br>
-                <span class="neg">✗ No batch COAs published</span><br>
-                <span class="neg">✗ Collagen proportion undisclosed</span><br>
-                <span class="neg">✗ Influencer equity unconfirmed</span>
-              </div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Key Finding</div>
-              <div class="qc-value"><strong>"Protein bar" with undisclosed collagen</strong> proportion. Priced at a scientific rigor premium. Attia departure strips the scientific credibility claim.</div>
-            </div>
-            <div class="qc-cta">
-              <a href="traced-david.html" class="qc-link">Full Report →</a>
-              <button class="qc-close" onclick="toggleQuickCheck('david'); event.stopPropagation();">Close ×</button>
-            </div>
-          </div>
-        </td>
-      </tr>
-
       <!-- VITAL PROTEINS -->
       <tr class="brand-row" id="row-vital-proteins" data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="true" data-brand="vital-proteins" onclick="toggleQuickCheck('vital-proteins')">
         <td class="td-brand">
@@ -1858,64 +1936,6 @@ html {
         <div class="qc-block"><div class="qc-label">Key Finding</div><div class="qc-value">The <strong>collagen-as-protein misrepresentation</strong>. PDCAAS of 0 means collagen provides zero nutritional value as a protein supplement. Priced at a premium. Endorsed by a celebrity whose equity stake is not disclosed at point of endorsement.</div></div>
         <div class="qc-cta"><button class="qc-close" onclick="toggleQuickCheck('vital-proteins'); event.stopPropagation();">Close ×</button></div>
       </div></td></tr>
-
-      <!-- MUSCLE MILK -->
-      <tr class="brand-row"
-          id="row-muscle-milk"
-          data-zone="red"
-          data-nsf="false"
-          data-coa="false"
-          data-independent="false"
-          data-conglomerate="true"
-          data-brand="muscle-milk"
-          onclick="toggleQuickCheck('muscle-milk')">
-        <td class="td-brand">
-          <div class="td-brand-name">Muscle Milk</div>
-          <div class="td-brand-sub">Protein Shake / Powder</div>
-          <div class="td-brand-owner">PepsiCo / Gatorade — since 2019</div>
-        </td>
-        <td class="td-cell"><span class="t-pill red">Conglomerate</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span></td>
-        <td class="td-cell"><span class="t-check no">✗</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Sucralose (legacy)</span></td>
-        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim);margin-top:2px;display:block;">Casein blend history</span></td>
-        <td class="td-cell">
-          <span class="t-price">~$1.10</span>
-          <span class="t-price-sub">per serving</span>
-        </td>
-        <td class="td-cell"><span class="t-pill red">Red</span></td>
-      </tr>
-      <tr class="expand-row" id="expand-muscle-milk">
-        <td class="expand-cell" colspan="8">
-          <div class="quick-check">
-            <div class="qc-block">
-              <div class="qc-label">Protein Source</div>
-              <div class="qc-value"><strong>Milk Protein Blend (legacy)</strong><br>Calcium & sodium caseinate + MPC historically. 2025 reformulation moves to ultra-filtered milk base.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Owner</div>
-              <div class="qc-value"><strong>PepsiCo / Gatorade</strong><br>Acquired by Hormel (2014), then PepsiCo (2019, $465M). Operates as Gatorade division portfolio slot.</div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Regulatory History</div>
-              <div class="qc-highlight">
-                <span class="neg">✗ 2011 FDA warning letter (name)</span><br>
-                <span class="neg">✗ 2010 FTC review (advertising)</span><br>
-                <span class="neg">✗ CR 2010: Pb, Cd, As, Hg found</span><br>
-                <span class="neu">○ 2025 reformulation: improved</span>
-              </div>
-            </div>
-            <div class="qc-block">
-              <div class="qc-label">Key Finding</div>
-              <div class="qc-value">Most <strong>documented regulatory history</strong> in the category. FDA said the name is misleading. FTC reviewed ad claims. Heavy metals episode never definitively resolved.</div>
-            </div>
-            <div class="qc-cta">
-              <a href="traced-muscle-milk.html" class="qc-link">Full Report →</a>
-              <button class="qc-close" onclick="toggleQuickCheck('muscle-milk'); event.stopPropagation();">Close ×</button>
-            </div>
-          </div>
-        </td>
-      </tr>
 
       <!-- MUSCLEPHARM -->
       <tr class="brand-row" id="row-musclepharm" data-zone="red" data-nsf="false" data-coa="false" data-independent="true" data-conglomerate="false" data-brand="musclepharm" onclick="toggleQuickCheck('musclepharm')">
@@ -1961,7 +1981,33 @@ html {
         <div class="qc-block"><div class="qc-label">Legal / Regulatory</div><div class="qc-highlight"><span class="neg">✗ $200M FTC settlement (2016)</span><br><span class="neg">✗ FTC-mandated business restructuring</span><br><span class="neg">✗ Multiple FDA warning letters (label claims)</span><br><span class="neg">✗ Class actions: liver damage (kava-containing products)</span></div></div>
         <div class="qc-block"><div class="qc-label">Key Finding</div><div class="qc-value">The <strong>MLM model means price reflects distributor compensation</strong>, not product quality. $200M FTC settlement. Liver damage class actions (since resolved). The business model is a more significant red flag than the formula.</div></div>
         <div class="qc-cta"><button class="qc-close" onclick="toggleQuickCheck('herbalife'); event.stopPropagation();">Close ×</button></div>
-      </div></td></tr></tbody>
+      </div></td></tr>
+
+
+      <!-- PALEOVALLEY -->
+      <tr class="brand-row" id="row-paleovalley" data-zone="yellow" data-nsf="false" data-coa="false" data-independent="true" data-conglomerate="false" data-brand="paleovalley" onclick="toggleQuickCheck('paleovalley')">
+        <td class="td-brand">
+          <div class="td-brand-name">Paleovalley</div>
+          <div class="td-brand-sub">Whey + Colostrum / Bone Broth Protein</div>
+          <div class="td-brand-owner">Paleovalley LLC — Founder-owned (Autumn &amp; Chas Smith)</div>
+        </td>
+        <td class="td-cell"><span class="t-pill green">Independent</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span></td>
+        <td class="td-cell"><span class="t-check no">✗</span></td>
+        <td class="td-cell"><span class="t-check yes">✓</span><br><span style="font-size:9px;color:var(--text-dim)">No artificial; monk fruit</span></td>
+        <td class="td-cell"><span class="t-check partial">~</span><br><span style="font-size:9px;color:var(--text-dim)">Blend ratio undisclosed</span></td>
+        <td class="td-cell"><span class="t-price">~$2.33</span><span class="t-price-sub">per serving</span></td>
+        <td class="td-cell"><span class="t-pill yellow">Yellow</span></td>
+      </tr>
+      <tr class="expand-row" id="expand-paleovalley"><td class="expand-cell" colspan="8"><div class="quick-check">
+        <div class="qc-block"><div class="qc-label">Protein Source</div><div class="qc-value"><strong>Whey Concentrate + Colostrum Blend (undisclosed ratio)</strong><br>The flagship whey product lists "Bovine Whey and Colostrum Blend" as a single ingredient — no ratio between the two components is published. Whey concentrate (not isolate) by design; brand argues minimal processing preserves native bioactives. Colostrum is immunoglobulins and growth factors, not protein in the conventional sense. Bone Broth line is collagen — PDCAAS = 0, same issue as Vital Proteins.</div></div>
+        <div class="qc-block"><div class="qc-label">Owner</div><div class="qc-value"><strong>Paleovalley LLC — Founder-operated</strong><br>Co-founded 2013 by Autumn and Chas Smith, Erie, Colorado. No PE investment, no conglomerate acquisition, no outside funding rounds on record (Crunchbase). Genuinely independent — one of the few in a category where independence is nearly extinct. Also operates Wild Pastures (regenerative meat delivery). No exit announced.</div></div>
+        <div class="qc-block"><div class="qc-label">Testing</div><div class="qc-highlight"><span class="neg">✗ Not NSF Certified for Sport</span><br><span class="neg">✗ No batch COAs published by lot number</span><br><span class="neu">○ Claims third-party pesticide testing (40+ pesticides) — not independently verifiable</span><br><span class="neu">○ No Informed Choice or Informed Sport certification</span><br><span class="neg">✗ No regulatory actions (clean record — but verification stack is thin)</span></div></div>
+        <div class="qc-block"><div class="qc-label">Credential Watch</div><div class="qc-value"><strong>"Dr. Autumn Smith" — Doctor of Holistic Nutrition (2024)</strong><br>Holistic Nutrition doctorate is a private-institution credential — not a medical degree, not a registered dietitian (RD), not a research PhD. Brand marketing implies clinical authority that the credential does not confer. She holds a Masters in Holistic Nutrition from Hawthorn University and Certified FDN Practitioner and Certified Eating Psychology Coach certifications. The "Doctor" title amplifies health claims beyond the credential's scope.</div></div>
+        <div class="qc-cta"><button class="qc-close" onclick="toggleQuickCheck('paleovalley'); event.stopPropagation();">Close ×</button></div>
+      </div></td></tr>
+
+    </tbody>
   </table>
 </section>
 
@@ -1969,7 +2015,6 @@ html {
 <section class="profiles-section">
   <div class="section-label">Full Profiles</div>
 
-  
   <div class="profiles-grid" id="profiles-grid">
 
     <!-- Momentous -->
@@ -1978,9 +2023,15 @@ html {
       <span class="pc-zone-label green">Green Benchmark</span>
       <div class="pc-name">Momentous</div>
       <div class="pc-sub">100% Whey Isolate</div>
-      <p class="pc-desc">NSF Certified for Sport, batch COAs published, no artificial sweeteners, grass-fed isolate. VC-backed and independent. Sets the floor for what protein supplement transparency can look like — the category's benchmark profile.</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">1986</span><span class="tl-event">Founded</span></div><div class="tl-item"><span class="tl-year">2008</span><span class="tl-event">Acquired — Glanbia plc</span></div></div>
-      <span class="pc-cta">→</span>
+      <p class="pc-verdict">NSF Certified for Sport, batch COAs published, no artificial sweeteners, grass-fed isolate. VC-backed and independent. Sets the floor for what protein supplement transparency can look like — the category's benchmark profile.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+      </div>
     </a>
 
     <!-- Transparent Labs -->
@@ -1989,38 +2040,15 @@ html {
       <span class="pc-zone-label green">Green</span>
       <div class="pc-name">Transparent Labs</div>
       <div class="pc-sub">100% Grass-Fed Whey Isolate</div>
-      <p class="pc-desc">Publishes batch COAs by lot number. No proprietary blends — every ingredient listed with quantity. No artificial sweeteners or colors. 28g pure isolate per serving. Nutra Holdings acquisition (2020) is the one active watch condition.</p>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- Legion Whey+ -->
-    <a class="profile-card zone-green" href="#"
-       data-zone="green" data-nsf="false" data-coa="true" data-independent="true" data-conglomerate="false">
-      <span class="pc-zone-label green">Green Benchmark</span>
-      <div class="pc-name">Legion Whey+</div>
-      <div class="pc-sub">Grass-Fed Whey Isolate</div>
-      <p class="pc-desc">Founder-owned (Mike Matthews), Labdoor certified with no amino spiking detected, ISO 17025-accredited lab testing, full label disclosure. Truly Grass Fed™ sourcing from Irish dairy. The rare DTC brand that publishes its own financials publicly.</p>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- Naked Nutrition -->
-    <a class="profile-card zone-green" href="#"
-       data-zone="green" data-nsf="false" data-coa="false" data-independent="true" data-conglomerate="false">
-      <span class="pc-zone-label green">Green — Minimal Ingredient</span>
-      <div class="pc-name">Naked Nutrition</div>
-      <div class="pc-sub">Naked Whey / Naked Pea</div>
-      <p class="pc-desc">One ingredient. No sweeteners, no fillers, no additives. Grass-fed whey concentrate at the lowest price point among green-zone brands. The minimal-ingredient standard the rest of the category ignores. No batch COAs, but there's almost nothing to hide.</p>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- NOW Sports -->
-    <a class="profile-card zone-green" href="#"
-       data-zone="green" data-nsf="false" data-coa="false" data-independent="true" data-conglomerate="false">
-      <span class="pc-zone-label green">Green — Value Benchmark</span>
-      <div class="pc-name">NOW Sports</div>
-      <div class="pc-sub">Whey Protein Concentrate</div>
-      <p class="pc-desc">Family-owned since 1968 — the longest independence record in this category by two decades. Informed Sport certified, in-house analytical lab, simple formula. $0.65/serving. The only brand on this list where 55 years of ownership history is the proof of mission, not a press release.</p>
-      <span class="pc-cta">→</span>
+      <p class="pc-verdict">Publishes batch COAs by lot number. No proprietary blends — every ingredient listed with quantity. No artificial sweeteners or colors. 28g pure isolate per serving. Nutra Holdings acquisition (2020) is the one active watch condition.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+      </div>
     </a>
 
     <!-- Optimum Nutrition -->
@@ -2029,161 +2057,21 @@ html {
       <span class="pc-zone-label yellow">Yellow — Watch</span>
       <div class="pc-name">Optimum Nutrition</div>
       <div class="pc-sub">Gold Standard 100% Whey</div>
-      <p class="pc-desc">The world's bestselling whey protein earns its position — product genuinely holds up under external testing. The structural problem: owner Glanbia also supplies ON's whey. No batch COAs. "100% Whey" is a blend with undisclosed ratios.</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">1986</span><span class="tl-event">Founded</span></div><div class="tl-item"><span class="tl-year">2008</span><span class="tl-event">Acquired — Glanbia plc</span></div></div>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- Kaged -->
-    <a class="profile-card zone-yellow" href="#"
-       data-zone="yellow" data-nsf="false" data-coa="true" data-independent="false" data-conglomerate="false">
-      <span class="pc-zone-label yellow">Yellow — Watch Ownership</span>
-      <div class="pc-name">Kaged</div>
-      <div class="pc-sub">Whey Isolate</div>
-      <p class="pc-desc">Currently the cleanest mid-market whey isolate: stevia-sweetened, batch COAs available, Informed Sport certified, full label disclosure. PE acquisition by Portsmith Holdings is the single watch condition — the exit clock is running and reformulation risk rises on each year of PE ownership.</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">2014</span><span class="tl-event">Founded</span></div><div class="tl-item"><span class="tl-year">~2022</span><span class="tl-event">Acquired — Portsmith Holdings (PE)</span></div></div>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- Paleovalley -->
-    <a class="profile-card zone-yellow" href="#"
-       data-zone="yellow" data-nsf="false" data-coa="false" data-independent="true" data-conglomerate="false">
-      <span class="pc-zone-label yellow">Yellow — Blend Opacity + Credential Inflation</span>
-      <div class="pc-name">Paleovalley</div>
-      <div class="pc-sub">Whey + Colostrum · Bone Broth Protein</div>
-      <p class="pc-desc">The most genuinely independent brand in the category — founder-owned since 2013 with no PE or conglomerate acquisition. That's the green. The yellow: flagship whey lists "Bovine Whey and Colostrum Blend" without disclosing the ratio. Bone Broth line is collagen (PDCAAS = 0). No NSF, no batch COAs. Co-founder "Dr." Autumn Smith holds a holistic nutrition doctorate — a private credential that marketing uses to imply clinical authority it doesn't confer.</p>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- Ascent -->
-    <a class="profile-card zone-yellow" href="#"
-       data-zone="yellow" data-nsf="true" data-coa="false" data-independent="false" data-conglomerate="false">
-      <span class="pc-zone-label yellow">Yellow — Parent Dissonance</span>
-      <div class="pc-name">Ascent</div>
-      <div class="pc-sub">Native Fuel Whey</div>
-      <p class="pc-desc">NSF Certified for Sport, genuinely good product, "native whey" processing claim is real. The concern: Leprino Foods, the world's largest mozzarella producer (~$5B+ revenue), owns the brand. The clean, mission-driven aesthetic reflects none of that industrial scale. Good product. Misleading brand story.</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">2016</span><span class="tl-event">Founded as Leprino Foods subsidiary</span></div><div class="tl-item"><span class="tl-year">2016</span><span class="tl-event">Never independent — Leprino from day one</span></div></div>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- Dymatize ISO100 -->
-    <a class="profile-card zone-yellow" href="#"
-       data-zone="yellow" data-nsf="true" data-coa="false" data-independent="false" data-conglomerate="true">
-      <span class="pc-zone-label yellow">Yellow — Post Holdings Lineage</span>
-      <div class="pc-name">Dymatize ISO100</div>
-      <div class="pc-sub">Hydrolyzed Whey Isolate</div>
-      <p class="pc-desc">The #1 hydrolyzed protein by US retail (Circana). NSF Certified for Sport. Product quality is legitimately justified by data. Parent company is BellRing Brands, spun out of Post Holdings — a breakfast cereal conglomerate. Sucralose and Ace-K sweeteners. No batch COAs. Good product, watch ownership trajectory as BellRing manages margin pressure.</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">1994</span><span class="tl-event">Founded</span></div><div class="tl-item"><span class="tl-year">2014</span><span class="tl-event">Acquired — Post Holdings / BellRing Brands</span></div></div>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- Vega -->
-    <a class="profile-card zone-yellow" href="#"
-       data-zone="yellow" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="true">
-      <span class="pc-zone-label yellow">Yellow — Plant Brand Paradox</span>
-      <div class="pc-name">Vega</div>
-      <div class="pc-sub">Sport Premium Protein (Plant)</div>
-      <p class="pc-desc">Founded as a mission-driven vegan company. Now owned by Danone SA (France), a $27B dairy multinational, via the 2017 WhiteWave acquisition. Informed Choice and Non-GMO certified. No artificial sweeteners. The independence that built the brand's trust is gone — the formula has held, but the mission is now French dairy strategy.</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">2004</span><span class="tl-event">Founded</span></div><div class="tl-item"><span class="tl-year">2015</span><span class="tl-event">Acquired — WhiteWave Foods</span></div><div class="tl-item"><span class="tl-year">2017</span><span class="tl-event">Acquired — Danone SA (via WhiteWave)</span></div></div>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- BSN Syntha-6 -->
-    <a class="profile-card zone-yellow" href="#"
-       data-zone="yellow" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="true">
-      <span class="pc-zone-label yellow">Yellow — Glanbia Duopoly</span>
-      <div class="pc-name">BSN Syntha-6</div>
-      <div class="pc-sub">Ultra-Premium Protein Matrix</div>
-      <p class="pc-desc">Six-protein matrix with undisclosed ratios, artificial sweeteners, no COAs. Held by Glanbia plc — the same Irish conglomerate that owns Optimum Nutrition. The consumer who switches from ON to BSN perceives two competing brands. They share supply chain, manufacturing, and ownership. The competition is brand theater.</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">2001</span><span class="tl-event">Founded</span></div><div class="tl-item"><span class="tl-year">2016</span><span class="tl-event">Acquired — Glanbia plc</span></div></div>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- Garden of Life -->
-    <a class="profile-card zone-yellow" href="#"
-       data-zone="yellow" data-nsf="true" data-coa="false" data-independent="false" data-conglomerate="true">
-      <span class="pc-zone-label yellow">Yellow — Watch Nestlé</span>
-      <div class="pc-name">Garden of Life</div>
-      <div class="pc-sub">Sport Organic Plant Protein</div>
-      <p class="pc-desc">NSF Certified for Sport, USDA Organic, retained B Corp status post-acquisition — unusual for a brand absorbed into a major conglomerate. Acquired by Nestlé in 2017. Formula integrity has held for 7+ years. The concern isn't what has changed — it's what Nestlé controls going forward. Best-certified plant-based brand in this category.</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">2000</span><span class="tl-event">Founded</span></div><div class="tl-item"><span class="tl-year">2017</span><span class="tl-event">Acquired — Nestlé Health Science</span></div><div class="tl-item"><span class="tl-year">2017</span><span class="tl-event">B Corp status retained post-acquisition</span></div></div>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- Orgain -->
-    <a class="profile-card zone-red" href="#"
-       data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="true">
-      <span class="pc-zone-label red">Red — Volume Leader, Nestlé Organic</span>
-      <div class="pc-name">Orgain</div>
-      <div class="pc-sub">Organic Protein (Plant & Whey)</div>
-      <p class="pc-desc">USDA Organic, Non-GMO certified. The #1 plant-based protein on Amazon. Acquired by Nestlé in 2022 — joining Garden of Life and Vital Proteins as three "clean/organic" protein brands under the same Swiss parent. Consumer switching between them has not changed their supplier. Nestlé's precision fermentation "Better Whey" launched under the Orgain brand in 2024.</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">2009</span><span class="tl-event">Founded</span></div><div class="tl-item"><span class="tl-year">2022</span><span class="tl-event">Acquired — Nestlé Health Science</span></div></div>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- Premier Protein -->
-    <a class="profile-card zone-red" href="#"
-       data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="true">
-      <span class="pc-zone-label red">Red — Volume Leader, Zero Certs</span>
-      <div class="pc-name">Premier Protein</div>
-      <div class="pc-sub">Protein Powder / RTD Shakes</div>
-      <p class="pc-desc">~$2B annual revenue. #1 by US household penetration. More Americans consume Premier Protein than any other brand in this category. Zero NSF certification. No batch COAs. No Informed Choice. Sweetened with sucralose and Ace-K. The category's dominant brand is also the category's least transparent. Owned by BellRing Brands (Post Holdings spinoff).</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">2001</span><span class="tl-event">Founded — Premier Nutrition</span></div><div class="tl-item"><span class="tl-year">2013</span><span class="tl-event">Acquired — Post Holdings / BellRing Brands</span></div></div>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- Ghost Whey -->
-    <a class="profile-card zone-red" href="traced-ghost-deep-trace.html"
-       data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="true">
-      <span class="pc-zone-label red">Red — Identity Inversion</span>
-      <div class="pc-name">Ghost Whey</div>
-      <div class="pc-sub">Whey Protein Blend</div>
-      <p class="pc-desc">Built its entire brand identity on independence, transparency, and anti-establishment positioning. Acquired by Keurig Dr Pepper in October 2024. KDP makes Dr Pepper, 7UP, Canada Dry, and Snapple. Ghost's Oreo and Cinnabon collaborations remain. The independence does not. No NSF, no COAs, undisclosed blend ratios.</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">2016</span><span class="tl-event">Founded — independence as core identity</span></div><div class="tl-item"><span class="tl-year">Oct 2024</span><span class="tl-event">Acquired — Keurig Dr Pepper</span></div><div class="tl-item"><span class="tl-year">2025</span><span class="tl-event">Independence narrative unchanged on all channels</span></div></div>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- MuscleTech -->
-    <a class="profile-card zone-red" href="#"
-       data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="false">
-      <span class="pc-zone-label red">Red — Regulatory Record</span>
-      <div class="pc-name">MuscleTech</div>
-      <div class="pc-sub">Nitro-Tech Whey</div>
-      <p class="pc-desc">Multiple FTC consent decrees for advertising violations. Class action alleging protein spiking with glycine. Same parent company (Iovate) as Hydroxycut — one of the most recalled supplement brands in US history. No NSF, no COAs, no Informed Choice. Mass-market pricing that reflects none of the regulatory cost built into premium brands.</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">1995</span><span class="tl-event">Founded</span></div><div class="tl-item"><span class="tl-year">2004</span><span class="tl-event">Acquired — Iovate Health Sciences</span></div><div class="tl-item"><span class="tl-year">2004</span><span class="tl-event">FTC consent decree — advertising violations</span></div></div>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- Body Fortress -->
-    <a class="profile-card zone-red" href="#"
-       data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="false">
-      <span class="pc-zone-label red">Red — Mass Market Zero Stack</span>
-      <div class="pc-name">Body Fortress</div>
-      <div class="pc-sub">Super Advanced Whey Protein</div>
-      <p class="pc-desc">The brand most Americans who buy protein powder at Walmart are actually buying. Highest unit volume in US mass-grocery channels. $0.50/serving. Zero certifications — no NSF, no Informed Choice, no COAs. Same parent as MuscleTech (Iovate), with its documented FTC and recall history. The gap between volume and accountability is widest here.</p>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- David -->
-    <a class="profile-card zone-red" href="traced-david.html"
-       data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="false">
-      <span class="pc-zone-label red">Red — Disclosure Gap</span>
-      <div class="pc-name">David</div>
-      <div class="pc-sub">Protein Bar</div>
-      <p class="pc-desc">Priced at a scientific rigor premium. Backed by Peter Attia — who resigned as CSO in February 2026. Collagen proportion within the protein blend is undisclosed. Collagen has a PDCAAS of 0, meaning it inflates the protein count without equivalent amino acid value.</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">2023</span><span class="tl-event">Founded</span></div><div class="tl-item"><span class="tl-year">Feb 2026</span><span class="tl-event">Peter Attia resigned as CSO</span></div></div>
-      <span class="pc-cta">→</span>
-    </a>
-
-    <!-- Vital Proteins -->
-    <a class="profile-card zone-red" href="#"
-       data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="true">
-      <span class="pc-zone-label red">Red — Collagen Is Not Protein</span>
-      <div class="pc-name">Vital Proteins</div>
-      <div class="pc-sub">Collagen Peptides</div>
-      <p class="pc-desc">Collagen has a PDCAAS of 0. It is not a complete protein. Twenty grams of collagen peptides does not deliver the amino acid value of 20g whey. Vital Proteins markets itself as a protein supplement using collagen math. Jennifer Aniston holds the CCO title and is the paid face of the brand — no equity stake has been confirmed in public disclosures. Now owned by Nestlé — the third Swiss-parent protein brand alongside Orgain and Garden of Life.</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">2013</span><span class="tl-event">Founded</span></div><div class="tl-item"><span class="tl-year">2020</span><span class="tl-event">Acquired — Nestlé (majority stake)</span></div><div class="tl-item"><span class="tl-year">2021</span><span class="tl-event">Nestlé acquisition finalized (full ownership)</span></div></div>
-      <span class="pc-cta">→</span>
+      <p class="pc-verdict">The world's bestselling whey protein earns its position — product genuinely holds up under external testing. The structural problem: owner Glanbia also supplies ON's whey. No batch COAs. "100% Whey" is a blend with undisclosed ratios.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot red"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">1986</div><div class="acq-label found">Founded</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2008</div><div class="acq-label acq">Acquired — Glanbia plc</div></div>
+</div>
+        </div>
     </a>
 
     <!-- Muscle Milk -->
@@ -2192,34 +2080,439 @@ html {
       <span class="pc-zone-label red">Red — Regulatory History</span>
       <div class="pc-name">Muscle Milk</div>
       <div class="pc-sub">Protein Shake / Powder</div>
-      <p class="pc-desc">Most documented regulatory history in the category. FDA said "Muscle Milk" is a misleading name (no milk). FTC reviewed advertising claims. Consumer Reports found heavy metals at or near USP limits. Now a PepsiCo/Gatorade portfolio entry.</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">2000</span><span class="tl-event">Founded — CytoSport</span></div><div class="tl-item"><span class="tl-year">2014</span><span class="tl-event">Acquired — Hormel Foods</span></div><div class="tl-item"><span class="tl-year">2019</span><span class="tl-event">Acquired — PepsiCo</span></div></div>
-      <span class="pc-cta">→</span>
+      <p class="pc-verdict">Most documented regulatory history in the category. FDA said "Muscle Milk" is a misleading name (no milk). FTC reviewed advertising claims. Consumer Reports found heavy metals at or near USP limits. Now a PepsiCo/Gatorade portfolio entry.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2000</div><div class="acq-label found">Founded — CytoSport</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2014</div><div class="acq-label acq">Acquired — Hormel Foods</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2019</div><div class="acq-label acq">Acquired — PepsiCo</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- David -->
+    <a class="profile-card zone-red" href="traced-david.html"
+       data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="false">
+      <span class="pc-zone-label red">Red — Disclosure Gap</span>
+      <div class="pc-name">David</div>
+      <div class="pc-sub">Protein Bar</div>
+      <p class="pc-verdict">Priced at a scientific rigor premium. Backed by Peter Attia — who resigned as CSO in February 2026. Collagen proportion within the protein blend is undisclosed. Collagen has a PDCAAS of 0, meaning it inflates the protein count without equivalent amino acid value.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot green"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2023</div><div class="acq-label found">Founded</div></div>
+<div class="acq-node"><div class="acq-dot warn"></div><div class="acq-year">Feb 2026</div><div class="acq-label warn">Peter Attia resigned as CSO</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- Legion -->
+    <a class="profile-card zone-green" href="#"
+       data-zone="green" data-nsf="false" data-coa="true" data-independent="true" data-conglomerate="false">
+      <span class="pc-zone-label green">Green Benchmark</span>
+      <div class="pc-name">Legion Whey+</div>
+      <div class="pc-sub">Grass-Fed Whey Isolate</div>
+      <p class="pc-verdict">Founder-owned (Mike Matthews), Labdoor certified with no amino spiking detected, ISO 17025-accredited lab testing, full label disclosure. Truly Grass Fed™ sourcing from Irish dairy. The rare DTC brand that publishes its own financials publicly.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Naked Nutrition -->
+    <a class="profile-card zone-green" href="#"
+       data-zone="green" data-nsf="false" data-coa="false" data-independent="true" data-conglomerate="false">
+      <span class="pc-zone-label green">Green — Minimal Ingredient</span>
+      <div class="pc-name">Naked Nutrition</div>
+      <div class="pc-sub">Naked Whey / Naked Pea</div>
+      <p class="pc-verdict">One ingredient. No sweeteners, no fillers, no additives. Grass-fed whey concentrate at the lowest price point among green-zone brands. The minimal-ingredient standard the rest of the category ignores. No batch COAs, but there's almost nothing to hide.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- NOW Sports -->
+    <a class="profile-card zone-green" href="#"
+       data-zone="green" data-nsf="false" data-coa="false" data-independent="true" data-conglomerate="false">
+      <span class="pc-zone-label green">Green — Value Benchmark</span>
+      <div class="pc-name">NOW Sports</div>
+      <div class="pc-sub">Whey Protein Concentrate</div>
+      <p class="pc-verdict">Family-owned since 1968 — the longest independence record in this category by two decades. Informed Sport certified, in-house analytical lab, simple formula. $0.65/serving. The only brand on this list where 55 years of ownership history is the proof of mission, not a press release.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div><div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Kaged -->
+    <a class="profile-card zone-yellow" href="#"
+       data-zone="yellow" data-nsf="false" data-coa="true" data-independent="false" data-conglomerate="false">
+      <span class="pc-zone-label yellow">Yellow — Watch Ownership</span>
+      <div class="pc-name">Kaged</div>
+      <div class="pc-sub">Whey Isolate</div>
+      <p class="pc-verdict">Currently the cleanest mid-market whey isolate: stevia-sweetened, batch COAs available, Informed Sport certified, full label disclosure. PE acquisition by Portsmith Holdings is the single watch condition — the exit clock is running and reformulation risk rises on each year of PE ownership.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div><div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot red"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2014</div><div class="acq-label found">Founded</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">~2022</div><div class="acq-label acq">Acquired — Portsmith Holdings (PE)</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- Ascent -->
+    <a class="profile-card zone-yellow" href="#"
+       data-zone="yellow" data-nsf="true" data-coa="false" data-independent="false" data-conglomerate="false">
+      <span class="pc-zone-label yellow">Yellow — Parent Dissonance</span>
+      <div class="pc-name">Ascent</div>
+      <div class="pc-sub">Native Fuel Whey</div>
+      <p class="pc-verdict">NSF Certified for Sport, genuinely good product, "native whey" processing claim is real. The concern: Leprino Foods, the world's largest mozzarella producer (~$5B+ revenue), owns the brand. The clean, mission-driven aesthetic reflects none of that industrial scale. Good product. Misleading brand story.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div><div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot red"></div><div class="pc-dot red"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2016</div><div class="acq-label found">Founded as Leprino Foods subsidiary</div></div>
+<div class="acq-node"><div class="acq-dot warn"></div><div class="acq-year">2016</div><div class="acq-label warn">Never independent — Leprino from day one</div></div>
+</div>
+        </div>
+    </a>
+
+    
+    <!-- Paleovalley -->
+    <a class="profile-card zone-yellow" href="#"
+       data-zone="yellow" data-nsf="false" data-coa="false" data-independent="true" data-conglomerate="false">
+      <span class="pc-zone-label yellow">Yellow — Blend Opacity + Credential Inflation</span>
+      <div class="pc-name">Paleovalley</div>
+      <div class="pc-sub">Whey + Colostrum · Bone Broth Protein</div>
+      <p class="pc-verdict">The most genuinely independent brand in the category — founder-owned since 2013 with no PE or conglomerate acquisition. That's the green. The yellow: flagship whey product lists "Bovine Whey and Colostrum Blend" without disclosing the ratio between the two; colostrum is not conventional protein. Bone Broth line is collagen (PDCAAS = 0). No NSF, no batch COAs, pesticide testing claimed but not independently verifiable. Heavy social ad spend at $2.33/serving on a whey concentrate base suggests margin structure weighted toward acquisition. Co-founder "Dr." Autumn Smith holds a holistic nutrition doctorate — a private credential that marketing uses to imply clinical authority it doesn't confer.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot red"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- BSN -->
+    <a class="profile-card zone-yellow" href="#"
+       data-zone="yellow" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="true">
+      <span class="pc-zone-label yellow">Yellow — Glanbia Duopoly</span>
+      <div class="pc-name">BSN Syntha-6</div>
+      <div class="pc-sub">Ultra-Premium Protein Matrix</div>
+      <p class="pc-verdict">Six-protein matrix with undisclosed ratios, artificial sweeteners, no COAs. Held by Glanbia plc — the same Irish conglomerate that owns Optimum Nutrition. The consumer who switches from ON to BSN perceives two competing brands. They share supply chain, manufacturing, and ownership. The competition is brand theater.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot red"></div><div class="pc-dot red"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2001</div><div class="acq-label found">Founded</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2016</div><div class="acq-label acq">Acquired — Glanbia plc</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- Dymatize -->
+    <a class="profile-card zone-yellow" href="#"
+       data-zone="yellow" data-nsf="true" data-coa="false" data-independent="false" data-conglomerate="true">
+      <span class="pc-zone-label yellow">Yellow — Post Holdings Lineage</span>
+      <div class="pc-name">Dymatize ISO100</div>
+      <div class="pc-sub">Hydrolyzed Whey Isolate</div>
+      <p class="pc-verdict">The #1 hydrolyzed protein by US retail (Circana). NSF Certified for Sport. Product quality is legitimately justified by data. Parent company is BellRing Brands, spun out of Post Holdings — a breakfast cereal conglomerate. Sucralose and Ace-K sweeteners. No batch COAs. Good product, watch ownership trajectory as BellRing manages margin pressure.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div><div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot red"></div><div class="pc-dot red"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">1994</div><div class="acq-label found">Founded</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2014</div><div class="acq-label acq">Acquired — Post Holdings / BellRing Brands</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- Vega -->
+    <a class="profile-card zone-yellow" href="#"
+       data-zone="yellow" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="true">
+      <span class="pc-zone-label yellow">Yellow — Plant Brand Paradox</span>
+      <div class="pc-name">Vega</div>
+      <div class="pc-sub">Sport Premium Protein (Plant)</div>
+      <p class="pc-verdict">Founded as a mission-driven vegan company. Now owned by Danone SA (France), a $27B dairy multinational, via the 2017 WhiteWave acquisition. Informed Choice and Non-GMO certified. No artificial sweeteners. The independence that built the brand's trust is gone — the formula has held, but the mission is now French dairy strategy.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div><div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot red"></div><div class="pc-dot red"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2004</div><div class="acq-label found">Founded</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2015</div><div class="acq-label acq">Acquired — WhiteWave Foods</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2017</div><div class="acq-label acq">Acquired — Danone SA (via WhiteWave)</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- Orgain -->
+    <a class="profile-card zone-yellow" href="#"
+       data-zone="yellow" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="true">
+      <span class="pc-zone-label yellow">Yellow — Nestlé Organic</span>
+      <div class="pc-name">Orgain</div>
+      <div class="pc-sub">Organic Protein (Plant &amp; Whey)</div>
+      <p class="pc-verdict">USDA Organic, Non-GMO certified. The #1 plant-based protein on Amazon. Acquired by Nestlé in 2022 — joining Garden of Life and Vital Proteins as three "clean/organic" protein brands under the same Swiss parent. Consumer switching between them has not changed their supplier. Nestlé's precision fermentation "Better Whey" launched under the Orgain brand in 2024.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2009</div><div class="acq-label found">Founded</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2022</div><div class="acq-label acq">Acquired — Nestlé Health Science</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- Garden of Life -->
+    <a class="profile-card zone-yellow" href="#"
+       data-zone="yellow" data-nsf="true" data-coa="false" data-independent="false" data-conglomerate="true">
+      <span class="pc-zone-label yellow">Yellow — Watch Nestlé</span>
+      <div class="pc-name">Garden of Life</div>
+      <div class="pc-sub">Sport Organic Plant Protein</div>
+      <p class="pc-verdict">NSF Certified for Sport, USDA Organic, retained B Corp status post-acquisition — unusual for a brand absorbed into a major conglomerate. Acquired by Nestlé in 2017. Formula integrity has held for 7+ years. The concern isn't what has changed — it's what Nestlé controls going forward. Best-certified plant-based brand in this category.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot red"></div><div class="pc-dot red"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2000</div><div class="acq-label found">Founded</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2017</div><div class="acq-label acq">Acquired — Nestlé Health Science</div></div>
+<div class="acq-node"><div class="acq-dot event"></div><div class="acq-year">2017</div><div class="acq-label event">B Corp status retained post-acquisition</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- Premier Protein -->
+    <a class="profile-card zone-red" href="#"
+       data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="true">
+      <span class="pc-zone-label red">Red — Volume Leader, Zero Certs</span>
+      <div class="pc-name">Premier Protein</div>
+      <div class="pc-sub">Protein Powder / RTD Shakes</div>
+      <p class="pc-verdict">~$2B annual revenue. #1 by US household penetration. More Americans consume Premier Protein than any other brand in this category. Zero NSF certification. No batch COAs. No Informed Choice. Sweetened with sucralose and Ace-K. The category's dominant brand is also the category's least transparent. Owned by BellRing Brands (Post Holdings spinoff).</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2001</div><div class="acq-label found">Founded — Premier Nutrition</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2013</div><div class="acq-label acq">Acquired — Post Holdings / BellRing Brands</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- Ghost -->
+    <a class="profile-card zone-red" href="traced-ghost-deep-trace.html"
+       data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="true">
+      <span class="pc-zone-label red">Red — Identity Inversion</span>
+      <div class="pc-name">Ghost Whey</div>
+      <div class="pc-sub">Whey Protein Blend</div>
+      <p class="pc-verdict">Built its entire brand identity on independence, transparency, and anti-establishment positioning. Acquired by Keurig Dr Pepper in October 2024. KDP makes Dr Pepper, 7UP, Canada Dry, and Snapple. Ghost's Oreo and Cinnabon collaborations remain. The independence does not. No NSF, no COAs, undisclosed blend ratios.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2016</div><div class="acq-label found">Founded — independence as core identity</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">Oct 2024</div><div class="acq-label acq">Acquired — Keurig Dr Pepper</div></div>
+<div class="acq-node"><div class="acq-dot warn"></div><div class="acq-year">2025</div><div class="acq-label warn">Independence narrative unchanged on all channels</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- MuscleTech -->
+    <a class="profile-card zone-red" href="#"
+       data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="false">
+      <span class="pc-zone-label red">Red — Regulatory Record</span>
+      <div class="pc-name">MuscleTech</div>
+      <div class="pc-sub">Nitro-Tech Whey</div>
+      <p class="pc-verdict">Multiple FTC consent decrees for advertising violations. Class action alleging protein spiking with glycine. Same parent company (Iovate) as Hydroxycut — one of the most recalled supplement brands in US history. No NSF, no COAs, no Informed Choice. Mass-market pricing that reflects none of the regulatory cost built into premium brands.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">1995</div><div class="acq-label found">Founded</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2004</div><div class="acq-label acq">Acquired — Iovate Health Sciences</div></div>
+<div class="acq-node"><div class="acq-dot warn"></div><div class="acq-year">2004</div><div class="acq-label warn">FTC consent decree — advertising violations</div></div>
+</div>
+        </div>
+    </a>
+
+    <!-- Body Fortress -->
+    <a class="profile-card zone-red" href="#"
+       data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="false">
+      <span class="pc-zone-label red">Red — Mass Market Zero Stack</span>
+      <div class="pc-name">Body Fortress</div>
+      <div class="pc-sub">Super Advanced Whey Protein</div>
+      <p class="pc-verdict">The brand most Americans who buy protein powder at Walmart are actually buying. Highest unit volume in US mass-grocery channels. $0.50/serving. Zero certifications — no NSF, no Informed Choice, no COAs. Same parent as MuscleTech (Iovate), with its documented FTC and recall history. The gap between volume and accountability is widest here.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Vital Proteins -->
+    <a class="profile-card zone-red" href="#"
+       data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="true">
+      <span class="pc-zone-label red">Red — Collagen Is Not Protein</span>
+      <div class="pc-name">Vital Proteins</div>
+      <div class="pc-sub">Collagen Peptides</div>
+      <p class="pc-verdict">Collagen has a PDCAAS of 0. It is not a complete protein. Twenty grams of collagen peptides does not deliver the amino acid value of 20g whey. Vital Proteins markets itself as a protein supplement using collagen math. Jennifer Aniston holds the CCO title and is the paid face of the brand — no equity stake has been confirmed in public disclosures. Now owned by Nestlé — the third Swiss-parent protein brand alongside Orgain and Garden of Life.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-dot green"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2013</div><div class="acq-label found">Founded</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2020</div><div class="acq-label acq">Acquired — Nestlé (majority stake)</div></div>
+<div class="acq-node"><div class="acq-dot acq"></div><div class="acq-year">2021</div><div class="acq-label acq">Nestlé acquisition finalized (full ownership)</div></div>
+</div>
+        </div>
     </a>
 
     <!-- MusclePharm -->
     <a class="profile-card zone-red" href="traced-musclepharm-deep-trace.html"
-       data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="false">
-      <span class="pc-zone-label red">Red — Legal & Regulatory Failure</span>
+       data-zone="red" data-nsf="false" data-coa="false" data-independent="true" data-conglomerate="false">
+      <span class="pc-zone-label red">Red — Legal &amp; Regulatory Failure</span>
       <div class="pc-name">MusclePharm</div>
       <div class="pc-sub">Combat Protein Powder</div>
-      <p class="pc-desc">$4M FTC settlement for false advertising. SEC investigation of the CEO for insider trading. Multiple financial restatements. Revenue down ~70% from peak. Still on shelf at GNC and Amazon. The most documented legal and regulatory failure record in this category — a company that has been systematically held to account and continues operating with the same disclosure gaps.</p>
-      <div class="pc-timeline"><div class="tl-item"><span class="tl-year">2008</span><span class="tl-event">Founded</span></div><div class="tl-item"><span class="tl-year">2012</span><span class="tl-event">IPO — Nasdaq: MSLP</span></div><div class="tl-item"><span class="tl-year">2014</span><span class="tl-event">$4M FTC settlement — false advertising</span></div><div class="tl-item"><span class="tl-year">2015</span><span class="tl-event">SEC investigation — CEO insider trading</span></div></div>
-      <span class="pc-cta">→</span>
+      <p class="pc-verdict">$4M FTC settlement for false advertising. SEC investigation of the CEO for insider trading. Multiple financial restatements. Revenue down ~70% from peak. Still on shelf at GNC and Amazon. The most documented legal and regulatory failure record in this category — a company that has been systematically held to account and continues operating with the same disclosure gaps.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div><div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+    <div class="acq-timeline">
+<div class="acq-node"><div class="acq-dot found"></div><div class="acq-year">2008</div><div class="acq-label found">Founded</div></div>
+<div class="acq-node"><div class="acq-dot event"></div><div class="acq-year">2012</div><div class="acq-label event">IPO — Nasdaq: MSLP</div></div>
+<div class="acq-node"><div class="acq-dot warn"></div><div class="acq-year">2014</div><div class="acq-label warn">$4M FTC settlement — false advertising</div></div>
+<div class="acq-node"><div class="acq-dot warn"></div><div class="acq-year">2015</div><div class="acq-label warn">SEC investigation — CEO insider trading</div></div>
+</div>
+        </div>
     </a>
 
-    <!-- Herbalife Formula 1 -->
+    <!-- Herbalife -->
     <a class="profile-card zone-red" href="#"
        data-zone="red" data-nsf="false" data-coa="false" data-independent="false" data-conglomerate="false">
       <span class="pc-zone-label red">Red — MLM Structure</span>
       <div class="pc-name">Herbalife Formula 1</div>
       <div class="pc-sub">Meal Replacement Shake</div>
-      <p class="pc-desc">$200M FTC settlement. Required business restructuring mandated by regulators. Multiple FDA warning letters. Class actions tied to liver damage in kava-containing products. The business model — MLM, where price reflects distributor margin compensation not product cost — is a more significant finding than the formula. 9g protein per serving at $1.80: the worst value on this list by any metric.</p>
-      <span class="pc-cta">→</span>
+      <p class="pc-verdict">$200M FTC settlement. Required business restructuring mandated by regulators. Multiple FDA warning letters. Class actions tied to liver damage in kava-containing products. The business model — MLM, where price reflects distributor margin compensation not product cost — is a more significant finding than the formula. 9g protein per serving at $1.80: the worst value on this list by any metric.</p>
+      <div class="pc-footer">
+        <div class="pc-score-dots">
+          <div class="pc-sep"></div>
+          <div class="pc-dot yellow"></div>
+          <div class="pc-sep"></div>
+          <div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div><div class="pc-dot red"></div>
+        </div>
+        <span class="pc-arrow">→</span>
+      </div>
     </a>
 
   </div>
+</section>
 
+<!-- ─── EDITORIAL CONTEXT ─── -->
 <section class="context-section">
   <div class="context-block">
     <div class="context-block-label">The Category Finding</div>
